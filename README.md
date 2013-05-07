@@ -1,5 +1,5 @@
 =============================
-Dropship API Client - README
+Dropship API Client - README - Better Check Yourself
 =============================
 
 This client will help customers get off the ground faster with a PHP client solution for the Kole Imports Dropship API
