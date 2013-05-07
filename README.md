@@ -8,18 +8,18 @@ This client will help customers get off the ground faster with a PHP client solu
 
 	[http://support.koleimports.com/kb/api-documentation]
 
-==============================
+
 API Requirements
-==============================
+-------------------------------------------------------------
 
 ###Create Account:
 
 	[https://dropship.koleimports.com/]
 
-*Account ID: ex. X12345
-*API KEY: ex. a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd
-*Shipping Method: FedEx or USPS
-*Payment Method: Credit Card
+* Account ID: ex. X12345
+* API KEY: ex. a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd
+* Shipping Method: FedEx or USPS
+* Payment Method: Credit Card
 
 ###Guzzle Client Framework Setup:
 
@@ -47,60 +47,65 @@ Composer also prepares an autoload file that's capable of autoloading all of the
 
 	require __DIR__ . '/vendor/autoload.php';
 
-=========================
+
 GET Requests
-=========================
+-------------------------------------------------------------
 
-###Links: listLinks
+###Links:
 
+	Methods - listLinks
 	Header	- application/vnd.koleimports.ds.link+xml
 	URL		- api.koleimports.com
 
-###Accounts: listAccounts
+###Accounts:
 
+	Methods - listAccounts
 	Header	- application/vnd.koleimports.ds.account+xml
 	URL		- https://api.koleimports.com/accounts/1
 
-###Orders: getOrder, listOrders, listPreviousOrders, listNextOrders
+###Orders:
 
-
+	Methods - getOrder, listOrders, listPreviousOrders, listNextOrders
 	Header	- application/vnd.koleimports.ds.order+xml
 	URL		- https://api.koleimports.com/orders/
 
-###Products: getProduct, listProducts, listPreviousProducts, listNextProducts
+###Products:
 
-
+	Methods - getProduct, listProducts, listPreviousProducts, listNextProducts
 	Header	- application/vnd.koleimports.ds.product+xml
 	URL		- https://api.koleimports.com/products/
 
-###Shipments: getShipment, listShipments, listPreviousShipments, listNextShipments
+###Shipments:
 
+	Methods: getShipment, listShipments, listPreviousShipments, listNextShipments
 	Header	- application/vnd.koleimports.ds.shipment+xml
 	URL		- https://api.koleimports.com/shipments/
 
-###Transactions: listTransactions
+###Transactions:
 
+	Methods - listTransactions
 	Header	- application/vnd.koleimports.ds.transaction+xml
 	URL		- https://api.koleimports.com/transactions/
 
-=========================
+
 POST Requests
-=========================
+-------------------------------------------------------------
 
 ###Orders: createOrder
 
-	*Method: [POST]
-	*Parameters: [None]
-	*Request Headers: [Accept, Authorization, Content-Type, Host]
-	*Response Headers: [Content-Length, Content-Type, Location]
-	*Response Message Body: [Links to access the newly created resource]
-	*Response Status: [201, 400, 401, 403, 500]
+* Method: [POST]
+* Parameters: [None]
+* Request Headers: [Accept, Authorization, Content-Type, Host]
+* Response Headers: [Content-Length, Content-Type, Location]
+* Response Message Body: [Links to access the newly created resource]
+* Response Status: [201, 400, 401, 403, 500]
 
 ###Media Types:
 
 
-	*[application/vnd.koleimports.ds.order+xml]
-	*[application/vnd.koleimports.ds.order+json]
+	* [application/vnd.koleimports.ds.order+xml]
+
+	* [application/vnd.koleimports.ds.order+json]
 
 ###Sample Body:
 
