@@ -93,12 +93,12 @@ HTTP Requests -
 
 ####Orders:
 
-* Method: [POST] - createOrder
-* Parameters: [None]
-* Request Headers: [Accept, Authorization, Content-Type, Host]
-* Response Headers: [Content-Length, Content-Type, Location]
-* Response Message Body: [Links to access the newly created resource]
-* Response Status: [201, 400, 401, 403, 500]
+	Method - [POST] - createOrder
+	Parameters - [None]
+	Request Headers - [Accept, Authorization, Content-Type, Host]
+	Response Headers - [Content-Length, Content-Type, Location]
+	Response Message Body - [Links to access the newly created resource]
+	Response Status - [201, 400, 401, 403, 500]
 
 ####Media Types:
 
