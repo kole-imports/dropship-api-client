@@ -6,7 +6,7 @@ This client will help customers get off the ground faster with a PHP client solu
 
 ###Complete Kole Imports Dropship API Documentation:
 
-* [Dropship API DOCS] (http://support.koleimports.com/kb/api-documentation)
+[Dropship API DOCS] (http://support.koleimports.com/kb/api-documentation)
 
 API Requirements -
 -------------------------------------------------------------
@@ -22,7 +22,7 @@ API Requirements -
 
 ###Guzzle Client Framework Setup:
 
-* [Guzzlephp] (http://guzzlephp.org/getting-started/installation.html)
+[Guzzlephp] (http://guzzlephp.org/getting-started/installation.html)
 
 ####1. Add "guzzle/guzzle" as a dependency in your project's composer.json file
 
@@ -50,7 +50,7 @@ Composer also prepares an autoload file that's capable of autoloading all of the
 HTTP Requests -
 ------------------------
 
-###[GET]
+###[ GET ]
 
 ####Links:
 
@@ -89,11 +89,11 @@ HTTP Requests -
 	URL		- https://api.koleimports.com/transactions/
 
 
-###[POST]
+###[ POST ]
 
 ####Orders:
 
-* Method: [POST] -> 'createOrder'
+* Method: [POST] - createOrder
 * Parameters: [None]
 * Request Headers: [Accept, Authorization, Content-Type, Host]
 * Response Headers: [Content-Length, Content-Type, Location]
