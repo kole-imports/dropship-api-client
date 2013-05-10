@@ -1,0 +1,46 @@
+{
+	"name": "koleimports",
+	"baseUrl": "https://api.koleimports.com",
+	"description": "Dropship API Product Service",
+	"operations": {
+       "GetProducts": {
+            	"httpMethod": "GET",
+            	"uri": "/products",
+			"curl.options":{
+			"CURLOPT_HTTPAUTH": "CURLAUTH_BASIC",
+			"CURLOPT_USERPWD" : "X16310:a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd",
+			"CURLOPT_RETURNTRANSFER":"true"
+			},
+           		"summary": "Gets a list of Products",
+           		"responseClass": "GetProductsOutput"
+      	}
+	},
+	"models": {
+		"GetProductsOutput": {
+			"type": "array",
+			"products":{
+				"type": "array",
+				"properties": {
+					"product": {
+						"location": "xml",
+						"type":"array",
+						"properties":{
+							"sku":{
+								"location":"xml",
+								"type":"string"
+							},
+							"upc":{
+								"location":"xml",
+								"type":"integer"
+							},
+							"title":{
+								"location":"xml",
+								"type":"string"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
