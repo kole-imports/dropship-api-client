@@ -3,12 +3,12 @@
 	"baseUrl": "https://api.koleimports.com",
 	"description": "Dropship API Product Service",
 	"operations": {
-       "GetProducts": {
+	"GetProducts": {
             	"httpMethod": "GET",
             	"uri": "/products",
-           		"summary": "Gets a list of Products",
-           		"responseClass": "GetProductsOutput"
-      	}
+           	"summary": "Gets a list of Products",
+           	"responseClass": "GetProductsOutput"
+      		}
 	},
 	"models": {
 		"GetProductsOutput": {
