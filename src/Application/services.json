@@ -3,12 +3,167 @@
 	"baseUrl": "https://api.koleimports.com",
 	"description": "Dropship API Product Service",
 	"operations": {
-	"GetProducts": {
-            	"httpMethod": "GET",
-            	"uri": "/products",
-           	"summary": "Gets a list of Products",
-           	"responseClass": "GetProductsOutput"
-      		}
+		"GetProducts": {
+	            "httpMethod": "GET",
+	            "uri": "/products",
+	           	"summary": "Gets a list of Products",
+	           	"responseClass": "GetProductsOutput"
+	      		},
+		"GetProduct": {
+	            "httpMethod": "GET",
+	            "uri": "/products/{sku}",
+	           	"summary": "Get specified product",
+	           	"responseClass": "GetProductOutput",
+			"parameters":{
+				"sku":{
+					"location":"uri",
+					"description":"Product to retrieve by sku",
+					"required":"true"
+					}
+				}
+	      	},
+		"GetAccounts": {
+	            "httpMethod": "GET",
+	            "uri": "/accounts",
+	           	"summary": "Gets a list of Accounts",
+	           	"responseClass": "GetAccountsOutput"
+	      	},
+		"GetOrders": {
+	            "httpMethod": "GET",
+	            "uri": "/orders",
+	           	"summary": "Gets a list of orders",
+	           	"responseClass": "GetOrdersOutput"
+	      	},
+		"GetOrder": {
+	            "httpMethod": "GET",
+	            "uri": "/orders/{order_id}",
+	           	"summary": "Get get specific order",
+	           	"responseClass": "GetOrderOutput",
+			"parameters":{
+				"order_id":{
+					"location":"uri",
+					"description":"Order to retrieve by order_id",
+					"required":"true"
+					}
+				}
+			},
+		"CreateOrder": {
+	            "httpMethod": "POST",
+	            "uri": "/orders",
+	           	"summary": "Create an order",
+	           	"responseClass": "CreateOrderOutput",
+			"parameters":{
+				"order":{
+					"location":"xml",
+					"type":"string",
+					"po_number":{
+						"location":"xml",
+						"type":"string",
+						"required":"false"
+					},
+					"notes":{
+						"location":"xml",
+						"type":"string",
+						"required":"false"
+					},
+					"ship_options":{
+						"location":"xml",
+						"type":"string",
+						"parameters":{
+							"carrier":{
+								"location":"xml",
+								"type":"string"
+							},
+							"service":{
+								"location":"xml",
+								"type":"string"
+							},
+							"signature":{
+								"location":"xml",
+								"type":"string",
+								"required":"false"
+							},
+							"instructions":{
+								"location":"xml",
+								"type":"string",
+								"required":"false"
+							}
+						}
+					},
+					"ship_to_address":{
+						"location":"xml",
+						"type":"string",
+						"parameters":{
+							"first_name":{
+								"location":"xml",
+								"type":"string"
+							},
+							"last_name":{
+								"location":"xml",
+								"type":"string"
+							},
+							"company":{
+								"location":"xml",
+								"type":"string"
+							},
+							"address_1":{
+								"location":"xml",
+								"type":"string"
+							},
+							"address_2":{
+								"location":"xml",
+								"type":"string",
+								"required":"false"
+							},
+							"city":{
+								"location":"xml",
+								"type":"string"
+							},
+							"state":{
+								"location":"xml",
+								"type":"string"
+							},
+							"zipcode":{
+								"location":"xml",
+								"type":"string"
+							},
+							"ext_zipcode":{
+								"location":"xml",
+								"type":"string",
+								"required":"false"
+							},
+							"country":{
+								"location":"xml",
+								"type":"string"
+							},
+							"phone":{
+								"location":"xml",
+								"type":"string",
+								"required":"false"
+							},
+						}
+					},
+					"items":{
+						"location":"xml",
+						"type":"string",
+						"item":{
+							"location":"xml",
+							"type":"string",
+								"parameters":{
+									"sku":{
+									"location":"xml",
+									"type":"string"
+								},
+									"quantity":{
+									"location":"xml",
+									"type":"string"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	},
 	"models": {
 		"GetProductsOutput": {
@@ -36,6 +191,9 @@
 					}
 				}
 			}
+		},
+		"CreateOrderOutput":{
+			"type":"object"
 		}
 	}
 }

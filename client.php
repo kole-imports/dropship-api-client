@@ -11,9 +11,39 @@ $KoleImportsClient = new KoleImportsClient();
 $client = $KoleImportsClient->KoleImportsService();
 
 try {
-	$command = $client->getCommand('GetProducts');
-	$result = $command->execute();
-	print_r($result);
+	/**
+	* Product Commands
+	*/
+	//Get list of products
+	$productList = $client->GetProducts();
+	//print_r($productList);
+
+	//Get single product by sku
+	$product = $client->GetProduct(array('sku' => 'AA124'));
+	//print_r($product);
+
+	/**
+	* Account Commands
+	*/
+
+	//Get list of accounts
+	$accountList = $client->GetAccounts();
+	//print_r($accountList);
+
+	/**
+	* Orders Commands
+	*/
+
+	//Get list of orders
+	$orderList = $client->GetOrders();
+	//print_r($orderList);
+
+	//Get single  order by order id
+	$order = $client->GetOrder(array('order_id' => ''));
+	//print_r($order);
+
+	//Create an order
+	$createOrder = $client->CreateOrder();
 }
 //Guzzle Error Handling
 catch (Guzzle\Http\Exception\BadResponseException $e)
