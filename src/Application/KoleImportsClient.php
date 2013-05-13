@@ -17,7 +17,7 @@ class KoleImportsClient extends Client
 		//Client Setup
 		$client = new Client('https://api.koleimports.com/', array(
 			'curl.options'	=> array(
-			CURLOPT_HTTPAUTH		=> 'CURLAUTH_BASIC',
+			CURLOPT_HTTPAUTH	=> 'CURLAUTH_BASIC',
 			CURLOPT_USERPWD		=> ACCOUNT_ID.':'.API_KEY,
 			CURLOPT_RETURNTRANSFER	=> 'true'
 			)
