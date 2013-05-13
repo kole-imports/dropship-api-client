@@ -4,17 +4,15 @@ require __DIR__ . '/vendor/autoload.php';
 //Error Handling
 ini_set('display_errors', 'On');
 
-use Application\DropshipProductClient;
+use Application\KoleImportsClient;
 
-$DropshipProductClient = new DropshipProductClient();
+//Create client object
+$KoleImportsClient = new KoleImportsClient();
+$client = $KoleImportsClient ->KoleImportsService();
 
-$productList = $DropshipProductClient->connectAPI();
-//Get Request
-$request = $productList->get('products');
-
-//Error Handling
+//Guzzle Error Handling
 try {
-	$command = $productList->getCommand('GetProducts');
+	$command = $client->getCommand('GetProducts');
 	$result = $command->execute();
 	print_r($result);
 } catch (Guzzle\Http\Exception\BadResponseException $e) {

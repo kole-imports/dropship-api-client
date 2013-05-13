@@ -6,11 +6,6 @@
        "GetProducts": {
             	"httpMethod": "GET",
             	"uri": "/products",
-			"curl.options":{
-			"CURLOPT_HTTPAUTH": "CURLAUTH_BASIC",
-			"CURLOPT_USERPWD" : "X16310:a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd",
-			"CURLOPT_RETURNTRANSFER":"true"
-			},
            		"summary": "Gets a list of Products",
            		"responseClass": "GetProductsOutput"
       	}
