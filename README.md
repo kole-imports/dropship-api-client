@@ -30,9 +30,9 @@ API Requirements -
 		"require": {
 			"guzzle/guzzle": "3.3.*"
 		}
-    		"autoload": {
-        		"psr-0": {"Application": "src/"}
-    		}
+		"autoload": {
+			"psr-0": {"Application": "src/"}
+		}
 	}
 
 ####2. Download and install Composer
