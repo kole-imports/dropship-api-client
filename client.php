@@ -8,14 +8,16 @@ use Application\KoleImportsClient;
 
 //Create client object
 $KoleImportsClient = new KoleImportsClient();
-$client = $KoleImportsClient ->KoleImportsService();
+$client = $KoleImportsClient->KoleImportsService();
 
-//Guzzle Error Handling
 try {
 	$command = $client->getCommand('GetProducts');
 	$result = $command->execute();
 	print_r($result);
-} catch (Guzzle\Http\Exception\BadResponseException $e) {
+}
+//Guzzle Error Handling
+catch (Guzzle\Http\Exception\BadResponseException $e)
+{
     echo 'Uh oh! ' . $e->getMessage();
     echo 'HTTP request URL: ' . $e->getRequest()->getUrl() . "\n";
     echo 'HTTP request: ' . $e->getRequest() . "\n";

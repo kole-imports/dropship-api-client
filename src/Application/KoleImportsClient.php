@@ -1,6 +1,8 @@
 <?php
 namespace Application;
 
+require dirname(__DIR__) . '/config.php';
+
 use Guzzle\Service\Client;
 use Guzzle\Common\Collection;
 use Guzzle\Service\Builder\ServiceBuilder;
@@ -16,7 +18,7 @@ class KoleImportsClient extends Client
 		$client = new Client('https://api.koleimports.com/', array(
 			'curl.options'	=> array(
 			CURLOPT_HTTPAUTH		=> 'CURLAUTH_BASIC',
-			CURLOPT_USERPWD		=> 'X01003:ae25bfd04c13438a17914ce258ff1b1c25ee9e12',
+			CURLOPT_USERPWD		=> ACCOUNT_ID.':'.API_KEY,
 			CURLOPT_RETURNTRANSFER	=> 'true'
 			)
 		));
