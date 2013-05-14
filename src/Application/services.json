@@ -3,34 +3,78 @@
 	"baseUrl": "https://api.koleimports.com",
 	"description": "Dropship API Product Service",
 	"operations": {
-	"GetProducts": {
-            	"httpMethod": "GET",
-            	"uri": "/products",
-           	"summary": "Gets a list of Products",
-           	"responseClass": "GetProductsOutput"
-      		}
-	},
-	"models": {
-		"GetProductsOutput": {
-			"type": "array",
-			"products":{
+		"GetProducts": {
+	            "httpMethod": "GET",
+	            "uri": "/products",
+	           	"summary": "Gets a list of Products",
+	           	"responseClass": "GetProductsOutput"
+	      		},
+		"GetProduct": {
+	            "httpMethod": "GET",
+	            "uri": "/products/{sku}",
+	           	"summary": "Get specified product",
+	           	"responseClass": "GetProductOutput",
+			"parameters":{
+				"sku":{
+					"location":"uri",
+					"description":"Product to retrieve by sku",
+					"required":"true"
+					}
+				}
+	      	},
+		"GetAccounts": {
+	            "httpMethod": "GET",
+	            "uri": "/accounts",
+	           	"summary": "Gets a list of Accounts",
+	           	"responseClass": "GetAccountsOutput"
+	      	},
+		"GetOrders": {
+	            "httpMethod": "GET",
+	            "uri": "/orders",
+	           	"summary": "Gets a list of orders",
+	           	"responseClass": "GetOrdersOutput"
+	      	},
+		"GetOrder": {
+	            "httpMethod": "GET",
+	            "uri": "/orders/{order_id}",
+	           	"summary": "Get get specific order",
+	           	"responseClass": "GetOrderOutput",
+			"parameters":{
+				"order_id":{
+					"location":"uri",
+					"description":"Order to retrieve by order_id",
+					"required":"true"
+					}
+				}
+			},
+		"CreateOrder": {
+	            "httpMethod": "POST",
+	            "uri": "/orders",
+	           	"summary": "Create an order",
+	           	"responseClass": "CreateOrderOutput"
+		},
+		"models": {
+			"GetProductsOutput": {
 				"type": "array",
-				"properties": {
-					"product": {
-						"location": "xml",
-						"type":"array",
-						"properties":{
-							"sku":{
-								"location":"xml",
-								"type":"string"
-							},
-							"upc":{
-								"location":"xml",
-								"type":"integer"
-							},
-							"title":{
-								"location":"xml",
-								"type":"string"
+				"products":{
+					"type": "array",
+					"properties": {
+						"product": {
+							"location": "xml",
+							"type":"array",
+							"properties":{
+								"sku":{
+									"location":"xml",
+									"type":"string"
+								},
+								"upc":{
+									"location":"xml",
+									"type":"integer"
+								},
+								"title":{
+									"location":"xml",
+									"type":"string"
+								}
 							}
 						}
 					}

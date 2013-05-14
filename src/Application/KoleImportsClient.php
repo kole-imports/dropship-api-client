@@ -12,7 +12,12 @@ use Guzzle\Http\Message\Response;
 
 class KoleImportsClient extends Client
 {
-	public function KoleImportsService()
+	/**
+   	* Handle any API requests via GET or POST
+   	* @param string $sku
+	* @param integer $order_id
+   	*/
+	public function KoleImportsService($sku = Null, $order_id = Null)
 	{
 		//Client Setup
 		$client = new Client('https://api.koleimports.com/', array(
