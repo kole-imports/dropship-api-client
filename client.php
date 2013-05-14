@@ -11,6 +11,7 @@ $KoleImportsClient = new KoleImportsClient();
 $client = $KoleImportsClient->KoleImportsService();
 
 try {
+
 	/**
 	* Product Commands
 	*/
@@ -48,10 +49,10 @@ try {
 //Guzzle Error Handling
 catch (Guzzle\Http\Exception\BadResponseException $e)
 {
-    echo 'Uh oh! ' . $e->getMessage();
-    echo 'HTTP request URL: ' . $e->getRequest()->getUrl() . "\n";
-    echo 'HTTP request: ' . $e->getRequest() . "\n";
-    echo 'HTTP response status: ' . $e->getResponse()->getStatusCode() . "\n";
-    echo 'HTTP response: ' . $e->getResponse() . "\n";
+    echo '<p> Uh oh! ' . $e->getMessage() . '</p>';
+    echo '<p>HTTP request URL: ' . $e->getRequest()->getUrl() . '</p>';
+    echo '<p>HTTP request: ' . $e->getRequest() . "\n";
+    echo '<p>HTTP response status: ' . $e->getResponse()->getStatusCode() . '</p>';
+    echo '<p>HTTP response: ' . $e->getResponse() . '</p>';
 }
 

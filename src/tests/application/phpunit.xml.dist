@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./tests/bootstrap.php" colors="true">
+    <php>
+        <!-- Specify the path to a service configuration file -->
+        <server name="CONFIG" value="test_services.json" />
+        <!-- Or, specify each require parameter individually -->
+        <server name="API_USER" value="X01003" />
+        <server name="API_PASSWORD" value="ae25bfd04c13438a17914ce258ff1b1c25ee9e12" />
+    </php>
+    <testsuites>
+        <testsuite name="guzzle-service">
+            <directory suffix="Test.php">./Tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
