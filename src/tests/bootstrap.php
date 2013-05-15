@@ -1,8 +1,10 @@
 <?php
-
 namespace Application\tests;
 
-Guzzle\Tests\GuzzleTestCase::setServiceBuilder(Aws\Common\Aws::factory($_SERVER['CONFIG']));
+use Guzzle\Tests;
+use Aws\Common;
+
+GuzzleTestCase::setServiceBuilder(Aws::factory($_SERVER['CONFIG']));
 
 Guzzle\Tests\GuzzleTestCase::setServiceBuilder(Guzzle\Service\Builder\ServiceBuilder::factory(array(
     'test.unfuddle' => array(

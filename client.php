@@ -5,6 +5,7 @@ require __DIR__ . '/vendor/autoload.php';
 ini_set('display_errors', 'On');
 
 use Application\KoleImportsClient;
+use Guzzle\Service\Builder\ServiceBuilder;
 
 //Create client object
 $KoleImportsClient = new KoleImportsClient();

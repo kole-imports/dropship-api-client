@@ -7,8 +7,8 @@ use Guzzle\Service\Client;
 use Guzzle\Common\Collection;
 use Guzzle\Service\Builder\ServiceBuilder;
 use Guzzle\Service\Description\ServiceDescription;
-use Guzzle\Plugin\CurlAuth\CurlAuthPlugin;
 use Guzzle\Http\Message\Response;
+
 
 class KoleImportsClient extends Client
 {
@@ -19,7 +19,8 @@ class KoleImportsClient extends Client
    	*/
 	public function KoleImportsService($sku = Null, $order_id = Null)
 	{
-		//Client Setup
+
+		//**Client Setup
 		$client = new Client('https://api.koleimports.com/', array(
 			'curl.options'	=> array(
 			CURLOPT_HTTPAUTH	=> 'CURLAUTH_BASIC',

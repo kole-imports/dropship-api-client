@@ -3,6 +3,9 @@
         "guzzle/guzzle": "3.0.*"
     },
     "autoload": {
-      "psr-0": {"Application": "src/"}
-    }
+		"psr-0": {
+		"Application": "src/",
+		"tests":"src/tests"
+		}
+	}
 }
