@@ -2,13 +2,6 @@
 	"name": "Kole Imports API Client",
 	"base_url": "https://api.koleimports.com",
 	"description": "Dropship API Product Service",
-	"account_id":"X01003",
-	"api_key":"ae25bfd04c13438a17914ce258ff1b1c25ee9e12",
-	"curl.options":{
-		"CURLOPT_HTTPAUTH":"CURLAUTH_BASIC",
-		"CURLOPT_HTTPAUTH":"X01003:ae25bfd04c13438a17914ce258ff1b1c25ee9e12",
-		"CURLOPT_RETURNTRANSFER":"true"
-	},
 	"operations": {
 		"GetProducts": {
 	            "httpMethod": "GET",
