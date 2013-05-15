@@ -27,11 +27,14 @@ API Requirements -
 ####1. Add "guzzle/guzzle" as a dependency in your project's composer.json file
 
 	{
-		"require": {
-			"guzzle/guzzle": "3.3.*"
-		}
-		"autoload": {
-			"psr-0": {"Application": "src/"}
+	    "require": {
+	        "guzzle/guzzle": "3.0.*"
+	    },
+	    "autoload": {
+			"psr-0": {
+			"Application": "src/",
+			"tests":"src/tests"
+			}
 		}
 	}
 
