@@ -18,7 +18,7 @@ try {
 	*/
 	//Get list of products
 	$productList = $client->GetProducts();
-	//print_r($productList);
+	print_r($productList);
 
 	//Get single product by sku
 	$product = $client->GetProduct(array('sku' => 'AA124'));

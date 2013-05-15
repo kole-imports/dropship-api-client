@@ -51,34 +51,146 @@
 	            "httpMethod": "POST",
 	            "uri": "/orders",
 	           	"summary": "Create an order",
-	           	"responseClass": "CreateOrderOutput"
-		},
-		"models": {
-			"GetProductsOutput": {
-				"type": "array",
-				"products":{
-					"type": "array",
-					"properties": {
-						"product": {
-							"location": "xml",
+	           	"responseClass": "CreateOrderOutput",
+			"parameters":{
+				//order
+			"order":{
+				"type":"array",
+				"location":"xml",
+				"params":{
+					"po_number":{
+						"location":"xml",
+						"type":"integer",
+						"required":"false"
+					},
+					"notes":{
+						"location":"xml",
+						"type":"string",
+						"required":"false"
+					},
+					 //shipping_options
+						"shipping_options":{
 							"type":"array",
-							"properties":{
-								"sku":{
+							"location":"xml",
+							"params":{
+								"carrier":{
 									"location":"xml",
-									"type":"string"
+									"type":"string",
+									"required":"true"
 								},
-								"upc":{
+								"service":{
 									"location":"xml",
-									"type":"integer"
+									"type":"string",
+									"required":"true"
 								},
-								"title":{
+								"signature":{
 									"location":"xml",
-									"type":"string"
+									"type":"string",
+									"required":"false"
+								},
+								"instructions":{
+									"location":"xml",
+									"type":"string",
+									"required":"false"
 								}
 							}
-						}
+						},
+						//ship_to_address
+						"ship_to_address":{
+							"type":"array",
+							"location":"xml",
+							"params":{
+								"first_name":{
+									"location":"xml",
+									"type":"string",
+									"required":"true"
+								},
+								"last_name":{
+									"location":"xml",
+									"type":"string",
+									"required":"true"
+								},
+								"comany":{
+									"location":"xml",
+									"type":"string",
+									"required":"true"
+								},
+								"address_1":{
+									"location":"xml",
+									"type":"string",
+									"required":"true"
+								},
+								"address_2":{
+									"location":"xml",
+									"type":"string",
+									"required":"false"
+								},
+								"city":{
+									"location":"xml",
+									"type":"string",
+									"required":"true"
+								},
+								"state":{
+									"location":"xml",
+									"type":"string",
+									"required":"true"
+								},
+								"zipcode":{
+									"location":"xml",
+									"type":"string",
+									"required":"true"
+								},
+								"ext_zipcode":{
+									"location":"xml",
+									"type":"string",
+									"required":"false"
+								},
+								"country":{
+									"location":"xml",
+									"type":"string",
+									"required":"true"
+								},
+								"phone":{
+									"location":"xml",
+									"type":"string",
+									"required":"false"
+								}
+							}
+						},
+						//items
+						"items":{
+						"type":"array",
+						"location":"xml",
+							"params":{
+								//item
+								"item":{
+									"type":"array",
+									"location":"xml",
+									"params":{
+										"sku":{
+											"location":"xml",
+											"type":"string",
+											"required":"true"
+										},
+										"quantity":{
+											"location":"xml",
+											"type":"integer",
+											"required":"true"
+										}
+									}
+								}//END item
+							}
+						}//END items
 					}
-				}
+				}//End order
+			}//END CreateOrder Perameters
+		},//END CreateOrder
+		"models": {
+			"GetProductsOutput": {
+				"type": "object"
+			},
+			"CreateOrderOutput":{
+				"type":"object"
 			}
 		}
 	}
