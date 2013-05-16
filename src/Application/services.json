@@ -53,11 +53,9 @@
 	           	"summary": "Create an order",
 	           	"responseClass": "CreateOrderOutput",
 			"parameters":{
-				//order
 			"order":{
-				"type":"array",
-				"location":"xml",
-				"params":{
+			"type":"array",
+			"location":"xml",
 					"po_number":{
 						"location":"xml",
 						"type":"integer",
@@ -68,11 +66,9 @@
 						"type":"string",
 						"required":"false"
 					},
-					 //shipping_options
 						"shipping_options":{
-							"type":"array",
-							"location":"xml",
-							"params":{
+						"type":"array",
+						"location":"xml",
 								"carrier":{
 									"location":"xml",
 									"type":"string",
@@ -93,13 +89,10 @@
 									"type":"string",
 									"required":"false"
 								}
-							}
 						},
-						//ship_to_address
 						"ship_to_address":{
-							"type":"array",
-							"location":"xml",
-							"params":{
+						"type":"array",
+						"location":"xml",
 								"first_name":{
 									"location":"xml",
 									"type":"string",
@@ -155,42 +148,37 @@
 									"type":"string",
 									"required":"false"
 								}
-							}
 						},
-						//items
 						"items":{
 						"type":"array",
 						"location":"xml",
-							"params":{
-								//item
-								"item":{
-									"type":"array",
-									"location":"xml",
-									"params":{
-										"sku":{
-											"location":"xml",
-											"type":"string",
-											"required":"true"
-										},
-										"quantity":{
-											"location":"xml",
-											"type":"integer",
-											"required":"true"
-										}
+							"item":{
+								"type":"array",
+								"location":"xml",
+									"sku":{
+										"location":"xml",
+										"type":"string",
+										"required":"true"
+									},
+									"quantity":{
+										"location":"xml",
+										"type":"integer",
+										"required":"true"
 									}
-								}//END item
-							}
-						}//END items
-					}
-				}//End order
-			}//END CreateOrder Perameters
-		},//END CreateOrder
+								}
+						}
+				}
+			}
+		},
 		"models": {
 			"GetProductsOutput": {
 				"type": "object"
 			},
 			"CreateOrderOutput":{
-				"type":"object"
+				"type":"object",
+				"properties":{
+					"location":"xml"
+				}
 			}
 		}
 	}
