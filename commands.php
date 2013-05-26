@@ -16,7 +16,7 @@ try {
 */
 	//Get list of products
 	$products = $koleImportsClient->getProducts();
-	print_r($products);
+	//print_r($products);
 
 	//Get single product by sku
 	$sku = 'AA124';
@@ -36,16 +36,53 @@ try {
 */
 
 	//Get list of orders
-	$orderList = $koleImportsClient->getOrders();
+	//$orderList = $koleImportsClient->getOrders();
 	//print_r($orderList);
 
 	//Get single  order by order id
-	$order_id = '123456';
-	$getOrder = $koleImportsClient->getOrder($order_id);
+	//$order_id = '123456';
+	//$getOrder = $koleImportsClient->getOrder($order_id);
 	//print_r($getOrder);
 
+
+	//print_r(array('order' =>array('po_number' => '1234'))); die;
+
+	$order = array(
+		'order' => array(
+				'po_number' 		=> '123456',
+				'notes'				=> 'This is a test',
+			'shipping_options' => array(
+				'carrier'				=> 'FEDEX',
+				'service'			=> 'GROUND',
+				'signature'			=> '0',
+				'instructions'		=> 'ship that ish',
+			),
+			'ship_to_address ' => array(
+				'first_name'			=> 'Jesse',
+				'last_name'			=> 'Reese',
+				'company'			=> 'JesseTestCompany',
+				'address_1'			=> '24600 Main St',
+				'address_2'			=> '',
+				'city'				=> 'Carson',
+				'state'				=> 'CA',
+				'zipcode'			=> '90745',
+				'ext_zipcode'		=> '',
+				'country'			=> 'USA',
+				'phone'				=> ''
+			),
+			'items' => array(
+				'item' 				=> array(
+				'sku'				=>	'AA124',
+				'quantity'			=> '24'
+				)
+			)
+		)
+	);
+
+
 	$postOrder = $koleImportsClient->postOrder($order);
-	//print_r($postOrder->getResponse());
+
+	echo $postOrder->getRequest();
 }
 //Guzzle Error Handling
 catch (Guzzle\Http\Exception\BadResponseException $e)

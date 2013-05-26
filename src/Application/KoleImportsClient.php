@@ -43,7 +43,14 @@ class KoleImportsClient extends Client
      //Post order to website
     public function postOrder(array $order)
     {
-        return $this->_client->PostOrder($order);
+
+        $this->_client->setDefaultHeaders(array(
+            'Accept'            => 'application/vnd.koleimports.ds.order+json',
+            'Content-Type'  => 'application/vnd.koleimports.ds.order+json'
+        ));
+
+     return $this->_client->PostOrder($order);
+
     }
 
     //Get list of Orders
