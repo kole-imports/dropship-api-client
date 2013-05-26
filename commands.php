@@ -5,47 +5,47 @@ require __DIR__ . '/vendor/autoload.php';
 ini_set('display_errors', 'On');
 
 use Application\KoleImportsClient;
-use Guzzle\Service\Builder\ServiceBuilder;
 
 //Create client object
-$KoleImportsClient = new KoleImportsClient();
-$client = $KoleImportsClient->KoleImportsService();
+$koleImportsClient = new KoleImportsClient();
 
 try {
 
-	/**
-	* Product Commands
-	*/
+/**
+* Product Commands
+*/
 	//Get list of products
-	$productList = $client->GetProducts();
-	print_r($productList);
+	$products = $koleImportsClient->getProducts();
+	print_r($products);
 
 	//Get single product by sku
-	$product = $client->GetProduct(array('sku' => 'AA124'));
+	$sku = 'AA124';
+	$product = $koleImportsClient->getProduct($sku);
 	//print_r($product);
 
-	/**
-	* Account Commands
-	*/
+/**
+* Account Commands
+*/
 
 	//Get list of accounts
-	$accountList = $client->GetAccounts();
+	$accountList = $koleImportsClient->getAccounts();
 	//print_r($accountList);
 
-	/**
-	* Orders Commands
-	*/
+/**
+* Order Commands
+*/
 
 	//Get list of orders
-	$orderList = $client->GetOrders();
+	$orderList = $koleImportsClient->getOrders();
 	//print_r($orderList);
 
 	//Get single  order by order id
-	$order = $client->GetOrder(array('order_id' => ''));
-	//print_r($order);
+	$order_id = '123456';
+	$getOrder = $koleImportsClient->getOrder($order_id);
+	//print_r($getOrder);
 
-	//Create an order
-	$createOrder = $client->CreateOrder();
+	$postOrder = $koleImportsClient->postOrder($order);
+	//print_r($postOrder->getResponse());
 }
 //Guzzle Error Handling
 catch (Guzzle\Http\Exception\BadResponseException $e)
@@ -56,4 +56,3 @@ catch (Guzzle\Http\Exception\BadResponseException $e)
     echo '<p>HTTP response status: ' . $e->getResponse()->getStatusCode() . '</p>';
     echo '<p>HTTP response: ' . $e->getResponse() . '</p>';
 }
-

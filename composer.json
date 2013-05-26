@@ -5,7 +5,8 @@
     "autoload": {
 		"psr-0": {
 		"Application": "src/",
-		"tests":"src/tests"
+		"tests":"src/tests",
+		"Services":"src/Application/"
 		}
 	}
 }

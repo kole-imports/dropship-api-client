@@ -47,7 +47,7 @@
 					}
 				}
 			},
-		"CreateOrder": {
+		"PostOrder": {
 	            "httpMethod": "POST",
 	            "uri": "/orders",
 	           	"summary": "Create an order",
@@ -81,7 +81,7 @@
 								},
 								"signature":{
 									"location":"xml",
-									"type":"string",
+									"type":"boolean",
 									"required":"false"
 								},
 								"instructions":{
@@ -172,12 +172,12 @@
 		},
 		"models": {
 			"GetProductsOutput": {
-				"type": "object"
+				"type": "array"
 			},
 			"CreateOrderOutput":{
 				"type":"object",
 				"properties":{
-					"location":"xml"
+					"location":"body"
 				}
 			}
 		}
