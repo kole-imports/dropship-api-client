@@ -16,7 +16,7 @@ try {
 */
 	//Get list of products
 	$products = $koleImportsClient->getProducts();
-	//print_r($products);
+	print_r($products);
 
 	//Get single product by sku
 	$sku = 'AA124';
@@ -47,7 +47,7 @@ try {
 
 	//print_r(array('order' =>array('po_number' => '1234'))); die;
 
-	$order = array(
+	/*$order = array(
 		'order' => array(
 				'po_number' 		=> '123456',
 				'notes'				=> 'This is a test',
@@ -77,12 +77,12 @@ try {
 				)
 			)
 		)
-	);
+	);*/
 
 
-	$postOrder = $koleImportsClient->postOrder($order);
+	//$postOrder = $koleImportsClient->postOrder($order);
 
-	echo $postOrder->getRequest();
+	//echo $postOrder->getRequest();
 }
 //Guzzle Error Handling
 catch (Guzzle\Http\Exception\BadResponseException $e)

@@ -1,20 +1,17 @@
 <?php
 namespace Application;
 
-use Guzzle\Service\Client;
 use Application\KoleImportsFactory;
-use Guzzle\Service\Description\ServiceDescription;
 
-class KoleImportsClient extends Client
+class KoleImportsClient
 {
-    /**
-    * @var $client Guzzle\Service\Client
-    */
+
     protected $client;
 
-    //Construct Client
+     //Construct Client
     public function __construct()
     {
+        $this->client = KoleImportsFactory::clientConfig();
     }
 
     //Get list of products
@@ -26,7 +23,7 @@ class KoleImportsClient extends Client
     //Get product by sku
     public function getProduct($sku = 'null')
     {
-        return $this->client->GetProduct(array('sku' => $sku));
+        //return $this->client->GetProduct(array('sku' => $sku));
     }
 
      //Post order to website

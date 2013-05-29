@@ -2,27 +2,25 @@
 namespace Application;
 
 use Application\Config;
-use Application\KoleImportsClient;
+use Guzzle\Service\Client;
+use Guzzle\Service\Description\ServiceDescription;
 
-class KoleImportsFactory
+class KoleImportsFactory extends Client
 {
-	protected $userConfig = Config::USERPWD;
-
-	public static function ClientConfig()
+	public static function clientConfig()
 	{
-		$koleConfig = KoleImportsClient::factory(array(
-			'base_url'		=> 'https://api.koleimports.com',
-			'curl.options'	=> array(
-		            CURLOPT_HTTPAUTH => 'CURLAUTH_BASIC',
-		            CURLOPT_USERPWD =>  $userConfig,
-		            CURLOPT_RETURNTRANSFER => 'true'
+		$koleImports = new Client('https://api.koleimports.com', array(
+				'curl.options'					=> array(
+		            CURLOPT_HTTPAUTH 			=> 'CURLAUTH_BASIC',
+		            CURLOPT_USERPWD			=> Config::USERPWD,
+		            CURLOPT_RETURNTRANSFER	=> 'true'
 			)
 		));
 
 	 //Add service description to client object
-        $this->client->setDescription(ServiceDescription::factory(__DIR__ .'/Services/services.json'));
+	$koleImports->setDescription(ServiceDescription::factory(__DIR__ .'/Services/services.json'));
 
-		return new KoleImportsClient();
+	return $koleImports;
 	}
 }
 
