@@ -2,6 +2,7 @@
 namespace Application;
 
 use Application\KoleImportsFactory;
+use Application\Serializer;
 
 class KoleImportsClient
 {
@@ -27,15 +28,18 @@ class KoleImportsClient
     }
 
      //Post order to website
-    public function postOrder(array $order)
+    public function postOrder($serializedOrder = null)
     {
 
-        $this->client->setDefaultHeaders(array(
-            'Accept'            => 'application/vnd.koleimports.ds.order+json',
-            'Content-Type'  => 'application/vnd.koleimports.ds.order+json'
-        ));
+        $request = $this->client->post(
+            'https://api.koleimports.com/orders', array(
+            'Accept'            => 'application/vnd.koleimports.ds.order+xml',
+            'Content-Type'  => 'application/vnd.koleimports.ds.order+xml'
+        ), $serializedOrder);
 
-     return $this->client->PostOrder($order);
+        $response = $request->send();
+
+        return $response;
 
     }
 

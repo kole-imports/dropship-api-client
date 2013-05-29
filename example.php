@@ -5,9 +5,11 @@ require __DIR__ . '/vendor/autoload.php';
 ini_set('display_errors', 'On');
 
 use Application\KoleImportsClient;
+use Application\Serializer;
 
 //Create client object
 $koleImportsClient = new KoleImportsClient();
+$serializer = new Serializer();
 
 try {
 
@@ -16,7 +18,7 @@ try {
 */
 	//Get list of products
 	$products = $koleImportsClient->getProducts();
-	print_r($products);
+	//print_r($products);
 
 	//Get single product by sku
 	$sku = 'AA124';
@@ -47,42 +49,43 @@ try {
 
 	//print_r(array('order' =>array('po_number' => '1234'))); die;
 
-	/*$order = array(
-		'order' => array(
-				'po_number' 		=> '123456',
-				'notes'				=> 'This is a test',
-			'shipping_options' => array(
-				'carrier'				=> 'FEDEX',
-				'service'			=> 'GROUND',
-				'signature'			=> '0',
-				'instructions'		=> 'ship that ish',
+	$order = array(
+			'po_number' 		=> '123456',
+			'notes'				=> 'This is a test',
+			'ship_options' 	=> array(
+			'carrier'				=> 'FEDEX',
+			'service'			=> 'GROUND',
+			'signature'			=> '0',
+			'instructions'		=> 'ship that ish',
 			),
-			'ship_to_address ' => array(
-				'first_name'			=> 'Jesse',
-				'last_name'			=> 'Reese',
-				'company'			=> 'JesseTestCompany',
-				'address_1'			=> '24600 Main St',
-				'address_2'			=> '',
-				'city'				=> 'Carson',
-				'state'				=> 'CA',
-				'zipcode'			=> '90745',
-				'ext_zipcode'		=> '',
-				'country'			=> 'USA',
-				'phone'				=> ''
+			'ship_to_address ' 	=> array(
+			'first_name'			=> 'Jesse',
+			'last_name'			=> 'Reese',
+			'company'			=> 'JesseTestCompany',
+			'address_1'			=> '24600 Main St',
+			'address_2'			=> '',
+			'city'				=> 'Carson',
+			'state'				=> 'CA',
+			'zipcode'			=> '90745',
+			'ext_zipcode'		=> '',
+			'country'			=> 'USA',
+			'phone'				=> ''
 			),
-			'items' => array(
-				'item' 				=> array(
-				'sku'				=>	'AA124',
-				'quantity'			=> '24'
-				)
+			'items' 				=> array(
+			'item' 				=> array(
+			'sku'				=>	'AA124',
+			'quantity'			=> '24'
 			)
 		)
-	);*/
+	);
 
 
-	//$postOrder = $koleImportsClient->postOrder($order);
+	$serializedOrder = $serializer->createXML($order);
+	//print($serializedOrder);
+	$postOrder = $koleImportsClient->postOrder($serializedOrder);
 
-	//echo $postOrder->getRequest();
+	print($postOrder);
+
 }
 //Guzzle Error Handling
 catch (Guzzle\Http\Exception\BadResponseException $e)
