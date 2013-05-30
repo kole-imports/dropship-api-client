@@ -27,7 +27,7 @@ class KoleImportsClient
         //return $this->client->GetProduct(array('sku' => $sku));
     }
 
-     //Post order to website
+    //Post order to website
     public function postOrder($serializedOrder = null)
     {
 
