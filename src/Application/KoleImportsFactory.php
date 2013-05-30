@@ -9,6 +9,7 @@ class KoleImportsFactory extends Client
 {
 	public static function clientConfig()
 	{
+		//Create Client Object
 		$koleImports = new Client('https://api.koleimports.com', array(
 				'curl.options'		=> array(
 				CURLOPT_HTTPAUTH 	=> 'CURLAUTH_BASIC',
@@ -17,7 +18,7 @@ class KoleImportsFactory extends Client
 			)
 		));
 
-	 //Add service description to client object
+	//Add service description to client object
 	$koleImports->setDescription(ServiceDescription::factory(__DIR__ .'/Services/services.json'));
 
 	return $koleImports;
