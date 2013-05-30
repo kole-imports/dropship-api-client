@@ -3,35 +3,35 @@ namespace Application;
 
 class Serializer
 {
-	/**
-	 * @param array $array the array to be converted
-	 * @param string? $rootElement if specified will be taken as root element, otherwise defaults to
-	 *                <root>
-	 * @param SimpleXMLElement? if specified content will be appended, used for recursion
-	 * @return string XML version of $array
+	/*
+	 * @param array $order the array to be converted
+	 * @param string? $rootElement if specified will be taken as root element, otherwise defaults to <order/>
+	 * @param SimpleXMLElement ? if specified content will be appended, used for recursion
+	 * @return string XML version of $order
+	 *
 	 * source:  http://www.kerstner.at/en/2011/12/php-array-to-xml-conversion/
 	 * author: Mattias Kerstner
-	 */
-	function createXML(array $order, $rootElement = null, $xml = null)
+	*/
+	 function createXML(array $order, $rootElement = null, $xml = null)
 	{
 
-		$_xml = $xml;
+		$xmlObject = $xml;
 
-		if ($_xml === null)
+		if ($xmlObject === null)
 		{
-			$_xml = new \SimpleXMLElement($rootElement !== null ? $rootElement : '<order/>');
+			$xmlObject = new \SimpleXMLElement($rootElement !== null ? $rootElement : '<order/>');
 		}
 
-		foreach ($order as $k => $v)
+		foreach ($order as $item => $data)
 		{
-			if (is_array($v)) { //nested array
-				self::createXML($v, $k, $_xml->addChild($k));
+			if (is_array($data)) { //nested array
+				self::createXML($data, $item, $xmlObject->addChild($item));
 			}else
 			{
-				$_xml->addChild($k, $v);
+				$xmlObject->addChild($item, $data);
 			}
 		}
 
-		return $_xml->asXML();
+		return $xmlObject->asXML();
 	}
 }

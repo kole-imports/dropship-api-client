@@ -38,21 +38,19 @@ try {
 */
 
 	//Get list of orders
-	//$orderList = $koleImportsClient->getOrders();
+	$orderList = $koleImportsClient->getOrders();
 	//print_r($orderList);
 
 	//Get single  order by order id
-	//$order_id = '123456';
-	//$getOrder = $koleImportsClient->getOrder($order_id);
+	$order_id = '123456';
+	$getOrder = $koleImportsClient->getOrder($order_id);
 	//print_r($getOrder);
 
-
-	//print_r(array('order' =>array('po_number' => '1234'))); die;
-
+	//example order
 	$order = array(
 			'po_number' 		=> '123456',
 			'notes'				=> 'This is a test',
-			'ship_options' 	=> array(
+			'ship_options' 		=> array(
 			'carrier'				=> 'FEDEX',
 			'service'			=> 'GROUND',
 			'signature'			=> '0',
@@ -81,9 +79,7 @@ try {
 
 
 	$serializedOrder = $serializer->createXML($order);
-	//print($serializedOrder);
 	$postOrder = $koleImportsClient->postOrder($serializedOrder);
-
 	print($postOrder);
 
 }
