@@ -53,95 +53,17 @@ Composer also prepares an autoload file that's capable of autoloading all of the
 	require __DIR__ . '/vendor/autoload.php';
 
 
-HTTP Requests -
+Commands -
 ------------------------
 
 ###[ GET ]
 
 ####Links:
 
-	Methods - listLinks
-	Header	- application/vnd.koleimports.ds.link+xml
-	URL		- api.koleimports.com
+	//Get Commands
 
-####Accounts:
+###[POST]
 
-	Methods - listAccounts
-	Header	- application/vnd.koleimports.ds.account+xml
-	URL		- https://api.koleimports.com/accounts/1
-
-####Orders:
-
-	Methods - getOrder, listOrders, listPreviousOrders, listNextOrders
-	Header	- application/vnd.koleimports.ds.order+xml
-	URL		- https://api.koleimports.com/orders/
-
-####Products:
-
-	Methods - getProduct, listProducts, listPreviousProducts, listNextProducts
-	Header	- application/vnd.koleimports.ds.product+xml
-	URL		- https://api.koleimports.com/products/
-
-####Shipments:
-
-	Methods - getShipment, listShipments, listPreviousShipments, listNextShipments
-	Header	- application/vnd.koleimports.ds.shipment+xml
-	URL		- https://api.koleimports.com/shipments/
-
-####Transactions:
-
-	Methods - listTransactions
-	Header	- application/vnd.koleimports.ds.transaction+xml
-	URL		- https://api.koleimports.com/transactions/
-
-
-###[ POST ]
-
-####Orders:
-
-	Methods - [POST] - createOrder
-	Parameters - [None]
-	Request Headers - [Accept, Authorization, Content-Type, Host]
-	Response Headers - [Content-Length, Content-Type, Location]
-	Response Message Body - [Links to access the newly created resource]
-	Response Status - [201, 400, 401, 403, 500]
-
-####Media Types:
-
-
-* application/vnd.koleimports.ds.order+xml
-* application/vnd.koleimports.ds.order+json
-
-####Sample Body:
-
-	<order>
-		<po_number></po_number>
-		<notes></notes>
-		<ship_options>
-			<carrier></carrier>
-			<service></service>
-			<signature></signature>
-			<instructions></instructions>
-		</ship_options>
-		<ship_to_address>
-			<first_name></first_name>
-			<last_name></last_name>
-			<company></company>
-			<address_1></address_1>
-			<address_2></address_2>
-			<city></city>
-			<state></state>
-			<zipcode></zipcode>
-			<ext_zipcode></ext_zipcode>
-			<country></country>
-			<phone></phone>
-		</ship_to_address>
-		<items>
-			<item>
-				<sku></sku>
-				<quantity></quantity>
-			</item>
-		</items>
-	</order>
+	//Post Commands
 
 
