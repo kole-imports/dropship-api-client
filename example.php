@@ -49,30 +49,30 @@ try {
 	//example order
 	$order = array(
 			'po_number' 		=> '123456',
-			'notes'				=> 'This is a test',
+			'notes'			=> 'This is a test',
 			'ship_options' 		=> array(
-			'carrier'				=> 'FEDEX',
-			'service'			=> 'GROUND',
-			'signature'			=> '0',
+			'carrier'		=> 'FEDEX',
+			'service'		=> 'GROUND',
+			'signature'		=> '0',
 			'instructions'		=> 'ship that ish',
 			),
 			'ship_to_address ' 	=> array(
-			'first_name'			=> 'Jesse',
-			'last_name'			=> 'Reese',
-			'company'			=> 'JesseTestCompany',
-			'address_1'			=> '24600 Main St',
-			'address_2'			=> '',
-			'city'				=> 'Carson',
-			'state'				=> 'CA',
-			'zipcode'			=> '90745',
+			'first_name'		=> 'Jesse',
+			'last_name'		=> 'Reese',
+			'company'		=> 'JesseTestCompany',
+			'address_1'		=> '24600 Main St',
+			'address_2'		=> '',
+			'city'			=> 'Carson',
+			'state'			=> 'CA',
+			'zipcode'		=> '90745',
 			'ext_zipcode'		=> '',
-			'country'			=> 'USA',
-			'phone'				=> ''
+			'country'		=> 'USA',
+			'phone'			=> ''
 			),
-			'items' 				=> array(
-			'item' 				=> array(
-			'sku'				=>	'AA124',
-			'quantity'			=> '24'
+			'items' 		=> array(
+			'item' 			=> array(
+			'sku'			=> 'AA124',
+			'quantity'		=> '24'
 			)
 		)
 	);
