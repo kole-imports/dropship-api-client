@@ -10,10 +10,10 @@ class KoleImportsFactory extends Client
 	public static function clientConfig()
 	{
 		$koleImports = new Client('https://api.koleimports.com', array(
-				'curl.options'					=> array(
-		            CURLOPT_HTTPAUTH 			=> 'CURLAUTH_BASIC',
-		            CURLOPT_USERPWD			=> Config::USERPWD,
-		            CURLOPT_RETURNTRANSFER	=> 'true'
+				'curl.options'		=> array(
+				CURLOPT_HTTPAUTH 	=> 'CURLAUTH_BASIC',
+			        CURLOPT_USERPWD		=> Config::USERPWD,
+			        CURLOPT_RETURNTRANSFER	=> 'true'
 			)
 		));
 
