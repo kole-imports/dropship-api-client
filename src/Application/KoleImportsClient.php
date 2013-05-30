@@ -32,7 +32,7 @@ class KoleImportsClient
     {
 
         $request = $this->client->post(
-            'https://api.koleimports.com/orders', array(
+            '/orders', array(
             'Accept'        => 'application/vnd.koleimports.ds.order+xml',
             'Content-Type'  => 'application/vnd.koleimports.ds.order+xml'
         ), $serializedOrder);
