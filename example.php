@@ -4,11 +4,18 @@ require __DIR__ . '/vendor/autoload.php';
 //Error Handling
 ini_set('display_errors', 'On');
 
+use Application\Configuration\Config;
+use Application\KoleImportsFactory;
 use Application\KoleImportsClient;
-use Application\Serializer;
+use Application\Services\Serializer;
 
-//Create client object
-$koleImportsClient = new KoleImportsClient();
+
+//Setup Client Configuration
+$config = new Config;
+$config->setAccountId('X16310');
+$config->setApiKey('a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd');
+$factory = new KoleImportsFactory($config);
+$koleImportsClient = new KoleImportsClient($factory);
 $serializer = new Serializer();
 
 try {
@@ -17,12 +24,12 @@ try {
 * Product Commands
 */
 	//Get list of products
-	$products = $koleImportsClient->getProducts();
+	//$products = $koleImportsClient->getProducts();
 	//print_r($products);
 
 	//Get single product by sku
-	$sku = 'AA124';
-	$product = $koleImportsClient->getProduct($sku);
+	//$sku = 'AA124';
+	//$product = $koleImportsClient->getProduct($sku);
 	//print_r($product);
 
 /**
@@ -30,7 +37,7 @@ try {
 */
 
 	//Get list of accounts
-	$accountList = $koleImportsClient->getAccounts();
+	//$accountList = $koleImportsClient->getAccounts();
 	//print_r($accountList);
 
 /**
@@ -38,12 +45,12 @@ try {
 */
 
 	//Get list of orders
-	$orderList = $koleImportsClient->getOrders();
+	//$orderList = $koleImportsClient->getOrders();
 	//print_r($orderList);
 
 	//Get single  order by order id
-	$order_id = '123456';
-	$getOrder = $koleImportsClient->getOrder($order_id);
+	//$order_id = '123456';
+	//$getOrder = $koleImportsClient->getOrder($order_id);
 	//print_r($getOrder);
 
 	//example order

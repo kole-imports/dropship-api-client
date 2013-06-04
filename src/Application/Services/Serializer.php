@@ -1,5 +1,5 @@
 <?php
-namespace Application;
+namespace Application\Services;
 
 class Serializer
 {

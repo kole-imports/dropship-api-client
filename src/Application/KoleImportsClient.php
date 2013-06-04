@@ -2,7 +2,7 @@
 namespace Application;
 
 use Application\KoleImportsFactory;
-use Application\Serializer;
+use Application\Services\Serializer;
 
 class KoleImportsClient
 {
@@ -10,9 +10,10 @@ class KoleImportsClient
     protected $client;
 
      //Construct Client
-    public function __construct()
+    public function __construct(KoleImportsFactory $factory)
     {
-        $this->client = KoleImportsFactory::clientConfig();
+        $this->config = $factory;
+        $this->client = $this->config->clientConfig();
     }
 
     //Get list of products
@@ -33,7 +34,7 @@ class KoleImportsClient
 
         $request = $this->client->post(
             '/orders', array(
-            'Accept'        => 'application/vnd.koleimports.ds.order+xml',
+            'Accept'            => 'application/vnd.koleimports.ds.order+xml',
             'Content-Type'  => 'application/vnd.koleimports.ds.order+xml'
         ), $serializedOrder);
 

@@ -1,20 +1,29 @@
 <?php
 namespace Application;
 
-use Application\Config;
+use Application\Configuration\Config;
 use Guzzle\Service\Client;
 use Guzzle\Service\Description\ServiceDescription;
 
 class KoleImportsFactory extends Client
 {
-	public static function clientConfig()
+	public function __construct(Config $config)
 	{
+		$this->config = $config;
+	}
+
+	public function clientConfig()
+	{
+		//API Auth
+		$username = $this->config->getUsername();
+		$password = $this->config->getPassword();
+
 		//Create Client Object
-		$koleImports = new Client('https://api.koleimports.com', array(
-				'curl.options'		=> array(
-				CURLOPT_HTTPAUTH 	=> 'CURLAUTH_BASIC',
-			        CURLOPT_USERPWD		=> Config::USERPWD,
-			        CURLOPT_RETURNTRANSFER	=> 'true'
+		$koleImports 	= new Client('https://api.koleimports.com', array(
+				'curl.options'			=> array(
+				CURLOPT_HTTPAUTH 		=> 'CURLAUTH_BASIC',
+			        	CURLOPT_USERPWD		=> $username.':'.$password,
+			        	CURLOPT_RETURNTRANSFER	=> 'true'
 			)
 		));
 
