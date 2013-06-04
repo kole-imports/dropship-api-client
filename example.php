@@ -80,7 +80,7 @@ try {
 	$dataArray = array(
 		'order' => array(
 			'po_number' 		=> $data->getPoNumber(),
-			'notes' 			=> $data->getNotes(),
+			'notes' 		=> $data->getNotes(),
 			'ship_options' => array(
 				'carrier' 	=> $data->getCarrier(),
 				'service' 	=> $data->getService(),
@@ -94,7 +94,7 @@ try {
 				'address_1' 	=> $data->getAddressOne(),
 				'address_2' 	=> $data->getAddressTwo(),
 				'city' 		=> $data->getCity(),
-				'state' 		=> $data->getState(),
+				'state' 	=> $data->getState(),
 				'zipcode' 	=> $data->getZipcode(),
 				'ext_zipcode' 	=> $data->getExtZipcode(),
 				'country' 	=> $data->getCountry(),
