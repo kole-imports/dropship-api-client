@@ -29,14 +29,14 @@ class KoleImportsClient
     }
 
     //Post order to website
-    public function postOrder($serializedOrder = null)
+    public function postOrder($json = null)
     {
 
         $request = $this->client->post(
             '/orders', array(
-            'Accept'            => 'application/vnd.koleimports.ds.order+xml',
-            'Content-Type'  => 'application/vnd.koleimports.ds.order+xml'
-        ), $serializedOrder);
+            'Accept'            => 'application/vnd.koleimports.ds.order+json',
+            'Content-Type'  => 'application/vnd.koleimports.ds.order+json'
+        ), $json);
 
         $response = $request->send();
 

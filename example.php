@@ -7,7 +7,7 @@ ini_set('display_errors', 'On');
 use Application\Configuration\Config;
 use Application\KoleImportsFactory;
 use Application\KoleImportsClient;
-use Application\Services\Serializer;
+use Application\Orders\Order;
 
 
 //Setup Client Configuration
@@ -16,7 +16,6 @@ $config->setAccountId('X16310');
 $config->setApiKey('a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd');
 $factory = new KoleImportsFactory($config);
 $koleImportsClient = new KoleImportsClient($factory);
-$serializer = new Serializer();
 
 try {
 
@@ -53,40 +52,71 @@ try {
 	//$getOrder = $koleImportsClient->getOrder($order_id);
 	//print_r($getOrder);
 
-	//example order
-	$order = array(
-			'po_number' 		=> '123456',
-			'notes'			=> 'This is a test',
-			'ship_options' 		=> array(
-			'carrier'		=> 'FEDEX',
-			'service'		=> 'GROUND',
-			'signature'		=> '0',
-			'instructions'		=> 'ship that ish',
+	//Create Order object
+	$order = new Order;
+
+	//Order data
+	$order->setPoNumber('12345');
+	$order->setNotes('These are Notes');
+	$order->setCarrier('FEDEX');
+	$order->setSignature('0');
+	$order->setInstructions('These are instructions');
+	$order->setFirstName('Jesse');
+	$order->setLastName('Reese');
+	$order->setCompany('JesseTestCompany');
+	$order->setAddressOne('24600 Main St.');
+	$order->setAddressTwo('');
+	$order->setCity('Carson');
+	$order->setState('CA');
+	$order->setZipcode('90745');
+	$order->setExtZipcode('');
+	$order->setCountry('USA');
+	$order->setPhone('');
+	$order->setSku('AA124');
+	$order->setQuantity('24');
+
+	//Get Order data and insert into array
+	$data = $order;
+	$dataArray = array(
+		'order' => array(
+			'po_number' 		=> $data->getPoNumber(),
+			'notes' 			=> $data->getNotes(),
+			'ship_options' => array(
+				'carrier' 	=> $data->getCarrier(),
+				'service' 	=> $data->getService(),
+				'signature'	=> $data->getSignature(),
+				'instructions' 	=> $data->getInstructions()
+				),
+			'ship_to_address' 	=> array(
+				'first_name' 	=> $data->getFirstName(),
+				'last_name'	=> $data->getLastName(),
+				'company' 	=> $data->getCompany(),
+				'address_1' 	=> $data->getAddressOne(),
+				'address_2' 	=> $data->getAddressTwo(),
+				'city' 		=> $data->getCity(),
+				'state' 		=> $data->getState(),
+				'zipcode' 	=> $data->getZipcode(),
+				'ext_zipcode' 	=> $data->getExtZipcode(),
+				'country' 	=> $data->getCountry(),
+				'phone' 	=> $data->getPhone(),
 			),
-			'ship_to_address ' 	=> array(
-			'first_name'		=> 'Jesse',
-			'last_name'		=> 'Reese',
-			'company'		=> 'JesseTestCompany',
-			'address_1'		=> '24600 Main St',
-			'address_2'		=> '',
-			'city'			=> 'Carson',
-			'state'			=> 'CA',
-			'zipcode'		=> '90745',
-			'ext_zipcode'		=> '',
-			'country'		=> 'USA',
-			'phone'			=> ''
-			),
-			'items' 		=> array(
-			'item' 			=> array(
-			'sku'			=> 'AA124',
-			'quantity'		=> '24'
+			'items' => array(
+				'item' => array(
+				'sku' 		=> $data->getSku(),
+				'quantity' 	=> $data->getQuantity()
+				)
 			)
 		)
 	);
 
+	//Create JMS Serializer
+	$serializer = JMS\Serializer\SerializerBuilder::create()->build();
+	$json = $serializer->serialize($dataArray, 'json');
 
-	$serializedOrder = $serializer->createXML($order);
-	$postOrder = $koleImportsClient->postOrder($serializedOrder);
+	//Send POST data to  postOrder method
+	$postOrder = $koleImportsClient->postOrder($json);
+
+	//Print POST response
 	print($postOrder);
 
 }
