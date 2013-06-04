@@ -34,7 +34,7 @@ class KoleImportsClient
 
         $request = $this->client->post(
             '/orders', array(
-            'Accept'            => 'application/vnd.koleimports.ds.order+json',
+            'Accept'        => 'application/vnd.koleimports.ds.order+json',
             'Content-Type'  => 'application/vnd.koleimports.ds.order+json'
         ), $json);
 
