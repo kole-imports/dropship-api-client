@@ -46,25 +46,73 @@
 					"required":"true"
 					}
 				}
+			},
+		"GetShipments": {
+	            "httpMethod": "GET",
+	            "uri": "/shipments",
+	           	"summary": "Get get all shipments",
+	           	"responseClass": "GetShipmentsOutput"
+			},
+		"GetShipment": {
+	            "httpMethod": "GET",
+	            "uri": "/shipments/{order_id}",
+	           	"summary": "Get get specific order",
+	           	"responseClass": "GetOrderOutput",
+			"parameters":{
+				"order_id":{
+					"location":"uri",
+					"description":"Order to retrieve by order_id",
+					"required":"true"
+					}
+				}
+			},
+		"GetTransactions": {
+	            "httpMethod": "GET",
+	            "uri": "/transactions",
+	           	"summary": "Get get all transactions",
+	           	"responseClass": "GetTransactionsOutput"
+			},
+		"GetTransaction": {
+	            "httpMethod": "GET",
+	            "uri": "/transactions/{order_id}",
+	           	"summary": "Get get specific order",
+	           	"responseClass": "GetTransactionOutput",
+			"parameters":{
+				"order_id":{
+					"location":"uri",
+					"description":"Order to retrieve by order_id",
+					"required":"true"
+					}
+				}
 			}
 		},
 		"models": {
 			"GetProductsOutput": {
 				"type": "array"
-			},
-	        "PostOrderOutput": {
-	            "type": "object",
-	            "properties": {
-		                "location": {
-		                    "location": "body",
-		                    "sentAs": "createOrder",
-		                    "type": "string"
-		                },
-		                "uri": {
-		                    "location": "json",
-		                    "type": "string"
-		            	}
-	            	}
-	      	}
+		},
+			"GetProductOutput":{
+				"type":"object"
+		},
+			"GetShipmentsOutput":{
+				"type":"object"
+		},
+			"GetShipmentsOutput":{
+				"type":"object"
+		},
+			"GetTransactionsOutput":{
+				"type":"object"
+		},
+			"GetTransactionOutput":{
+				"type":"object"
+		},
+			"GetOrdersOutput":{
+				"type":"object"
+		},
+			"GetOrderOutput":{
+				"type":"object"
+		},
+			"GetAccounts":{
+				"type":"object"
+		}
 	}
 }

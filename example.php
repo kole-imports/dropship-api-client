@@ -8,6 +8,8 @@ use Application\Configuration\Config;
 use Application\KoleImportsFactory;
 use Application\KoleImportsClient;
 use Application\Orders\Order;
+use Application\Products\Product;
+use Application\Services\Serializer;
 
 
 //Setup Client Configuration
@@ -16,7 +18,7 @@ $config->setAccountId('X16310');
 $config->setApiKey('a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd');
 $factory = new KoleImportsFactory($config);
 $koleImportsClient = new KoleImportsClient($factory);
-
+$product = new Product;
 try {
 
 /**
@@ -26,10 +28,11 @@ try {
 	//$products = $koleImportsClient->getProducts();
 	//print_r($products);
 
-	//Get single product by sku
-	//$sku = 'AA124';
-	//$product = $koleImportsClient->getProduct($sku);
-	//print_r($product);
+	/**Get single product by sku
+	$product->setSku('AA124');
+	$sku = $product->getSku();
+	$singleProduct = $koleImportsClient->getProduct($sku);
+	print_r($singleProduct);**/
 
 /**
 * Account Commands
@@ -43,22 +46,24 @@ try {
 * Order Commands
 */
 
-	//Get list of orders
-	//$orderList = $koleImportsClient->getOrders();
-	//print_r($orderList);
-
-	//Get single  order by order id
-	//$order_id = '123456';
-	//$getOrder = $koleImportsClient->getOrder($order_id);
-	//print_r($getOrder);
+	/**Get list of orders
+	$orderList = $koleImportsClient->getOrders();
+	print_r($orderList);**/
 
 	//Create Order object
 	$order = new Order;
+
+	/**Get single  order by order id
+	$order->setOrderId('12345');
+	$orderId = $order->getOrderId();
+	$response = $koleImportsClient->getOrder($orderId);
+	print_r($response);**/
 
 	//Order data
 	$order->setPoNumber('12345');
 	$order->setNotes('These are Notes');
 	$order->setCarrier('FEDEX');
+	$order->setService('GROUND');
 	$order->setSignature('0');
 	$order->setInstructions('These are instructions');
 	$order->setFirstName('Jesse');
@@ -78,38 +83,45 @@ try {
 	//Get Order data and insert into array
 	$data = $order;
 	$dataArray = array(
-		'order' => array(
-			'po_number' 		=> $data->getPoNumber(),
-			'notes' 		=> $data->getNotes(),
-			'ship_options' => array(
-				'carrier' 	=> $data->getCarrier(),
-				'service' 	=> $data->getService(),
-				'signature'	=> $data->getSignature(),
-				'instructions' 	=> $data->getInstructions()
-				),
-			'ship_to_address' 	=> array(
-				'first_name' 	=> $data->getFirstName(),
-				'last_name'	=> $data->getLastName(),
-				'company' 	=> $data->getCompany(),
-				'address_1' 	=> $data->getAddressOne(),
-				'address_2' 	=> $data->getAddressTwo(),
-				'city' 		=> $data->getCity(),
-				'state' 	=> $data->getState(),
-				'zipcode' 	=> $data->getZipcode(),
-				'ext_zipcode' 	=> $data->getExtZipcode(),
-				'country' 	=> $data->getCountry(),
-				'phone' 	=> $data->getPhone(),
+		'po_number' 		=> $data->getPoNumber(),
+		'notes'			=> $data->getNotes(),
+		'ship_options' => array(
+			'carrier' 	=> $data->getCarrier(),
+			'service' 	=> $data->getService(),
+			'signature'	=> $data->getSignature(),
+			'instructions' 	=> $data->getInstructions()
 			),
-			'items' => array(
-				'item' => array(
-				'sku' 		=> $data->getSku(),
-				'quantity' 	=> $data->getQuantity()
-				)
+		'ship_to_address' 	=> array(
+			'first_name' 	=> $data->getFirstName(),
+			'last_name'	=> $data->getLastName(),
+			'company' 	=> $data->getCompany(),
+			'address_1' 	=> $data->getAddressOne(),
+			'address_2' 	=> $data->getAddressTwo(),
+			'city' 		=> $data->getCity(),
+			'state' 	=> $data->getState(),
+			'zipcode' 	=> $data->getZipcode(),
+			'ext_zipcode' 	=> $data->getExtZipcode(),
+			'country' 	=> $data->getCountry(),
+			'phone' 	=> $data->getPhone(),
+		),
+		'items' => array(
+			'item' => array(
+			'sku' 		=> $data->getSku(),
+			'quantity' 	=> $data->getQuantity()
 			)
 		)
 	);
+	//Custom Serializer
+	$serializer = new Serializer;
+	$serializedData = $serializer->createXML($dataArray);
 
-	//Create JMS Serializer
+	//Send POST data to  postOrder method
+	$postOrder = $koleImportsClient->postOrder($serializedData);
+
+	//Print POST response
+	print($postOrder);
+
+	/**Create JMS Serializer
 	$serializer = JMS\Serializer\SerializerBuilder::create()->build();
 	$json = $serializer->serialize($dataArray, 'json');
 
@@ -117,7 +129,7 @@ try {
 	$postOrder = $koleImportsClient->postOrder($json);
 
 	//Print POST response
-	print($postOrder);
+	print($postOrder);**/
 
 }
 //Guzzle Error Handling

@@ -2,7 +2,6 @@
 namespace Application;
 
 use Application\KoleImportsFactory;
-use Application\Services\Serializer;
 
 class KoleImportsClient
 {
@@ -25,18 +24,17 @@ class KoleImportsClient
     //Get product by sku
     public function getProduct($sku = 'null')
     {
-        //return $this->client->GetProduct(array('sku' => $sku));
+        return $this->client->GetProduct(array('sku' => $sku));
     }
 
     //Post order to website
-    public function postOrder($json = null)
+    public function postOrder($serializedData = null)
     {
-
         $request = $this->client->post(
             '/orders', array(
-            'Accept'        => 'application/vnd.koleimports.ds.order+json',
-            'Content-Type'  => 'application/vnd.koleimports.ds.order+json'
-        ), $json);
+            'Accept'        => 'application/vnd.koleimports.ds.order+xml',
+            'Content-Type'  => 'application/vnd.koleimports.ds.order+xml'
+        ), $serializedData);
 
         $response = $request->send();
 
@@ -50,10 +48,22 @@ class KoleImportsClient
         return $this->client->GetOrders();
     }
 
-    //Get order by order_id
-    public function getOrder($order_id = null)
+    //Get order by orderId
+    public function getOrder($orderId = null)
     {
-        return $this->client->GetOrder(array('order_id' => $order_id));
+        return $this->client->GetOrder(array('order_id' => $orderId));
+    }
+
+    //Get list of Shipments
+    public function getShipments()
+    {
+        return $this->client->GetShipments();
+    }
+
+    //Get Shipment by orderId
+    public function getShipment($orderId = null)
+    {
+        return $this->client->GetShipment(array('order_id' => $orderId));
     }
 
     //Get list of accounts

@@ -4,7 +4,7 @@ namespace Application\Orders;
 
 class Order
 {
-
+	protected $orderId;
 	protected $poNumber;
 	protected $notes;
 	protected $carrier;
@@ -24,6 +24,16 @@ class Order
 	protected $phone;
 	protected $sku;
 	protected $quantity;
+
+	public function setOrderId($orderId)
+	{
+		$this->orderId = $orderId;
+	}
+
+	public function getOrderId()
+	{
+		return $this->orderId;
+	}
 
 	public function setPoNumber($poNumber)
 	{
