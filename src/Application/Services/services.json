@@ -1,0 +1,118 @@
+{
+	"name": "Kole Imports API Client",
+	"base_url": "https://api.koleimports.com",
+	"description": "Dropship API Product Service",
+	"operations": {
+		"GetProducts": {
+	            "httpMethod": "GET",
+	            "uri": "/products",
+	           	"summary": "Gets a list of Products",
+	           	"responseClass": "GetProductsOutput"
+	      		},
+		"GetProduct": {
+	            "httpMethod": "GET",
+	            "uri": "/products/{sku}",
+	           	"summary": "Get specified product",
+	           	"responseClass": "GetProductOutput",
+			"parameters":{
+				"sku":{
+					"location":"uri",
+					"description":"Product to retrieve by sku",
+					"required":"true"
+					}
+				}
+	      	},
+		"GetAccounts": {
+	            "httpMethod": "GET",
+	            "uri": "/accounts",
+	           	"summary": "Gets a list of Accounts",
+	           	"responseClass": "GetAccountsOutput"
+	      	},
+		"GetOrders": {
+	            "httpMethod": "GET",
+	            "uri": "/orders",
+	           	"summary": "Gets a list of orders",
+	           	"responseClass": "GetOrdersOutput"
+	      	},
+		"GetOrder": {
+	            "httpMethod": "GET",
+	            "uri": "/orders/{order_id}",
+	           	"summary": "Get get specific order",
+	           	"responseClass": "GetOrderOutput",
+			"parameters":{
+				"order_id":{
+					"location":"uri",
+					"description":"Order to retrieve by order_id",
+					"required":"true"
+					}
+				}
+			},
+		"GetShipments": {
+	            "httpMethod": "GET",
+	            "uri": "/shipments",
+	           	"summary": "Get get all shipments",
+	           	"responseClass": "GetShipmentsOutput"
+			},
+		"GetShipment": {
+	            "httpMethod": "GET",
+	            "uri": "/shipments/{order_id}",
+	           	"summary": "Get get specific order",
+	           	"responseClass": "GetOrderOutput",
+			"parameters":{
+				"order_id":{
+					"location":"uri",
+					"description":"Order to retrieve by order_id",
+					"required":"true"
+					}
+				}
+			},
+		"GetTransactions": {
+	            "httpMethod": "GET",
+	            "uri": "/transactions",
+	           	"summary": "Get get all transactions",
+	           	"responseClass": "GetTransactionsOutput"
+			},
+		"GetTransaction": {
+	            "httpMethod": "GET",
+	            "uri": "/transactions/{order_id}",
+	           	"summary": "Get get specific order",
+	           	"responseClass": "GetTransactionOutput",
+			"parameters":{
+				"order_id":{
+					"location":"uri",
+					"description":"Order to retrieve by order_id",
+					"required":"true"
+					}
+				}
+			}
+		},
+		"models": {
+			"GetProductsOutput": {
+				"type": "array"
+		},
+			"GetProductOutput":{
+				"type":"object"
+		},
+			"GetShipmentsOutput":{
+				"type":"object"
+		},
+			"GetShipmentsOutput":{
+				"type":"object"
+		},
+			"GetTransactionsOutput":{
+				"type":"object"
+		},
+			"GetTransactionOutput":{
+				"type":"object"
+		},
+			"GetOrdersOutput":{
+				"type":"object"
+		},
+			"GetOrderOutput":{
+				"type":"object"
+		},
+			"GetAccounts":{
+				"type":"object"
+		}
+	}
+}

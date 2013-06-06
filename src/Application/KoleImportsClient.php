@@ -1,37 +1,75 @@
 <?php
 namespace Application;
 
-require dirname(__DIR__) . '/config.php';
+use Application\KoleImportsFactory;
 
-use Guzzle\Service\Client;
-use Guzzle\Common\Collection;
-use Guzzle\Service\Builder\ServiceBuilder;
-use Guzzle\Service\Description\ServiceDescription;
-use Guzzle\Plugin\CurlAuth\CurlAuthPlugin;
-use Guzzle\Http\Message\Response;
-
-class KoleImportsClient extends Client
+class KoleImportsClient
 {
-	/**
-   	* Handle any API requests via GET or POST
-   	* @param string $sku
-	* @param integer $order_id
-   	*/
-	public function KoleImportsService($sku = Null, $order_id = Null)
-	{
-		//Client Setup
-		$client = new Client('https://api.koleimports.com/', array(
-			'curl.options'	=> array(
-			CURLOPT_HTTPAUTH	=> 'CURLAUTH_BASIC',
-			CURLOPT_USERPWD		=> ACCOUNT_ID.':'.API_KEY,
-			CURLOPT_RETURNTRANSFER	=> 'true'
-			)
-		));
 
-		//Attach a service description to the client
-		$description = ServiceDescription::factory(__DIR__ .'/services.json');
-		$client->setDescription($description);
+    protected $client;
 
-		return $client;
-	}
+     //Construct Client
+    public function __construct(KoleImportsFactory $factory)
+    {
+        $this->config = $factory;
+        $this->client = $this->config->clientConfig();
+    }
+
+    //Get list of products
+    public function getProducts()
+    {
+        return $this->client->GetProducts();
+    }
+
+    //Get product by sku
+    public function getProduct($sku = 'null')
+    {
+        return $this->client->GetProduct(array('sku' => $sku));
+    }
+
+    //Post order to website
+    public function postOrder($serializedData = null)
+    {
+        $request = $this->client->post(
+            '/orders', array(
+            'Accept'        => 'application/vnd.koleimports.ds.order+xml',
+            'Content-Type'  => 'application/vnd.koleimports.ds.order+xml'
+        ), $serializedData);
+
+        $response = $request->send();
+
+        return $response;
+
+    }
+
+    //Get list of Orders
+    public function getOrders()
+    {
+        return $this->client->GetOrders();
+    }
+
+    //Get order by orderId
+    public function getOrder($orderId = null)
+    {
+        return $this->client->GetOrder(array('order_id' => $orderId));
+    }
+
+    //Get list of Shipments
+    public function getShipments()
+    {
+        return $this->client->GetShipments();
+    }
+
+    //Get Shipment by orderId
+    public function getShipment($orderId = null)
+    {
+        return $this->client->GetShipment(array('order_id' => $orderId));
+    }
+
+    //Get list of accounts
+    public function getAccounts()
+    {
+        return $this->client->GetAccounts();
+    }
+
 }
