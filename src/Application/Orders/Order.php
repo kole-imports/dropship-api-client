@@ -24,6 +24,7 @@ class Order
 	protected $phone;
 	protected $sku;
 	protected $quantity;
+	protected $orderData;
 
 	public function setOrderId($orderId)
 	{
@@ -223,5 +224,75 @@ class Order
 	public function getQuantity()
 	{
 		return $this->quantity;
+	}
+
+	public function setOrderData($orderData)
+	{
+		$this->orderData = $orderData;
+	}
+
+	public function getOrderData()
+	{
+		return $this->orderData;
+	}
+
+	//Not in use currently testing JMS Serializer
+	public function formatOrder()
+	{
+		$orderArray = array(
+				'po_number' 		=> $this->poNumber,
+				'notes'			=> $this->notes,
+				'ship_options' => array(
+					'carrier' 	=> $this->carrier,
+					'service' 	=> $this->getService(),
+					'signature'	=> $this->getSignature(),
+					'instructions' 	=> $this->getInstructions()
+					),
+				'ship_to_address' 	=> array(
+					'first_name' 	=> $this->getFirstName(),
+					'last_name'	=> $this->getLastName(),
+					'company' 	=> $this->getCompany(),
+					'address_1' 	=> $this->getAddressOne(),
+					'address_2' 	=> $this->getAddressTwo(),
+					'city' 		=> $this->getCity(),
+					'state'		=> $this->getState(),
+					'zipcode' 	=> $this->getZipcode(),
+					'ext_zipcode' 	=> $this->getExtZipcode(),
+					'country' 	=> $this->getCountry(),
+					'phone' 	=> $this->getPhone(),
+				),
+				'items' => array(
+					'item' => array(
+					'sku' 		=> $this->getSku(),
+					'quantity' 	=> $this->getQuantity()
+					)
+				)
+			);
+
+		return $orderArray;
+	}
+
+	//Not in use currently testing JMS Serializer
+	function serializeOrder(array $data, $rootElement = null, $xml = null)
+	{
+
+		$xmlObject = $xml;
+
+		if ($xmlObject === null)
+		{
+			$xmlObject = new \SimpleXMLElement($rootElement !== null ? $rootElement : '<order/>');
+		}
+
+		foreach ($data as $item => $data)
+		{
+			if (is_array($data)) { //nested array
+				self::serializeOrder($data, $item, $xmlObject->addChild($item));
+			}else
+			{
+				$xmlObject->addChild($item, $data);
+			}
+		}
+
+		return $xmlObject->asXML();
 	}
 }

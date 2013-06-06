@@ -1,9 +1,9 @@
 <?php
 namespace Application;
 
-use Application\Configuration\Config;
 use Guzzle\Service\Client;
 use Guzzle\Service\Description\ServiceDescription;
+use Application\Configuration\Config;
 
 class KoleImportsFactory extends Client
 {
@@ -15,8 +15,8 @@ class KoleImportsFactory extends Client
 	public function clientConfig()
 	{
 		//API Auth
-		$username = $this->config->getUsername();
-		$password = $this->config->getPassword();
+		$username = $this->config->getAccountId();
+		$password = $this->config->getApiKey();
 
 		//Create Client Object
 		$koleImports 	= new Client('https://api.koleimports.com', array(

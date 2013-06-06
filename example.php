@@ -45,13 +45,12 @@ try {
 /**
 * Order Commands
 */
+	//Create Order object
+	$order = new Order;
 
 	/**Get list of orders
 	$orderList = $koleImportsClient->getOrders();
 	print_r($orderList);**/
-
-	//Create Order object
-	$order = new Order;
 
 	/**Get single  order by order id
 	$order->setOrderId('12345');
@@ -80,56 +79,35 @@ try {
 	$order->setSku('AA124');
 	$order->setQuantity('24');
 
-	//Get Order data and insert into array
-	$data = $order;
-	$dataArray = array(
-		'po_number' 		=> $data->getPoNumber(),
-		'notes'			=> $data->getNotes(),
-		'ship_options' => array(
-			'carrier' 	=> $data->getCarrier(),
-			'service' 	=> $data->getService(),
-			'signature'	=> $data->getSignature(),
-			'instructions' 	=> $data->getInstructions()
-			),
-		'ship_to_address' 	=> array(
-			'first_name' 	=> $data->getFirstName(),
-			'last_name'	=> $data->getLastName(),
-			'company' 	=> $data->getCompany(),
-			'address_1' 	=> $data->getAddressOne(),
-			'address_2' 	=> $data->getAddressTwo(),
-			'city' 		=> $data->getCity(),
-			'state' 	=> $data->getState(),
-			'zipcode' 	=> $data->getZipcode(),
-			'ext_zipcode' 	=> $data->getExtZipcode(),
-			'country' 	=> $data->getCountry(),
-			'phone' 	=> $data->getPhone(),
-		),
-		'items' => array(
-			'item' => array(
-			'sku' 		=> $data->getSku(),
-			'quantity' 	=> $data->getQuantity()
-			)
-		)
-	);
-	//Custom Serializer
-	$serializer = new Serializer;
-	$serializedData = $serializer->createXML($dataArray);
+	/**Format order data into array then pass array to serializer
+	$orderData = $order->formatOrder();
+	$orderSerialized = $order->serializeOrder($orderData);
 
 	//Send POST data to  postOrder method
-	$postOrder = $koleImportsClient->postOrder($serializedData);
+	$postOrder = $koleImportsClient->postOrder($orderSerialized);
+
+	//Print POST response
+	print($postOrder);**/
+
+	//Create JMS Serializer
+	$serializer = JMS\Serializer\SerializerBuilder::create()->build();
+	$xml = $serializer->serialize($order, 'xml');
+
+	//Send POST data to  postOrder method
+	$postOrder = $koleImportsClient->postOrder($xml);
 
 	//Print POST response
 	print($postOrder);
 
-	/**Create JMS Serializer
-	$serializer = JMS\Serializer\SerializerBuilder::create()->build();
-	$json = $serializer->serialize($dataArray, 'json');
+/**
+* Shipment Commands
+*/
 
-	//Send POST data to  postOrder method
-	$postOrder = $koleImportsClient->postOrder($json);
 
-	//Print POST response
-	print($postOrder);**/
+
+/**
+* Transation Commands
+*/
 
 }
 //Guzzle Error Handling

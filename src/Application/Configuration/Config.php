@@ -3,26 +3,26 @@ namespace Application\Configuration;
 
 class Config
 {
-	protected $username;
-	protected $password;
+	protected $accountId;
+	protected $apiKey;
 
-	public function setAccountId($username)
+	public function setAccountId($accountId)
 	{
-		$this->username = $username;
+		$this->accountId = $accountId;
 	}
 
-	public function setApiKey($password)
+	public function getAccountId()
 	{
-		$this->password = $password;
+		return $this->accountId;
 	}
 
-	public function getUsername()
+	public function setApiKey($apiKey)
 	{
-		return $this->username;
+		$this->apiKey = $apiKey;
 	}
 
-	public function getPassword()
+	public function getApiKey()
 	{
-		return $this->password;
+		return $this->apiKey;
 	}
 }
