@@ -4,21 +4,22 @@ require __DIR__ . '/vendor/autoload.php';
 //Error Handling
 ini_set('display_errors', 'On');
 
-use Application\Configuration\Config;
-use Application\KoleImportsFactory;
-use Application\KoleImportsClient;
-use Application\Orders\Order;
-use Application\Products\Product;
-use Application\Services\Serializer;
-
+use KoleImports\DropshipApi\Config\Config;
+use KoleImports\DropshipApi\KoleImportsFactory;
+use KoleImports\DropshipApi\KoleImportsClient;
+use KoleImports\DropshipApi\Model\Request\Address;
+use KoleImports\DropshipApi\Model\Request\Item;
+use KoleImports\DropshipApi\Model\Request\ItemCollection;
+use KoleImports\DropshipApi\Model\Request\Order;
+use KoleImports\DropshipApi\Model\Request\ShipOptions;
 
 //Setup Client Configuration
 $config = new Config;
 $config->setAccountId('X16310');
 $config->setApiKey('a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd');
 $factory = new KoleImportsFactory($config);
-$koleImportsClient = new KoleImportsClient($factory);
-$product = new Product;
+$client = new KoleImportsClient($factory);
+
 try {
 
 /**

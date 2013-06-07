@@ -1,7 +1,6 @@
 <?php
-namespace Application;
 
-use Application\KoleImportsFactory;
+namespace KoleImports\DropshipApi;
 
 class KoleImportsClient
 {
