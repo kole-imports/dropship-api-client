@@ -5,7 +5,7 @@ namespace KoleImports\DropshipApi\Model\Request;
 /**
  * @author Bill Hance <bill.hance@gmail.com>
  */
-class Address 
+class Address
 {
     /**
      * First Name
@@ -29,13 +29,13 @@ class Address
      * Address 1
      * @var string
      */
-    private $address1;
+    private $address_1;
 
     /**
      * Address 2
      * @var string
      */
-    private $address2;
+    private $address_2;
 
     /**
      * City
@@ -53,13 +53,13 @@ class Address
      * Zipcode
      * @var string
      */
-    private $zipcode;
+    private $zipCode;
 
     /**
      * Extended Zipcode
      * @var string
      */
-    private $extZipcode;
+    private $extZipCode;
 
     /**
      * Country
@@ -109,26 +109,26 @@ class Address
         return $this;
     }
 
-    public function getAddress1()
+    public function getaddress_1()
     {
-        return $this->address1;
+        return $this->address_1;
     }
 
-    public function setAddress1($address1)
+    public function setaddress_1($address_1)
     {
-        $this->address1 = (string) $address1;
+        $this->address_1 = (string) $address_1;
 
         return $this;
     }
 
-    public function getAddress2()
+    public function getaddress_2()
     {
-        return $this->address2;
+        return $this->address_2;
     }
 
-    public function setAddress2($address2)
+    public function setAddress_2($address_2)
     {
-        $this->address2 = (string) $address2;
+        $this->address_2 = (string) $address_2;
 
         return $this;
     }
@@ -157,24 +157,24 @@ class Address
         return $this;
     }
 
-    public function getZipcode()
+    public function getZipCode()
     {
         return $this->zipCode;
     }
 
-    public function setZipcode($zipCode)
+    public function setZipCode($zipCode)
     {
         $this->zipCode = (string) $zipCode;
 
         return $this;
     }
 
-    public function getExtZipcode()
+    public function getExtZipCode()
     {
         return $this->extZipCode;
     }
 
-    public function setExtZipcode($extZipCode)
+    public function setExtZipCode($extZipCode)
     {
         $this->extZipCode = (string) $extZipCode;
 

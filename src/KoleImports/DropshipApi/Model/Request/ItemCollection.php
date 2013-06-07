@@ -5,13 +5,19 @@ namespace KoleImports\DropshipApi\Model\Request;
 /**
  * @author Bill Hance <bill.hance@gmail.com>
  */
-class ItemCollection 
+class ItemCollection
 {
     /**
      * Items
-     * @var array<Item>
+     * @var array<Items>
      */
     private $items = array();
+
+    /**
+     * Item
+     * @var array<Item>
+     */
+    private $item = array();
 
     public function getItems()
     {
@@ -20,7 +26,8 @@ class ItemCollection
 
     public function setItems(array $items)
     {
-        foreach($items as $item) {
+        foreach($items as $item)
+        {
             $this->addItem($item);
         }
 
@@ -29,6 +36,6 @@ class ItemCollection
 
     public function addItem(Item $item)
     {
-        $this->$items[] = $item;
+        $this->item[] = $item;
     }
 }

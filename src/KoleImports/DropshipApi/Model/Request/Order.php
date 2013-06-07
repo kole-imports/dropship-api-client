@@ -7,6 +7,13 @@ namespace KoleImports\DropshipApi\Model\Request;
  */
 class Order
 {
+
+    /**
+     * orderContainer
+     * @var OrderCollection
+     */
+    private $orders = array();
+
     /**
      * PO Number
      * @var string
@@ -29,7 +36,7 @@ class Order
      * Shipping Address
      * @var Address
      */
-    private $shipToAddres;
+    private $shipToAddress;
 
     /**
      * Items
@@ -151,4 +158,29 @@ class Order
 
         return $this;
     }
+
+    /**
+    * Get Orders
+    *
+    * @return OrderCollection Orders
+    */
+
+    /**
+    * Set order data into container
+    * @param orderContainer
+    */
+    public function setOrderContainer($orderContainer)
+    {
+        $this->orderContainer[] = $orderContainer;
+
+        return $this;
+    }
+
+    public function getOrderContainer()
+    {
+        return $this->orderContainer;
+    }
+
+
+
 }

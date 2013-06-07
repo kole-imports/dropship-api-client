@@ -2,7 +2,7 @@
 
 namespace KoleImports\DropshipApi\Model\Request;
 
-class Item 
+class Item
 {
     /**
      * SKU (2 uppercase letters followed by 3 digits)
@@ -23,7 +23,7 @@ class Item
 
     public function setSku($sku)
     {
-        $this->sku = strtoupper((string) $zipCode);
+        $this->sku = strtoupper((string) $sku);
 
         return $this;
     }

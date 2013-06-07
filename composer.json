@@ -6,7 +6,8 @@
     "autoload": {
         "psr-0": {
             "KoleImports\\DropshipApi": "src/",
-            "KoleImports\\DropshipApi\\Tests": "tests/"
+            "KoleImports\\DropshipApi\\Tests": "tests/",
+            "Commands": "examples/"
         }
     }
 }

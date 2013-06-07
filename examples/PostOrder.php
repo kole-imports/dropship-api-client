@@ -1,6 +1,11 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+$vendorDir = dirname(dirname(__FILE__));
+require($vendorDir . '/vendor/autoload.php');
+
+
+//Error Handling
+ini_set('display_errors', 'On');
 
 use KoleImports\DropshipApi\Config\Config;
 use KoleImports\DropshipApi\KoleImportsFactory;
@@ -10,6 +15,7 @@ use KoleImports\DropshipApi\Model\Request\Item;
 use KoleImports\DropshipApi\Model\Request\ItemCollection;
 use KoleImports\DropshipApi\Model\Request\Order;
 use KoleImports\DropshipApi\Model\Request\ShipOptions;
+use KoleImports\DropshipApi\Model\Request\OrderCollection;
 
 //Setup Client Configuration
 $config = new Config;
@@ -27,8 +33,8 @@ try {
     $address->setFirstName('Jesse')
         ->setLastName('Reese')
         ->setCompany('JesseTestCompany')
-        ->setAddress1('24600 Main St.')
-        ->setAddress2('Suite 3')
+        ->setAddress_1('24600 Main St.')
+        ->setAddress_2('Suite 3')
         ->setCity('Carson')
         ->setState('CA')
         ->setZipcode('90745')
@@ -54,8 +60,8 @@ try {
 
     $items = new ItemCollection();
 
-    $items->addItem($firstItem)
-        ->addItem($secondItem);
+    $items->addItem($firstItem);
+    $items->addItem($secondItem);
 
     $order = new Order;
 
@@ -65,12 +71,15 @@ try {
         ->setShipToAddress($address)
         ->setItems($items);
 
+    $orders = new OrderCollection;
+    $orders->addOrder($order);
+
     //Create JMS Serializer
     $serializer = JMS\Serializer\SerializerBuilder::create()->build();
-    $xml = $serializer->serialize($order, 'xml');
+    $xml = $serializer->serialize($orders, 'xml');
 
     //Send POST data to  postOrder method
-    $postOrder = $koleImportsClient->postOrder($xml);
+    $postOrder = $client->postOrder($xml);
 
     //Print POST response
     print($postOrder);
