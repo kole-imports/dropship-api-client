@@ -1,6 +1,7 @@
 <?php
+namespace tests;
 
-namespace Application\tests;
+use Guzzle\Tests;
 
 Guzzle\Tests\GuzzleTestCase::setServiceBuilder(Aws\Common\Aws::factory($_SERVER['CONFIG']));
 
