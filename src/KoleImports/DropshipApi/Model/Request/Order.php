@@ -2,9 +2,9 @@
 
 namespace KoleImports\DropshipApi\Model\Request;
 
-/**
- * @author Bill Hance <billhance@gmail.com>
- */
+use JMS\Serializer\Annotation\XmlRoot;
+
+/** @XmlRoot("order") */
 class Order
 {
 

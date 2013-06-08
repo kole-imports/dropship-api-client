@@ -71,12 +71,12 @@ try {
         ->setShipToAddress($address)
         ->setItems($items);
 
-    $orders = new OrderCollection;
-    $orders->addOrder($order);
+    //$orders = new OrderCollection;
+    //$orders->addOrder($order);
 
     //Create JMS Serializer
     $serializer = JMS\Serializer\SerializerBuilder::create()->build();
-    $xml = $serializer->serialize($orders, 'xml');
+    $xml = $serializer->serialize($order, 'xml');
 
     //Send POST data to  postOrder method
     $postOrder = $client->postOrder($xml);
