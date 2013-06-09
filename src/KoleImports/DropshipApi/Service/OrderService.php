@@ -10,14 +10,14 @@ class OrderService
 {
     private $client;
 
-    public function __construct(Client $client)
+    public function __construct($client)
     {
         $this->client = $client;
     }
 
     public function get($id)
     {
-
+        return $this->client->GetOrder(array('order_id' => $id));
     }
 
     public function getBatch($offset, $limit)

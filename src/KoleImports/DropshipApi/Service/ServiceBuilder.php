@@ -6,6 +6,7 @@ use KoleImports\DropshipApi\Exception\NotImplementedException;
 use KoleImports\DropshipApi\Model\Request\Config;
 use KoleImports\DropshipApi\Service\ApiClient;
 use KoleImports\DropshipApi\Service\OrderService;
+use KoleImports\DropshipApi\Service\ProductService;
 
 /**
  * @author Bill Hance <bill.hance@gmail.com>
@@ -67,7 +68,7 @@ class ServiceBuilder
      */
     public function getProductService()
     {
-        throw new NotImplementedException('Product Service has not been implemented.');
+        return new ProductService($this->getApiClient());
     }
 
     /**
