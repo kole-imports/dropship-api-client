@@ -13,14 +13,19 @@ use KoleImports\DropshipApi\Model\Request\Config;
 class ApiClient extends Client
 {
     /**
+    * @var config Config Object
+    */
+    private $apiConfig;
+
+    /**
      * @param Config $config Config Object
      */
-    public function __construct(Config $config)
+    public function connectApi(Config $apiConfig)
     {
-        $baseUrl = $config->getApiEndpoint();
+        $baseUrl = $apiConfig->getApiEndpoint();
 
-        $options = array(CURLOPT_HTTPAUTH => 'CURLAUTH_BASIC',
-            CURLOPT_USERPWD => $config->getAuthToken(),
+       $options = array(CURLOPT_HTTPAUTH => 'CURLAUTH_BASIC',
+            CURLOPT_USERPWD => $apiConfig->getAuthToken(),
             CURLOPT_RETURNTRANSFER  => 'true',
             );
 

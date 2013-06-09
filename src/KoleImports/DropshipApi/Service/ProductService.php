@@ -22,5 +22,4 @@ class ProductService
     {
     	return $this->client->GetProducts();
     }
-
 }

@@ -34,7 +34,8 @@ class ServiceBuilder
      */
     public function getApiClient()
     {
-        return isset($this->client) ? $this->client : new ApiClient($this->config);
+        $client = new ApiClient;
+        return $client->connectApi($this->config);
     }
 
     /**
