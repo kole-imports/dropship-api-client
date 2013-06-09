@@ -2,9 +2,9 @@
 
 namespace KoleImports\DropshipApi\Model\Request;
 
-use JMS\Serializer\Annotation\XmlRoot;
+//use JMS\Serializer\Annotation\XmlRoot;
 
-/** @XmlRoot("order") */
+//@XmlRoot("order")
 class Order
 {
 

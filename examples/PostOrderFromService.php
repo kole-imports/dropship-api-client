@@ -1,6 +1,10 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+$vendorDir = dirname(dirname(__FILE__));
+require($vendorDir . '/vendor/autoload.php');
+
+//Error Handling
+ini_set('display_errors', 'On');
 
 use KoleImports\DropshipApi\Service\ServiceBuilder;
 
@@ -37,5 +41,5 @@ if ($response->hasErrors()) {
     $errors = $response->getErrors();
 
 } else {
-    // Response was successful
+    print_r($response);
 }
