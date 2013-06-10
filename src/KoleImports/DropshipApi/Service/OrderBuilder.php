@@ -2,8 +2,8 @@
 
 namespace KoleImports\DropshipApi\Service;
 
-use KoleImports\DropshipApi\Model\Request\Address;
 use KoleImports\DropshipApi\Model\Request\Order;
+use KoleImports\DropshipApi\Model\Request\Address;
 use KoleImports\DropshipApi\Model\Request\ShipOptions;
 use KoleImports\DropshipApi\Factory\ItemFactory;
 
@@ -27,7 +27,8 @@ class OrderBuilder
 
     private $itemFactory;
 
-    public function __construct(Order $order,
+    public function __construct(
+        Order $order,
         Address $address,
         ShipOptions $shipOptions,
         ItemFactory $itemFactory)
@@ -77,76 +78,106 @@ class OrderBuilder
 
     public function setNotes($notes)
     {
+        $this->order->setNotes($notes);
+
         return $this;
     }
 
     public function setCarrier($carrier)
     {
+        $this->carrier = (string) $carrier;
+
         return $this;
     }
 
     public function setService($service)
     {
+        $this->service = (string) $service;
+
         return $this;
     }
 
     public function setSignature($signature)
     {
+        $this->signature = (bool) $signature;
+
         return $this;
     }
 
     public function setInstructions($instructions)
     {
+        $this->instructions = (string) $instructions;
+
         return $this;
     }
 
     public function setFirstName($firstName)
     {
+        $this->firstName = (string) $firstName;
+
         return $this;
     }
 
     public function setLastName($lastName)
     {
+        $this->lastName = (string) $lastName;
+
         return $this;
     }
 
     public function setCompany($company)
     {
+        $this->company = (string) $company;
+
         return $this;
     }
 
     public function setAddress1($address)
     {
+        $this->address = (string) $address;
+
         return $this;
     }
 
     public function setAddress2($address)
     {
+        $this->address = (string) $address;
+
         return $this;
     }
 
     public function setCity($city)
     {
+        $this->city = (string) $city;
+
         return $this;
     }
 
     public function setState($state)
     {
+        $this->order = (string) $state;
+
         return $this;
     }
 
     public function setZipcode($zipcode)
     {
+        $this->order = (string) $zipcode;
+
         return $this;
     }
 
     public function setExtZipcode($extZipcode)
     {
+        $this->order = (string) $extZipcode;
+
         return $this;
     }
 
     public function setPhone($phone)
     {
+        $this->order = (string) $phone;
+
         return $this;
     }
 

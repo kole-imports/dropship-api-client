@@ -24,14 +24,14 @@ class ApiClient extends Client
     {
         $baseUrl = $apiConfig->getApiEndpoint();
 
-       $options = array(CURLOPT_HTTPAUTH => 'CURLAUTH_BASIC',
+        $options = array(CURLOPT_HTTPAUTH => 'CURLAUTH_BASIC',
             CURLOPT_USERPWD => $apiConfig->getAuthToken(),
             CURLOPT_RETURNTRANSFER  => 'true',
             );
 
         $client = new Client($baseUrl, array('curl.options' => $options));
 
-        $client->setDescription(ServiceDescription::factory(__DIR__ . '/services.json'));
+        $client->setDescription(ServiceDescription::factory(__DIR__ . '/ServiceDescriptions.json'));
 
         return $client;
     }
