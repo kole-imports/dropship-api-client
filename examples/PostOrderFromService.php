@@ -18,7 +18,7 @@ $orderBuilder->setPoNumber('12345')
     ->setNotes('These are sample notes')
     ->setCarrier('UPS')
     ->setService("GROUND")
-    ->setSignature(false)
+    ->setSignature(true)
     ->setInstructions('These are shipping instructions')
     ->setFirstName('Jesse')
     ->setLastName('Reese')
@@ -29,11 +29,13 @@ $orderBuilder->setPoNumber('12345')
     ->setState('CA')
     ->setZipcode('90745')
     ->setExtZipcode('5555')
-    ->setPhone('5555555555')
-    ->addItem('AA124','24')
-    ->addItem('AA125','48');
+    ->setPhone('5555555555');
+    //->addItem('AA124', '24');
 
-$response = $orderService->post($orderBuilder->getOrder());
+
+var_dump($orderBuilder->getOrder());die;
+
+//$response = $orderService->post($orderBuilder->getOrder());
 
 if ($response->hasErrors()) {
 

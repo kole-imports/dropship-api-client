@@ -83,106 +83,118 @@ class OrderBuilder
         return $this;
     }
 
+    /**
+    *ShipOptions
+    */
     public function setCarrier($carrier)
     {
-        $this->carrier = (string) $carrier;
+        $this->shipOptions->setCarrier($carrier);
 
         return $this;
     }
 
     public function setService($service)
     {
-        $this->service = (string) $service;
+       $this->shipOptions->setService($service);
 
         return $this;
     }
 
     public function setSignature($signature)
     {
-        $this->signature = (bool) $signature;
+        $this->shipOptions->setSignature($signature);
 
         return $this;
     }
 
     public function setInstructions($instructions)
     {
-        $this->instructions = (string) $instructions;
+       $this->shipOptions->setInstructions($instructions);
 
         return $this;
     }
 
+    /**
+    * Address
+    */
     public function setFirstName($firstName)
     {
-        $this->firstName = (string) $firstName;
+        $this->address->setFirstName($firstName);
 
         return $this;
     }
 
     public function setLastName($lastName)
     {
-        $this->lastName = (string) $lastName;
+        $this->address->setLastName($lastName);
 
         return $this;
     }
 
     public function setCompany($company)
     {
-        $this->company = (string) $company;
+        $this->address->setCompany($company);
 
         return $this;
     }
 
     public function setAddress1($address)
     {
-        $this->address = (string) $address;
+        $this->address->setAddress_1($address);
 
         return $this;
     }
 
     public function setAddress2($address)
     {
-        $this->address = (string) $address;
+        $this->address->setAddress_2($address);
 
         return $this;
     }
 
     public function setCity($city)
     {
-        $this->city = (string) $city;
+        $this->address->setCity($city);
 
         return $this;
     }
 
     public function setState($state)
     {
-        $this->order = (string) $state;
+        $this->address->setState($state);
 
         return $this;
     }
 
     public function setZipcode($zipcode)
     {
-        $this->order = (string) $zipcode;
+        $this->address->setZipcode($zipcode);
 
         return $this;
     }
 
     public function setExtZipcode($extZipcode)
     {
-        $this->order = (string) $extZipcode;
+        $this->address->setExtZipcode($extZipcode);
 
         return $this;
     }
 
     public function setPhone($phone)
     {
-        $this->order = (string) $phone;
+        $this->address->setPhone($phone);
 
         return $this;
     }
 
-    public function addItem($sku,$quantity)
+    /**
+    * Item Factory
+    */
+    public function addItem()
     {
+       $this->itemFactory->createItem('AA124', '24');
+
         return $this;
     }
+
 }

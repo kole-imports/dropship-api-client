@@ -3,6 +3,7 @@
 namespace KoleImports\DropshipApi\Model\Request;
 
 /**
+ * @author Jesse Reese <jesse.c.reese@gmail.com>
  * @author Bill Hance <bill.hance@gmail.com>
  */
 class ItemCollection

@@ -6,6 +6,7 @@ use KoleImports\DropshipApi\Service\OrderBuilder;
 use KoleImports\DropshipApi\Model\Request\Order;
 use KoleImports\DropshipApi\Model\Request\Address;
 use KoleImports\DropshipApi\Model\Request\ShipOptions;
+use KoleImports\DropshipApi\Model\Request\Item;
 use KoleImports\DropshipApi\Factory\ItemFactory;
 
 /**
