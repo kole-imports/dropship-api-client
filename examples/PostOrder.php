@@ -3,7 +3,6 @@
 $vendorDir = dirname(dirname(__FILE__));
 require($vendorDir . '/vendor/autoload.php');
 
-
 //Error Handling
 ini_set('display_errors', 'On');
 

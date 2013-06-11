@@ -16,7 +16,7 @@ $orderBuilder = $orderService->getOrderBuilder();
 
 $orderBuilder->setPoNumber('12345')
     ->setNotes('These are sample notes')
-    ->setCarrier('UPS')
+    ->setCarrier('FEDEX')
     ->setService("GROUND")
     ->setSignature(true)
     ->setInstructions('These are shipping instructions')

@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(dirname(dirname(__FILE__))));
 $baseDir = dirname(dirname($vendorDir));
 use Doctrine\Common\Annotations\AnnotationRegistry;
 AnnotationRegistry::registerAutoloadNamespace('JMS\Serializer\Annotation', $baseDir . "/vendor/jms/serializer/src");
+
+use Doctrine\Common\Annotations;
 use JMS\Serializer\Annotation\XmlRoot;
 use JMS\Serializer\Annotation\Type;
 
