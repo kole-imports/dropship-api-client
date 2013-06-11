@@ -44,13 +44,13 @@ class OrderService
 
     }
 
-    public function post()
+    public function post($xml)
     {
         $request = $this->client->post(
             '/orders', array(
             'Accept'            => 'application/vnd.koleimports.ds.order+xml',
             'Content-Type'  => 'application/vnd.koleimports.ds.order+xml'
-        ), $serializedData);
+        ), $xml);
 
         $response = $request->send();
 

@@ -7,7 +7,7 @@ require($vendorDir . '/vendor/autoload.php');
 //Error Handling
 ini_set('display_errors', 'On');
 
-use KoleImports\DropshipApi\Config\Config;
+use KoleImports\DropshipApi\Model\Request\Config;
 use KoleImports\DropshipApi\KoleImportsFactory;
 use KoleImports\DropshipApi\KoleImportsClient;
 use KoleImports\DropshipApi\Model\Request\Address;
@@ -17,14 +17,11 @@ use KoleImports\DropshipApi\Model\Request\Order;
 use KoleImports\DropshipApi\Model\Request\ShipOptions;
 use KoleImports\DropshipApi\Model\Request\OrderCollection;
 
-//Setup Client Configuration
-$config = new Config;
+use KoleImports\DropshipApi\Service\ServiceBuilder;
 
-$config->setAccountId('X16310');
-$config->setApiKey('a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd');
+$serviceBuilder = new ServiceBuilder('X16310', 'a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd');
 
-$factory = new KoleImportsFactory($config);
-$client = new KoleImportsClient($factory);
+$orderService = $serviceBuilder->getOrderService();
 
 try {
 

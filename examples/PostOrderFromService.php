@@ -29,19 +29,36 @@ $orderBuilder->setPoNumber('12345')
     ->setState('CA')
     ->setZipcode('90745')
     ->setExtZipcode('5555')
-    ->setPhone('5555555555');
-    //->addItem('AA124', '24');
+    ->setPhone('5555555555')
+    ->addItem('AA124','24')
+    ->addItem('AA125','48');
 
 
-var_dump($orderBuilder->getOrder());die;
+$data = $orderBuilder->getOrder();
 
-//$response = $orderService->post($orderBuilder->getOrder());
+//Create JMS Serializer
+$serializer = JMS\Serializer\SerializerBuilder::create()->build();
+$xml = $serializer->serialize($data, 'xml');
 
-if ($response->hasErrors()) {
+//Remove CDTA tags from XML
+function strip_cdata($string)
+{
+    preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $string, $matches);
+    return str_replace($matches[0], $matches[1], $string);
+}
 
-    // Do something with errors
-    $errors = $response->getErrors();
+$cleanXML = strip_cdata($xml);
 
-} else {
-    print_r($response);
+try
+{
+    //Send POST data to  postOrder method
+    $postOrder = $orderService->post($cleanXML);
+    print_r($postOrder);
+}
+catch (Guzzle\Http\Exception\BadResponseException $e) {
+    echo '<p> Uh oh! ' . $e->getMessage() . '</p>';
+    echo '<p>HTTP request URL: ' . $e->getRequest()->getUrl() . '</p>';
+    echo '<p>HTTP request: ' . $e->getRequest() . "\n";
+    echo '<p>HTTP response status: ' . $e->getResponse()->getStatusCode() . '</p>';
+    echo '<p>HTTP response: ' . $e->getResponse() . '</p>';
 }

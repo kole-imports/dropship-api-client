@@ -53,13 +53,13 @@ class Address
      * Zipcode
      * @var string
      */
-    private $zipCode;
+    private $zipcode;
 
     /**
      * Extended Zipcode
      * @var string
      */
-    private $extZipCode;
+    private $extZipcode;
 
     /**
      * Country
@@ -109,24 +109,24 @@ class Address
         return $this;
     }
 
-    public function getaddress_1()
+    public function getaddress1()
     {
         return $this->address_1;
     }
 
-    public function setaddress_1($address_1)
+    public function setaddress1($address_1)
     {
         $this->address_1 = (string) $address_1;
 
         return $this;
     }
 
-    public function getaddress_2()
+    public function getaddress2()
     {
         return $this->address_2;
     }
 
-    public function setAddress_2($address_2)
+    public function setAddress2($address_2)
     {
         $this->address_2 = (string) $address_2;
 
@@ -157,14 +157,14 @@ class Address
         return $this;
     }
 
-    public function getZipCode()
+    public function getZipcode()
     {
-        return $this->zipCode;
+        return $this->zipcode;
     }
 
-    public function setZipCode($zipCode)
+    public function setZipCode($zipcode)
     {
-        $this->zipCode = (string) $zipCode;
+        $this->zipcode = (string) $zipcode;
 
         return $this;
     }
@@ -174,9 +174,9 @@ class Address
         return $this->extZipCode;
     }
 
-    public function setExtZipCode($extZipCode)
+    public function setExtZipCode($extZipcode)
     {
-        $this->extZipCode = (string) $extZipCode;
+        $this->extZipcode = (string) $extZipcode;
 
         return $this;
     }

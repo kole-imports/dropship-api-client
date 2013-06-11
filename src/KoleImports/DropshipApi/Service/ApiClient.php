@@ -25,8 +25,7 @@ class ApiClient extends Client
         $baseUrl = $apiConfig->getApiEndpoint();
 
         $options = array(CURLOPT_HTTPAUTH => 'CURLAUTH_BASIC',
-            CURLOPT_USERPWD => $apiConfig->getAuthToken(),
-            CURLOPT_RETURNTRANSFER  => 'true',
+            CURLOPT_USERPWD => $apiConfig->getAuthToken()
             );
 
         $client = new Client($baseUrl, array('curl.options' => $options));

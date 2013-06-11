@@ -140,14 +140,14 @@ class OrderBuilder
 
     public function setAddress1($address)
     {
-        $this->address->setAddress_1($address);
+        $this->address->setAddress1($address);
 
         return $this;
     }
 
     public function setAddress2($address)
     {
-        $this->address->setAddress_2($address);
+        $this->address->setAddress2($address);
 
         return $this;
     }
@@ -190,9 +190,11 @@ class OrderBuilder
     /**
     * Item Factory
     */
-    public function addItem()
+    public function addItem($sku, $quanity)
     {
-       $this->itemFactory->createItem('AA124', '24');
+        $item = $this->itemFactory->createItem($sku, $quanity);
+
+        $this->itemCollection->addItem($item);
 
         return $this;
     }
