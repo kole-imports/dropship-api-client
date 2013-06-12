@@ -24,11 +24,17 @@ API Requirements -
 Initial Setup -
 ------------------------
 
-###Guzzle Client Framework Setup:
+###Install Composer
 
-[Guzzlephp] (http://guzzlephp.org/getting-started/installation.html)
+####Download and install Composer
 
-####1. Add "guzzle/guzzle" as a dependency in your project's composer.json file
+```teminal
+curl -s "http://getcomposer.org/installer" | php
+```
+
+###Guzzle / JMS Serializer Setup
+
+####Create your composer.json file
 
 ```json
 {
@@ -45,24 +51,12 @@ Initial Setup -
     }
 }
 ```
+####Install dependencies
 
-####2. Download and install Composer
-
-```teminal
-curl -s "http://getcomposer.org/installer" | php
-```
-
-####3. Install your dependencies
+Navigate in your terminal to the directory where you cloned this repository.
 
 ```terminal
 php composer.phar install
-```
-####4. Require Composer's autoloader
-
-Composer also prepares an autoload file that's capable of autoloading all of the classes in any of the libraries that it downloads. To use it, just add the following line to your code's bootstrap process.
-
-```php
-require __DIR__ . '/vendor/autoload.php';
 ```
 
 Getting Started -
