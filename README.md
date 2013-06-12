@@ -64,6 +64,9 @@ Getting Started -
 
 ###Configuration
 
+Set your Account Id and API Key for client configuration.  
+
+If you don't have an API key please login to your account and create one.
 
 ```php
 use KoleImports\DropshipApi\Service\ServiceBuilder;
