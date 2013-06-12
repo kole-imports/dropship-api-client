@@ -119,6 +119,17 @@ $product = $productService->getProduct($item->getSku());
 ####List Orders
 
 ```php
+$orderService = $serviceBuilder->getOrderService();
+
+$response = $orderService->getBatch($limit, $offset);
+
+//List Of Orders
+var_dump($reponse);
+```
+
+####List Single Order by Order Id
+
+```php
 
 ```
 
@@ -178,7 +189,31 @@ print_r($response);
 
 ###Transactions
 
+####List Transactions
+
+```php
+
+```
+
+####List Single Transaction by Order Id
+
+```php
+
+```
+
 ###Shipments
+
+####List Shipments
+
+```php
+
+```
+
+####List Single Shipment by Order Id
+
+```php
+
+```
 
 
 
