@@ -48,18 +48,22 @@ Initial Setup -
 
 ####2. Download and install Composer
 
-	curl -s "http://getcomposer.org/installer" | php
+```teminal
+curl -s "http://getcomposer.org/installer" | php
+```
 
 ####3. Install your dependencies
 
-	php composer.phar install
-
+```terminal
+php composer.phar install
+```
 ####4. Require Composer's autoloader
 
 Composer also prepares an autoload file that's capable of autoloading all of the classes in any of the libraries that it downloads. To use it, just add the following line to your code's bootstrap process.
 
-	require __DIR__ . '/vendor/autoload.php';
-
+```php
+require __DIR__ . '/vendor/autoload.php';
+```
 
 Getting Started -
 ------------------------
