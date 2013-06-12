@@ -97,7 +97,7 @@ $xml = $serializerService->getXml();
 $json = $serializerService->getJson();
 
 //Object
-var_dump($response)
+var_dump($response);
 ```
 
 ####List Single Product by SKU
@@ -123,7 +123,7 @@ $xml = $serializerService->getXml();
 $json = $serializerService->getJson();
 
 //Object
-var_dump($response)
+var_dump($response);
 ```
 
 ###Orders
@@ -143,7 +143,7 @@ $xml = $serializerService->getXml();
 $json = $serializerService->getJson();
 
 //Object
-var_dump($response)
+var_dump($response);
 ```
 
 ####List Single Order by Order Id
@@ -166,7 +166,7 @@ $xml = $serializerService->getXml();
 $json = $serializerService->getJson();
 
 //Object
-var_dump($response)
+var_dump($response);
 ```
 
 ####Create Order(s)
@@ -226,7 +226,7 @@ $xml = $serializerService->getXml();
 $json = $serializerService->getJson();
 
 //Object
-var_dump($response)
+var_dump($response);
 ```
 
 ####List Single Transaction by Order Id
@@ -246,7 +246,7 @@ $xml = $serializerService->getXml();
 $json = $serializerService->getJson();
 
 //Object
-var_dump($response)
+var_dump($response);
 ```
 
 ###Shipments
@@ -263,7 +263,7 @@ $xml = $serializerService->getXml();
 $json = $serializerService->getJson();
 
 //Object
-var_dump($response)
+var_dump($response);
 ```
 
 ####List Single Shipment by Order Id
@@ -283,7 +283,7 @@ $xml = $serializerService->getXml();
 $json = $serializerService->getJson();
 
 //Object
-var_dump($response)
+var_dump($response);
 ```
 
 
