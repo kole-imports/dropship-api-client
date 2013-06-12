@@ -72,9 +72,6 @@ Getting Started -
 
 
 ```php
-//Autoload Dependencies
-require __DIR__ . '/vendor/autoload.php';
-
 use KoleImports\DropshipApi\Service\ServiceBuilder;
 
 //Configure the Service Builder with Credentials
