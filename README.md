@@ -20,6 +20,10 @@ API Requirements -
 * Shipping Method: FedEx or USPS
 * Payment Method: Credit Card / Terms
 
+
+Initial Setup -
+------------------------
+
 ###Guzzle Client Framework Setup:
 
 [Guzzlephp] (http://guzzlephp.org/getting-started/installation.html)
