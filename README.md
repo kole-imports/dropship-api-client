@@ -206,13 +206,28 @@ print_r($response);
 ####List Shipments
 
 ```php
+$orderService = $serviceBuilder->getShipmentService();
 
+$response = $orderService->getShipments();
+
+//List Of Orders
+var_dump($reponse);
 ```
 
 ####List Single Shipment by Order Id
 
 ```php
+use KoleImports\DropshipApi\Model\Request\Order;
 
+$orderService = $serviceBuilder->getShipmentService();
+
+$order = new Order;
+$order->setOrderId('12345');
+
+$response = $orderService->getShipment($order->getOrderId());
+
+//List Of Orders
+var_dump($reponse);
 ```
 
 
