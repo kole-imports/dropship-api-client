@@ -155,6 +155,8 @@ var_dump($response)
 ####List Single Order by Order Id
 
 ```php
+use KoleImports\DropshipApi\Model\Request\Order;
+
 $orderService = $serviceBuilder->getOrderService();
 
 $order = new Order;
@@ -173,7 +175,7 @@ $json = $serializerService->getJson();
 var_dump($response)
 ```
 
-####Create Orders [POST]
+####Create Order(s) [POST]
 
 ```php
 $orderService = $serviceBuilder->getOrderService();
@@ -225,8 +227,12 @@ $transactionService = $serviceBuilder->getTransactionService();
 
 $response = $transactionService->getTransactions();
 
-//List of Transactions
-var_dump($response);
+//List of Transactions as XML, JSON, or Object
+$xml = $serializerService->getXml();
+$json = $serializerService->getJson();
+
+//Object
+var_dump($response)
 ```
 
 ####List Single Transaction by Order Id
@@ -241,8 +247,12 @@ $order->setOrderId('12345');
 
 $response = $transactionService->getTransaction($order->getOrderId());
 
-//Single Transaction by Order Id
-var_dump($response);
+//Single Transaction by Order Id as XML, JSON, or Object
+$xml = $serializerService->getXml();
+$json = $serializerService->getJson();
+
+//Object
+var_dump($response)
 ```
 
 ###Shipments
@@ -254,8 +264,12 @@ $orderService = $serviceBuilder->getShipmentService();
 
 $response = $orderService->getShipments();
 
-//List of Shipments
-var_dump($reponse);
+//List of Shipments as XML, JSON, or Object
+$xml = $serializerService->getXml();
+$json = $serializerService->getJson();
+
+//Object
+var_dump($response)
 ```
 
 ####List Single Shipment by Order Id
@@ -270,8 +284,12 @@ $order->setOrderId('12345');
 
 $response = $orderService->getShipment($order->getOrderId());
 
-//Single Shipment by Order Id
-var_dump($reponse);
+//Single Shipment by Order Idas XML, JSON, or Object
+$xml = $serializerService->getXml();
+$json = $serializerService->getJson();
+
+//Object
+var_dump($response)
 ```
 
 
