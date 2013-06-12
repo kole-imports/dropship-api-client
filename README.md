@@ -60,7 +60,6 @@ Getting Started -
 
 ###Configuration
 
-These are the core requirements for the the client:
 
 ```php
 //Autoload Dependencies
