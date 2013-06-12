@@ -15,11 +15,11 @@ class TransactionService
 
     public function getTransaction($id)
     {
-	return $this->client->GetTransaction(array('order_id' => $id));
+        return $this->client->GetTransaction(array('order_id' => $id));
     }
 
     public function getTransactions($offset = null, $limit = null)
     {
-    	return $this->client->GetTransactions();
+        return $this->client->GetTransactions();
     }
 }
