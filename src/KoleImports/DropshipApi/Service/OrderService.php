@@ -60,7 +60,7 @@ class OrderService
     {
         $request = $this->client->post(
             '/orders', array(
-            'Accept'            => 'application/vnd.koleimports.ds.order+xml',
+            'Accept'        => 'application/vnd.koleimports.ds.order+xml',
             'Content-Type'  => 'application/vnd.koleimports.ds.order+xml'
         ), $xml);
 
