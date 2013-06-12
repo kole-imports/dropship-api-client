@@ -30,19 +30,21 @@ Initial Setup -
 
 ####1. Add "guzzle/guzzle" as a dependency in your project's composer.json file
 
-	{
-	    "require": {
-	        "guzzle/guzzle": "3.0.*",
-	        "jms/serializer": "0.*"
-	    },
-	    "autoload": {
-	        "psr-0": {
-	            "KoleImports\\DropshipApi": "src/",
-	            "KoleImports\\DropshipApi\\Tests": "tests/",
-	            "Commands": "examples/"
-	        }
-	    }
-	}
+```json
+{
+    "require": {
+        "guzzle/guzzle": "3.0.*",
+        "jms/serializer": "0.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "KoleImports\\DropshipApi": "src/",
+            "KoleImports\\DropshipApi\\Tests": "tests/",
+            "Commands": "examples/"
+        }
+    }
+}
+```
 
 ####2. Download and install Composer
 
