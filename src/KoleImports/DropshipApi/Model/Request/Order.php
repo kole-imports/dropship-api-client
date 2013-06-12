@@ -51,6 +51,11 @@ class Order
     private $items;
 
     /**
+    *@var orderId int
+    */
+    private $orderId;
+
+    /**
      * Get PO Number
      *
      * @return string PO Number
@@ -161,6 +166,29 @@ class Order
     public function setItems(ItemCollection $items)
     {
         $this->items = $items;
+
+        return $this;
+    }
+
+    /**
+     * Get Order Id
+     *
+     * @return Order Id
+     */
+    public function getIOrderId()
+    {
+        return $this->orderId;
+    }
+
+    /**
+     * Set Items
+     *
+     * @param  Order Id
+     * @return Order;
+     */
+    public function setItems($orderId)
+    {
+        $this->orderId = $orderId;
 
         return $this;
     }

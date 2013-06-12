@@ -15,9 +15,16 @@ use KoleImports\DropshipApi\Factory\ItemFactory;
  */
 class OrderService
 {
+    /**
+    *@var client Object
+    */
     private $client;
 
+    /**
+    *@var order Object
+    */
     private $order;
+
 
     public function __construct($client)
     {
@@ -52,7 +59,7 @@ class OrderService
             return $this->client->GetOrders();
         }else
         {
-            return $this->client->GetOrders(array('offset' => $offset, 'limit' => $limit));
+            return $this->client->GetOrders(array('offset' => $this->offset, 'limit' => $this->limit));
         )
     }
 
@@ -67,5 +74,29 @@ class OrderService
         $response = $request->send();
 
         return $response;
+    }
+
+    public function setOffset($offset)
+    {
+        $this->offset = (int) $offset;
+
+        return $this;
+    }
+
+    public function setLimit($limit)
+    {
+        $this->limit = (int) $limit;
+
+        return $this;
+    }
+
+    public function getOffset()
+    {
+        return $this->offset;
+    }
+
+    public function getLimit()
+    {
+        return $this->limit;
     }
 }

@@ -5,10 +5,10 @@
 	"operations": {
 		"GetProducts": {
 	            "httpMethod": "GET",
-	            "uri": "/products",
+	            "uri":"/products",
 	           	"summary": "Gets a list of Products",
 	           	"responseClass": "GetProductsOutput"
-	      		},
+	      	},
 		"GetProduct": {
 	            "httpMethod": "GET",
 	            "uri": "/products/{sku}",
