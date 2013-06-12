@@ -71,9 +71,12 @@ use KoleImports\DropshipApi\Service\ServiceBuilder;
 $serviceBuilder = new ServiceBuilder('YOUR ACCOUNT ID', 'YOUR API KEY');
 ```
 
+Commands -
+------------------------
+
 ###Products
 
-####List Products
+####List Products [GET]
 
 ```php
 //Pass the Service Builder to the Product Service
@@ -85,7 +88,7 @@ $products = $productService->getProducts();
 var_dump($products);
 ```
 
-####List Single Product by SKU
+####List Single Product by SKU [GET]
 
 ```php
 use KoleImports\DropshipApi\Model\Request\Item;
@@ -102,6 +105,74 @@ $product = $productService->getProduct($item->getSku());
 ```
 
 ###Orders
+
+####List Orders
+
+```php
+
+```
+
+####Create Orders [POST]
+
+```php
+//Create Service Builder
+$orderService = $serviceBuilder->getOrderService();
+
+//Create Order Builder
+$orderBuilder = $orderService->getOrderBuilder();
+
+//Build Order
+$orderBuilder->setPoNumber('12345')
+    ->setNotes('These are sample notes')
+    ->setCarrier('FEDEX')
+    ->setService("GROUND")
+    ->setSignature(true)
+    ->setInstructions('These are shipping instructions')
+    ->setFirstName('Jesse')
+    ->setLastName('Reese')
+    ->setCompany('JesseTestCompany')
+    ->setAddress1('24600 Main St.')
+    ->setAddress2('Suite 3')
+    ->setCity('Carson')
+    ->setState('CA')
+    ->setZipcode('90745')
+    ->setExtZipcode('5555')
+    ->setPhone('5555555555')
+    ->addItem('AA124','24')
+    ->addItem('AA125','48');
+
+//Order Object $data
+$data = $orderBuilder->getOrder();
+
+//Create JMS Serializer
+$serializer = JMS\Serializer\SerializerBuilder::create()->build();
+$xml = $serializer->serialize($data, 'xml');
+
+//Remove CDTA tags from XML
+function strip_cdata($string)
+{
+    preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $string, $matches);
+    return str_replace($matches[0], $matches[1], $string);
+}
+
+//Clean XML
+$cleanXML = strip_cdata($xml);
+
+try
+{
+    //Send POST data to  postOrder method
+    $postOrder = $orderService->post($cleanXML);
+
+    print_r($postOrder);
+}
+catch (Guzzle\Http\Exception\BadResponseException $e) {
+    echo '<p> Uh oh! ' . $e->getMessage() . '</p>';
+    echo '<p>HTTP request URL: ' . $e->getRequest()->getUrl() . '</p>';
+    echo '<p>HTTP request: ' . $e->getRequest() . "\n";
+    echo '<p>HTTP response status: ' . $e->getResponse()->getStatusCode() . '</p>';
+    echo '<p>HTTP response: ' . $e->getResponse() . '</p>';
+}
+```
 
 ###Transactions
 
