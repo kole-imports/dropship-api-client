@@ -18,7 +18,7 @@ API Requirements -
 * Account ID: ex. X12345
 * API KEY: ex. a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd
 * Shipping Method: FedEx or USPS
-* Payment Method: Credit Card
+* Payment Method: Credit Card / Terms
 
 ###Guzzle Client Framework Setup:
 
@@ -28,14 +28,16 @@ API Requirements -
 
 	{
 	    "require": {
-	        "guzzle/guzzle": "3.0.*"
+	        "guzzle/guzzle": "3.0.*",
+	        "jms/serializer": "0.*"
 	    },
 	    "autoload": {
-			"psr-0": {
-			"Application": "src/",
-			"tests":"src/tests"
-			}
-		}
+	        "psr-0": {
+	            "KoleImports\\DropshipApi": "src/",
+	            "KoleImports\\DropshipApi\\Tests": "tests/",
+	            "Commands": "examples/"
+	        }
+	    }
 	}
 
 ####2. Download and install Composer
@@ -53,17 +55,58 @@ Composer also prepares an autoload file that's capable of autoloading all of the
 	require __DIR__ . '/vendor/autoload.php';
 
 
-Commands -
+Getting Started -
 ------------------------
 
-###[ GET ]
+###Configuration
 
-####Links:
+These are the core requirements for the the client:
 
-	//Get Commands
+	```php
+	//Autoload Dependencies
+	require __DIR__ . '/vendor/autoload.php';
 
-###[POST]
+	use KoleImports\DropshipApi\Service\ServiceBuilder;
 
-	//Post Commands
+	//Configure the Service Builder with Credentials
+	$serviceBuilder = new ServiceBuilder('YOUR ACCOUNT ID', 'YOUR API KEY');
+	```
+
+###Products
+
+####List Products
+
+```php
+//Pass the Service Builder to the Product Service
+$productService = $serviceBuilder->getProductService();
+
+//Get list of projects
+$products = $productService->getProducts();
+
+var_dump($products);
+```
+
+####List Single Product by SKU
+
+```php
+use KoleImports\DropshipApi\Model\Request\Item;
+
+//Pass the Service Builder to the Product Service
+$productService = $serviceBuilder->getProductService();
+
+//Create Item object and set the SKU
+$item = new Item;
+$item->setSku('AA124');
+
+//GetProduct Request to API
+$product = $productService->getProduct($item->getSku());
+```
+
+###Orders
+
+###Transactions
+
+###Shipments
+
 
 
