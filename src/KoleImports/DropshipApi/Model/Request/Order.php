@@ -2,9 +2,16 @@
 
 namespace KoleImports\DropshipApi\Model\Request;
 
-//use JMS\Serializer\Annotation\XmlRoot;
+$vendorDir = dirname(dirname(dirname(dirname(__FILE__))));
+$baseDir = dirname(dirname($vendorDir));
+use Doctrine\Common\Annotations\AnnotationRegistry;
+AnnotationRegistry::registerAutoloadNamespace('JMS\Serializer\Annotation', $baseDir . "/vendor/jms/serializer/src");
 
-//@XmlRoot("order")
+use Doctrine\Common\Annotations;
+use JMS\Serializer\Annotation\XmlRoot;
+use JMS\Serializer\Annotation\Type;
+
+/** @XmlRoot("order") */
 class Order
 {
 
@@ -15,8 +22,7 @@ class Order
     private $orders = array();
 
     /**
-     * PO Number
-     * @var string
+     * @Type("string")
      */
     private $poNumber;
 

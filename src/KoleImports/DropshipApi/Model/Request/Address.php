@@ -2,6 +2,9 @@
 
 namespace KoleImports\DropshipApi\Model\Request;
 
+use Doctrine\Common\Annotations;
+use JMS\Serializer\Annotation\SerializedName;
+
 /**
  * @author Bill Hance <bill.hance@gmail.com>
  */
@@ -28,14 +31,16 @@ class Address
     /**
      * Address 1
      * @var string
+     * @SerializedName("address_1")
      */
-    private $address_1;
+    private $address1;
 
     /**
      * Address 2
      * @var string
+     * @SerializedName("address_2")
      */
-    private $address_2;
+    private $address2;
 
     /**
      * City
@@ -53,13 +58,13 @@ class Address
      * Zipcode
      * @var string
      */
-    private $zipCode;
+    private $zipcode;
 
     /**
      * Extended Zipcode
      * @var string
      */
-    private $extZipCode;
+    private $extZipcode;
 
     /**
      * Country
@@ -109,26 +114,26 @@ class Address
         return $this;
     }
 
-    public function getaddress_1()
+    public function getaddress1()
     {
         return $this->address_1;
     }
 
-    public function setaddress_1($address_1)
+    public function setaddress1($address1)
     {
-        $this->address_1 = (string) $address_1;
+        $this->address1 = (string) $address1;
 
         return $this;
     }
 
-    public function getaddress_2()
+    public function getaddress2()
     {
-        return $this->address_2;
+        return $this->address2;
     }
 
-    public function setAddress_2($address_2)
+    public function setAddress2($address2)
     {
-        $this->address_2 = (string) $address_2;
+        $this->address2 = (string) $address2;
 
         return $this;
     }
@@ -157,14 +162,14 @@ class Address
         return $this;
     }
 
-    public function getZipCode()
+    public function getZipcode()
     {
-        return $this->zipCode;
+        return $this->zipcode;
     }
 
-    public function setZipCode($zipCode)
+    public function setZipCode($zipcode)
     {
-        $this->zipCode = (string) $zipCode;
+        $this->zipcode = (string) $zipcode;
 
         return $this;
     }
@@ -174,9 +179,9 @@ class Address
         return $this->extZipCode;
     }
 
-    public function setExtZipCode($extZipCode)
+    public function setExtZipCode($extZipcode)
     {
-        $this->extZipCode = (string) $extZipCode;
+        $this->extZipcode = (string) $extZipcode;
 
         return $this;
     }

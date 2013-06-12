@@ -2,8 +2,8 @@
 
 namespace KoleImports\DropshipApi\Service;
 
-use KoleImports\DropshipApi\Model\Request\Address;
 use KoleImports\DropshipApi\Model\Request\Order;
+use KoleImports\DropshipApi\Model\Request\Address;
 use KoleImports\DropshipApi\Model\Request\ShipOptions;
 use KoleImports\DropshipApi\Factory\ItemFactory;
 
@@ -27,7 +27,8 @@ class OrderBuilder
 
     private $itemFactory;
 
-    public function __construct(Order $order,
+    public function __construct(
+        Order $order,
         Address $address,
         ShipOptions $shipOptions,
         ItemFactory $itemFactory)
@@ -77,81 +78,125 @@ class OrderBuilder
 
     public function setNotes($notes)
     {
+        $this->order->setNotes($notes);
+
         return $this;
     }
 
+    /**
+    *ShipOptions
+    */
     public function setCarrier($carrier)
     {
+        $this->shipOptions->setCarrier($carrier);
+
         return $this;
     }
 
     public function setService($service)
     {
+       $this->shipOptions->setService($service);
+
         return $this;
     }
 
     public function setSignature($signature)
     {
+        $this->shipOptions->setSignature($signature);
+
         return $this;
     }
 
     public function setInstructions($instructions)
     {
+       $this->shipOptions->setInstructions($instructions);
+
         return $this;
     }
 
+    /**
+    * Address
+    */
     public function setFirstName($firstName)
     {
+        $this->address->setFirstName($firstName);
+
         return $this;
     }
 
     public function setLastName($lastName)
     {
+        $this->address->setLastName($lastName);
+
         return $this;
     }
 
     public function setCompany($company)
     {
+        $this->address->setCompany($company);
+
         return $this;
     }
 
     public function setAddress1($address)
     {
+        $this->address->setAddress1($address);
+
         return $this;
     }
 
     public function setAddress2($address)
     {
+        $this->address->setAddress2($address);
+
         return $this;
     }
 
     public function setCity($city)
     {
+        $this->address->setCity($city);
+
         return $this;
     }
 
     public function setState($state)
     {
+        $this->address->setState($state);
+
         return $this;
     }
 
     public function setZipcode($zipcode)
     {
+        $this->address->setZipcode($zipcode);
+
         return $this;
     }
 
     public function setExtZipcode($extZipcode)
     {
+        $this->address->setExtZipcode($extZipcode);
+
         return $this;
     }
 
     public function setPhone($phone)
     {
+        $this->address->setPhone($phone);
+
         return $this;
     }
 
-    public function addItem($sku,$quantity)
+    /**
+    * Item Factory
+    */
+    public function addItem($sku, $quanity)
     {
+        $item = $this->itemFactory->createItem($sku, $quanity);
+
+        $this->itemCollection->addItem($item);
+
         return $this;
     }
+
 }

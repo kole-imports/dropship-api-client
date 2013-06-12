@@ -16,9 +16,9 @@ $orderBuilder = $orderService->getOrderBuilder();
 
 $orderBuilder->setPoNumber('12345')
     ->setNotes('These are sample notes')
-    ->setCarrier('UPS')
+    ->setCarrier('FEDEX')
     ->setService("GROUND")
-    ->setSignature(false)
+    ->setSignature(true)
     ->setInstructions('These are shipping instructions')
     ->setFirstName('Jesse')
     ->setLastName('Reese')
@@ -33,13 +33,33 @@ $orderBuilder->setPoNumber('12345')
     ->addItem('AA124','24')
     ->addItem('AA125','48');
 
-$response = $orderService->post($orderBuilder->getOrder());
 
-if ($response->hasErrors()) {
+$data = $orderBuilder->getOrder();
 
-    // Do something with errors
-    $errors = $response->getErrors();
+//Create JMS Serializer
+$serializer = JMS\Serializer\SerializerBuilder::create()->build();
+$xml = $serializer->serialize($data, 'xml');
 
-} else {
-    print_r($response);
+//Remove CDTA tags from XML
+function strip_cdata($string)
+{
+    preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $string, $matches);
+    return str_replace($matches[0], $matches[1], $string);
+}
+
+$cleanXML = strip_cdata($xml);
+
+try
+{
+    //Send POST data to  postOrder method
+    $postOrder = $orderService->post($cleanXML);
+
+    print_r($postOrder);
+}
+catch (Guzzle\Http\Exception\BadResponseException $e) {
+    echo '<p> Uh oh! ' . $e->getMessage() . '</p>';
+    echo '<p>HTTP request URL: ' . $e->getRequest()->getUrl() . '</p>';
+    echo '<p>HTTP request: ' . $e->getRequest() . "\n";
+    echo '<p>HTTP response status: ' . $e->getResponse()->getStatusCode() . '</p>';
+    echo '<p>HTTP response: ' . $e->getResponse() . '</p>';
 }

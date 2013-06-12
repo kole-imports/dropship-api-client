@@ -2,7 +2,14 @@
 
 namespace KoleImports\DropshipApi\Model\Request;
 
+use JMS\Serializer\Annotation\XmlRoot;
+use JMS\Serializer\Annotation\XmlMap;
+use JMS\Serializer\Annotation\XmlList;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\SerializedName;
+
 /**
+ * @author Jesse Reese <jesse.c.reese@gmail.com>
  * @author Bill Hance <bill.hance@gmail.com>
  */
 class ItemCollection
@@ -10,12 +17,15 @@ class ItemCollection
     /**
      * Items
      * @var array<Items>
+     * @Type("array<string>")
      */
     private $items = array();
 
     /**
      * Item
      * @var array<Item>
+     * @Type("array<string>")
+     * @XmlList(inline = true, entry = "item")
      */
     private $item = array();
 
@@ -33,7 +43,9 @@ class ItemCollection
 
         return $this;
     }
-
+    /**
+    * @var item Item Object
+    */
     public function addItem(Item $item)
     {
         $this->item[] = $item;

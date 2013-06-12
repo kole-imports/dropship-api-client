@@ -6,6 +6,8 @@ use Guzzle\Service\Client;
 use Guzzle\Service\Description\ServiceDescription;
 use KoleImports\DropshipApi\Model\Request\Config;
 
+
+
 /**
  * @author Bill Hance <bill.hance@gmail.com>
  * @author Jesse Reese <jesse.c.reese@gmail.com>
@@ -13,18 +15,25 @@ use KoleImports\DropshipApi\Model\Request\Config;
 class ApiClient extends Client
 {
     /**
+    * @var config Config Object
+    */
+    private $apiConfig;
+
+    /**
      * @param Config $config Config Object
-     * @todo Clean up construction of API client
      */
-    public function __construct(Config $config)
+    public function connectApi(Config $apiConfig)
     {
+        $baseUrl = $apiConfig->getApiEndpoint();
+
         $options = array(CURLOPT_HTTPAUTH => 'CURLAUTH_BASIC',
-            CURLOPT_USERPWD => $config->getAuthToken(),
-            CURLOPT_RETURNTRANSFER  => 'true',
-        );
+            CURLOPT_USERPWD => $apiConfig->getAuthToken()
+            );
 
-        parent::construct($config->getApiEndpoint(), array('curl.options' => $options));
+        $client = new Client($baseUrl, array('curl.options' => $options));
 
-        $this->setDescription(ServiceDescription::factory(__DIR__ . '/Config/services.json'));
+        $client->setDescription(ServiceDescription::factory(__DIR__ . '/ServiceDescriptions.json'));
+
+        return $client;
     }
 }
