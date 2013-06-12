@@ -18,8 +18,14 @@ class ProductService
 	return $this->client->GetProduct(array('sku' => $sku));
     }
 
-    public function getProducts()
+    public function getProducts($offset = null ,$limit = null)
     {
-    	return $this->client->GetProducts();
+        if(!isset($offset, $limit))
+        {
+            return $this->client->GetProducts();
+        }else
+        {
+            return $this->client->GetProducts(array('offset' => $offset, 'limit' => $limit));
+        }
     }
 }

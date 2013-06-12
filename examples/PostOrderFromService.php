@@ -53,6 +53,7 @@ try
 {
     //Send POST data to  postOrder method
     $postOrder = $orderService->post($cleanXML);
+
     print_r($postOrder);
 }
 catch (Guzzle\Http\Exception\BadResponseException $e) {

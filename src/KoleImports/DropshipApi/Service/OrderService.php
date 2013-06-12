@@ -36,12 +36,24 @@ class OrderService
 
     public function getOrder($id)
     {
-        return $this->client->GetOrder(array('order_id' => $id));
+        if(!isset($id))
+        {
+            echo 'Please set an Order Id';
+        }else
+        {
+            return $this->client->GetOrder(array('order_id' => $id));
+        }
     }
 
-    public function getBatch($offset, $limit)
+    public function getBatch($offset = null, $limit = null)
     {
-
+        if(!isset($offset, $limit))
+        {
+            return $this->client->GetOrders();
+        }else
+        {
+            return $this->client->GetOrders(array('offset' => $offset, 'limit' => $limit));
+        )
     }
 
     public function post($xml)

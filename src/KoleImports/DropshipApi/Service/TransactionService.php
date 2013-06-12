@@ -18,7 +18,7 @@ class TransactionService
 	return $this->client->GetTransaction(array('order_id' => $id));
     }
 
-    public function getTransactions()
+    public function getTransactions($offset = null, $limit = null)
     {
     	return $this->client->GetTransactions();
     }
