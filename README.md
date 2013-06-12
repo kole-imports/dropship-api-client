@@ -163,9 +163,10 @@ function strip_cdata($string)
 $cleanXML = strip_cdata($xml);
 
 //Send POST data to  postOrder method
-$postOrder = $orderService->post($cleanXML);
+$response = $orderService->post($cleanXML);
 
-print_r($postOrder);
+//Response
+print_r($response);
 
 ```
 
