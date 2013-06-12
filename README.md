@@ -62,15 +62,15 @@ Getting Started -
 
 These are the core requirements for the the client:
 
-	```php
-	//Autoload Dependencies
-	require __DIR__ . '/vendor/autoload.php';
+```php
+//Autoload Dependencies
+require __DIR__ . '/vendor/autoload.php';
 
-	use KoleImports\DropshipApi\Service\ServiceBuilder;
+use KoleImports\DropshipApi\Service\ServiceBuilder;
 
-	//Configure the Service Builder with Credentials
-	$serviceBuilder = new ServiceBuilder('YOUR ACCOUNT ID', 'YOUR API KEY');
-	```
+//Configure the Service Builder with Credentials
+$serviceBuilder = new ServiceBuilder('YOUR ACCOUNT ID', 'YOUR API KEY');
+```
 
 ###Products
 
