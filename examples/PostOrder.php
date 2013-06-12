@@ -33,26 +33,20 @@ $orderBuilder->setPoNumber('12345')
     ->addItem('AA124','24')
     ->addItem('AA125','48');
 
+$order = $orderBuilder->getOrder();
 
-$data = $orderBuilder->getOrder();
+//Serialize Order
+$serializerService = $serviceBuilder->getSerializerService();
+$serializerService->setData($order);
+$xml = $serializerService->getXml();
 
-//Create JMS Serializer
-$serializer = JMS\Serializer\SerializerBuilder::create()->build();
-$xml = $serializer->serialize($data, 'xml');
-
-//Remove CDTA tags from XML
-function strip_cdata($string)
-{
-    preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $string, $matches);
-    return str_replace($matches[0], $matches[1], $string);
-}
-
-$cleanXML = strip_cdata($xml);
+//Remove CDATA from raw XML
+$cleanXml = $orderService->cleanXml($xml);
 
 try
 {
     //Send POST data to  postOrder method
-    $postOrder = $orderService->post($cleanXML);
+    $postOrder = $orderService->post($cleanXml);
 
     print_r($postOrder);
 }

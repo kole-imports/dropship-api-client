@@ -136,13 +136,10 @@ var_dump($reponse);
 ####Create Orders [POST]
 
 ```php
-//Create Service Builder
 $orderService = $serviceBuilder->getOrderService();
 
-//Create Order Builder
 $orderBuilder = $orderService->getOrderBuilder();
 
-//Build Order
 $orderBuilder->setPoNumber('12345')
     ->setNotes('These are sample notes')
     ->setCarrier('FEDEX')
@@ -162,29 +159,20 @@ $orderBuilder->setPoNumber('12345')
     ->addItem('AA124','24')
     ->addItem('AA125','48');
 
-//Order Object $data
-$data = $orderBuilder->getOrder();
+$order = $orderBuilder->getOrder();
 
-//Create JMS Serializer
-$serializer = JMS\Serializer\SerializerBuilder::create()->build();
-$xml = $serializer->serialize($data, 'xml');
+//Serialize Order
+$serializerService = $serviceBuilder->getSerializerService();
+$serializerService->setData($order);
+$xml = $serializerService->getXml();
 
-//Remove CDTA tags from XML
-function strip_cdata($string)
-{
-    preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $string, $matches);
-    return str_replace($matches[0], $matches[1], $string);
-}
-
-//Clean XML
-$cleanXML = strip_cdata($xml);
+//Remove CDATA from raw XML
+$cleanXml = $orderService->cleanXml($xml);
 
 //Send POST data to  postOrder method
-$response = $orderService->post($cleanXML);
+$postOrder = $orderService->post($cleanXml);
 
-//Response
-print_r($response);
-
+print_r($postOrder);
 ```
 
 ###Transactions

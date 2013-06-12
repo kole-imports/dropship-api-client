@@ -25,6 +25,17 @@ class OrderService
     */
     private $order;
 
+    /**
+    *@var offset int
+    */
+    private $offset;
+
+    /**
+    *@var limit int
+    */
+    private $limit;
+
+
 
     public function __construct($client)
     {
@@ -60,20 +71,26 @@ class OrderService
         }else
         {
             return $this->client->GetOrders(array('offset' => $this->offset, 'limit' => $this->limit));
-        )
+        }
     }
 
-    public function post($xml)
+    public function post($cleanXml)
     {
         $request = $this->client->post(
             '/orders', array(
             'Accept'        => 'application/vnd.koleimports.ds.order+xml',
             'Content-Type'  => 'application/vnd.koleimports.ds.order+xml'
-        ), $xml);
+        ), $cleanXml);
 
         $response = $request->send();
 
         return $response;
+    }
+
+    public function cleanXML($xml)
+    {
+        preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $xml, $matches);
+        return str_replace($matches[0], $matches[1], $xml);
     }
 
     public function setOffset($offset)
