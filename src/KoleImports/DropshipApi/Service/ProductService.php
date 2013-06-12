@@ -6,7 +6,11 @@ namespace KoleImports\DropshipApi\Service;
  */
 class ProductService
 {
+    /**
+    *@var client Object
+    */
     private $client;
+
 
     public function __construct($client)
     {
@@ -18,14 +22,14 @@ class ProductService
 	return $this->client->GetProduct(array('sku' => $sku));
     }
 
-    public function getProducts($offset = null ,$limit = null)
+    public function getProducts($limit = null)
     {
-        if(!isset($offset, $limit))
+        if(!isset($limit))
         {
             return $this->client->GetProducts();
         }else
         {
-            return $this->client->GetProducts(array('offset' => $offset, 'limit' => $limit));
+            return $this->client->GetProducts(array('count' => $limit));
         }
     }
 }

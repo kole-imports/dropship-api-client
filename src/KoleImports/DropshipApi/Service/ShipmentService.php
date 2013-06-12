@@ -18,7 +18,7 @@ class ShipmentService
         return $this->client->GetShipment(array('order_id' => $id));
     }
 
-    public function getShipments($offset = null, $limit = null)
+    public function getShipments()
     {
         return $this->client->GetShipments();
     }
