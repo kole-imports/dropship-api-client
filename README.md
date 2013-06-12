@@ -158,20 +158,11 @@ function strip_cdata($string)
 //Clean XML
 $cleanXML = strip_cdata($xml);
 
-try
-{
-    //Send POST data to  postOrder method
-    $postOrder = $orderService->post($cleanXML);
+//Send POST data to  postOrder method
+$postOrder = $orderService->post($cleanXML);
 
-    print_r($postOrder);
-}
-catch (Guzzle\Http\Exception\BadResponseException $e) {
-    echo '<p> Uh oh! ' . $e->getMessage() . '</p>';
-    echo '<p>HTTP request URL: ' . $e->getRequest()->getUrl() . '</p>';
-    echo '<p>HTTP request: ' . $e->getRequest() . "\n";
-    echo '<p>HTTP response status: ' . $e->getResponse()->getStatusCode() . '</p>';
-    echo '<p>HTTP response: ' . $e->getResponse() . '</p>';
-}
+print_r($postOrder);
+
 ```
 
 ###Transactions
