@@ -77,7 +77,7 @@ Commands -
 
 ###Products
 
-####List Products [GET]
+####List Products
 
 ```php
 //Pass the Service Builder to the Product Service
@@ -97,7 +97,7 @@ $json = $serializerService->getJson();
 var_dump($response)
 ```
 
-####List Single Product by SKU [GET]
+####List Single Product by SKU
 
 ```php
 use KoleImports\DropshipApi\Model\Request\Item;
@@ -166,7 +166,7 @@ $json = $serializerService->getJson();
 var_dump($response)
 ```
 
-####Create Order(s) [POST]
+####Create Order(s)
 
 ```php
 $orderService = $serviceBuilder->getOrderService();
