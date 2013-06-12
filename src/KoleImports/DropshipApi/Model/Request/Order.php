@@ -175,7 +175,7 @@ class Order
      *
      * @return Order Id
      */
-    public function getIOrderId()
+    public function getOrderId()
     {
         return $this->orderId;
     }
@@ -186,7 +186,7 @@ class Order
      * @param  Order Id
      * @return Order;
      */
-    public function setItems($orderId)
+    public function setOrderId($orderId)
     {
         $this->orderId = $orderId;
 

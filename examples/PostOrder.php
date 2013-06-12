@@ -43,17 +43,8 @@ $xml = $serializerService->getXml();
 //Remove CDATA from raw XML
 $cleanXml = $orderService->cleanXml($xml);
 
-try
-{
-    //Send POST data to  postOrder method
-    $postOrder = $orderService->post($cleanXml);
+//Send POST data to  postOrder method
+$response = $orderService->post($cleanXml);
 
-    print_r($postOrder);
-}
-catch (Guzzle\Http\Exception\BadResponseException $e) {
-    echo '<p> Uh oh! ' . $e->getMessage() . '</p>';
-    echo '<p>HTTP request URL: ' . $e->getRequest()->getUrl() . '</p>';
-    echo '<p>HTTP request: ' . $e->getRequest() . "\n";
-    echo '<p>HTTP response status: ' . $e->getResponse()->getStatusCode() . '</p>';
-    echo '<p>HTTP response: ' . $e->getResponse() . '</p>';
-}
+//Guzzle Response Object
+var_dump($response);

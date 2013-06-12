@@ -93,9 +93,17 @@ Commands -
 $productService = $serviceBuilder->getProductService();
 
 //Get list of projects
-$products = $productService->getProducts();
+$response = $productService->getProducts();
 
-var_dump($products);
+$serializerService = $serviceBuilder->getSerializerService();
+$serializerService->setData($response);
+
+//Single Order as XML, JSON, or Object
+$xml = $serializerService->getXml();
+$json = $serializerService->getJson();
+
+//Object
+var_dump($response)
 ```
 
 ####List Single Product by SKU [GET]
@@ -111,7 +119,17 @@ $item = new Item;
 $item->setSku('AA124');
 
 //GetProduct Request to API
-$product = $productService->getProduct($item->getSku());
+$response = $productService->getProduct($item->getSku());
+
+$serializerService = $serviceBuilder->getSerializerService();
+$serializerService->setData($response);
+
+//Single Order as XML, JSON, or Object
+$xml = $serializerService->getXml();
+$json = $serializerService->getJson();
+
+//Object
+var_dump($response)
 ```
 
 ###Orders
@@ -123,14 +141,36 @@ $orderService = $serviceBuilder->getOrderService();
 
 $response = $orderService->getBatch($limit, $offset);
 
-//List Of Orders
-var_dump($reponse);
+$serializerService = $serviceBuilder->getSerializerService();
+$response = $serializerService->setData($response);
+
+//Single Order as XML, JSON, or Object
+$xml = $serializerService->getXml();
+$json = $serializerService->getJson();
+
+//Object
+var_dump($response)
 ```
 
 ####List Single Order by Order Id
 
 ```php
+$orderService = $serviceBuilder->getOrderService();
 
+$order = new Order;
+$order->setOrderId('12345');
+
+$response = $orderService->getOrder($order->getOrderId());
+
+$serializerService = $serviceBuilder->getSerializerService();
+$response = $serializerService->setData($response);
+
+//Single Order as XML, JSON, or Object
+$xml = $serializerService->getXml();
+$json = $serializerService->getJson();
+
+//Object
+var_dump($response)
 ```
 
 ####Create Orders [POST]
@@ -170,9 +210,10 @@ $xml = $serializerService->getXml();
 $cleanXml = $orderService->cleanXml($xml);
 
 //Send POST data to  postOrder method
-$postOrder = $orderService->post($cleanXml);
+$response = $orderService->post($cleanXml);
 
-print_r($postOrder);
+//Guzzle Response Object
+var_dump($response);
 ```
 
 ###Transactions
@@ -180,13 +221,28 @@ print_r($postOrder);
 ####List Transactions
 
 ```php
+$transactionService = $serviceBuilder->getTransactionService();
 
+$response = $transactionService->getTransactions();
+
+//List of Transactions
+var_dump($response);
 ```
 
 ####List Single Transaction by Order Id
 
 ```php
+use KoleImports\DropshipApi\Model\Request\Order;
 
+$transactionService = $serviceBuilder->getTransactionService();
+
+$order = new Order;
+$order->setOrderId('12345');
+
+$response = $transactionService->getTransaction($order->getOrderId());
+
+//Single Transaction by Order Id
+var_dump($response);
 ```
 
 ###Shipments
@@ -198,7 +254,7 @@ $orderService = $serviceBuilder->getShipmentService();
 
 $response = $orderService->getShipments();
 
-//List Of Orders
+//List of Shipments
 var_dump($reponse);
 ```
 
@@ -214,7 +270,7 @@ $order->setOrderId('12345');
 
 $response = $orderService->getShipment($order->getOrderId());
 
-//List Of Orders
+//Single Shipment by Order Id
 var_dump($reponse);
 ```
 
