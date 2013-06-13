@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 namespace KoleImports\DropshipApi\Service;
 
+use KoleImports\DropshipApi\Model\Request\Order;
+
 class TransactionService
 {
     private $client;
