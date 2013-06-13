@@ -2,14 +2,11 @@
 
 namespace KoleImports\DropshipApi\Model\Request;
 
-/**
- * @author Bill Hance <bill.hance@gmail.com>
- */
-class ShipOptions 
+class ShipOptions
 {
     const CARRIER_FEDEX = 'FEDEX';
     const CARRIER_UPS = 'UPS';
-    
+
     const SERVICE_GROUND = 'GROUND';
     const SERVICE_PRIORITY = 'PRIORITY';
     const SERVICE_OVERNIGHT = 'OVERNIGHT';
@@ -59,7 +56,7 @@ class ShipOptions
     {
         $this->service = (string) $service;
 
-        return $this;    
+        return $this;
     }
 
     public function getSignature()
@@ -83,6 +80,6 @@ class ShipOptions
     {
         $this->instructions = (string) $instructions;
 
-        return $this;    
+        return $this;
     }
 }

@@ -1,9 +1,6 @@
 <?php
 namespace KoleImports\DropshipApi\Service;
 
-/**
- * @author Jesse Reese <jesse.c.reese@gmail.com>
- */
 class TransactionService
 {
     private $client;

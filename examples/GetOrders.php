@@ -12,7 +12,7 @@ $serviceBuilder = new ServiceBuilder('X16310', 'a0f0e69913896e20bdb07a9c31d9d7f1
 
 $orderService = $serviceBuilder->getOrderService();
 
-$response = $orderService->getBatch($limit, $offset);
+$response = $orderService->getOrders();
 
 //List Of Orders
-var_dump($reponse);
+var_dump($response);

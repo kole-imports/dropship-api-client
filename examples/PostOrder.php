@@ -1,5 +1,4 @@
 <?php
-
 $vendorDir = dirname(dirname(__FILE__));
 require($vendorDir . '/vendor/autoload.php');
 
@@ -31,20 +30,23 @@ $orderBuilder->setPoNumber('12345')
     ->setExtZipcode('5555')
     ->setPhone('5555555555')
     ->addItem('AA124','24')
-    ->addItem('AA125','48');
+    ->addItem('AA125','48')
+    ->addItem('AA124', '24');
+try{
 
 $order = $orderBuilder->getOrder();
 
-//Serialize Order
-$serializerService = $serviceBuilder->getSerializerService();
-$serializerService->setData($order);
-$xml = $serializerService->getXml();
+$response = $orderService->post($order);
 
-//Remove CDATA from raw XML
-$cleanXml = $orderService->cleanXml($xml);
+//Get Response Array
+print_r($response);
 
-//Send POST data to  postOrder method
-$response = $orderService->post($cleanXml);
-
-//Guzzle Response Object
-var_dump($response);
+}
+catch (Guzzle\Http\Exception\BadResponseException $e)
+{
+    echo '<p> Uh oh! ' . $e->getMessage() . '</p>';
+    echo '<p>HTTP request URL: ' . $e->getRequest()->getUrl() . '</p>';
+    echo '<p>HTTP request: ' . $e->getRequest() . "\n";
+    echo '<p>HTTP response status: ' . $e->getResponse()->getStatusCode() . '</p>';
+    echo '<p>HTTP response: ' . $e->getResponse() . '</p>';
+}

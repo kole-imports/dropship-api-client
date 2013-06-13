@@ -5,10 +5,6 @@ namespace KoleImports\DropshipApi\Factory;
 use KoleImports\DropshipApi\Model\Request\Item;
 use KoleImports\DropshipApi\Model\Request\ItemCollection;
 
-/**
- * @author Bill Hance <bill.hance@gmail.com>
- * @author Jesse Reese <jesse.c.reese@gmail.com>
- */
 class ItemFactory
 {
     private $item;

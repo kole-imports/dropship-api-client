@@ -1,4 +1,5 @@
 <?php
+
 $vendorDir = dirname(dirname(__FILE__));
 require($vendorDir . '/vendor/autoload.php');
 

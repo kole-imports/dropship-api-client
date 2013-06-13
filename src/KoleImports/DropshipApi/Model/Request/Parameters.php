@@ -2,9 +2,6 @@
 
 namespace KoleImports\DropshipApi\Model\Request;
 
-/**
- * @author Jesse Reese <jesse.c.reese@gmail.com>
- */
 class Parameters
 {
     /**

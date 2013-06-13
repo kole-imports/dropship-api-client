@@ -2,9 +2,6 @@
 
 namespace KoleImports\DropshipApi\Model\Request;
 
-/**
- * @author Jesse Reese <jesse.c.reese@gmail.com>
- */
 class Config
 {
     const API_ENDPOINT = 'https://api.koleimports.com';

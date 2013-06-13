@@ -14,15 +14,7 @@ $serviceBuilder = new ServiceBuilder('X16310', 'a0f0e69913896e20bdb07a9c31d9d7f1
 //Pass the Service Builder to the Product Service
 $productService = $serviceBuilder->getProductService();
 
-//Create Item object and set the SKU
-$products = $productService->getProducts();
-
-//Serialize API data to JSON
-$serializer = JMS\Serializer\SerializerBuilder::create()->build();
-$response = $serializer->serialize($products, 'json');
-
-//Decode JSON to Array
-$productArray = json_decode($response, true);
+$response = $productService->getProducts();
 
 //Output Products to Array
-print_r($productArray);
+print_r($response);

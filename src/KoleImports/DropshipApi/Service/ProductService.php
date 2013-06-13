@@ -1,9 +1,8 @@
 <?php
 namespace KoleImports\DropshipApi\Service;
 
-/**
- * @author Jesse Reese <jesse.c.reese@gmail.com>
- */
+use KoleImports\DropshipApi\Model\Request\Item;
+
 class ProductService
 {
     /**
@@ -19,17 +18,16 @@ class ProductService
 
     public function getProduct($sku)
     {
-	return $this->client->GetProduct(array('sku' => $sku));
+        $item = new Item;
+        $item->setSku($sku);
+
+        return $this->client->GetProduct(array('sku' => $item->getSku()));
     }
 
-    public function getProducts($limit = null)
+    public function getProducts()
     {
-        if(!isset($limit))
-        {
-            return $this->client->GetProducts();
-        }else
-        {
-            return $this->client->GetProducts(array('count' => $limit));
-        }
+        $response = $this->client->GetProducts();
+
+        return $response;
     }
 }

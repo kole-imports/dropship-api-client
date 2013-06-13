@@ -5,9 +5,6 @@ namespace KoleImports\DropshipApi\Model\Request;
 use Doctrine\Common\Annotations;
 use JMS\Serializer\Annotation\SerializedName;
 
-/**
- * @author Bill Hance <bill.hance@gmail.com>
- */
 class Address
 {
     /**

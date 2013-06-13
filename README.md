@@ -64,7 +64,7 @@ Getting Started -
 
 ###Configuration
 
-Set your Account Id and API Key for client configuration.  
+Set your Account Id and API Key for client configuration.
 
 If you don't have an API key please login to your account and create one.
 
@@ -83,47 +83,17 @@ Commands -
 ####List Products
 
 ```php
-//Pass the Service Builder to the Product Service
 $productService = $serviceBuilder->getProductService();
 
-//Get list of projects
 $response = $productService->getProducts();
-
-$serializerService = $serviceBuilder->getSerializerService();
-$serializerService->setData($response);
-
-//Single Order as XML, JSON, or Object
-$xml = $serializerService->getXml();
-$json = $serializerService->getJson();
-
-//Object
-var_dump($response);
 ```
 
 ####List Single Product by SKU
 
 ```php
-use KoleImports\DropshipApi\Model\Request\Item;
-
-//Pass the Service Builder to the Product Service
 $productService = $serviceBuilder->getProductService();
 
-//Create Item object and set the SKU
-$item = new Item;
-$item->setSku('AA124');
-
-//GetProduct Request to API
-$response = $productService->getProduct($item->getSku());
-
-$serializerService = $serviceBuilder->getSerializerService();
-$serializerService->setData($response);
-
-//Single Order as XML, JSON, or Object
-$xml = $serializerService->getXml();
-$json = $serializerService->getJson();
-
-//Object
-var_dump($response);
+$response = $productService->getProduct('AA124');
 ```
 
 ###Orders
@@ -133,40 +103,15 @@ var_dump($response);
 ```php
 $orderService = $serviceBuilder->getOrderService();
 
-$response = $orderService->getBatch($limit, $offset);
-
-$serializerService = $serviceBuilder->getSerializerService();
-$response = $serializerService->setData($response);
-
-//Single Order as XML, JSON, or Object
-$xml = $serializerService->getXml();
-$json = $serializerService->getJson();
-
-//Object
-var_dump($response);
+$response = $orderService->getOrders();
 ```
 
 ####List Single Order by Order Id
 
 ```php
-use KoleImports\DropshipApi\Model\Request\Order;
-
 $orderService = $serviceBuilder->getOrderService();
 
-$order = new Order;
-$order->setOrderId('12345');
-
-$response = $orderService->getOrder($order->getOrderId());
-
-$serializerService = $serviceBuilder->getSerializerService();
-$response = $serializerService->setData($response);
-
-//Single Order as XML, JSON, or Object
-$xml = $serializerService->getXml();
-$json = $serializerService->getJson();
-
-//Object
-var_dump($response);
+$response = $orderService->getOrder('12345');
 ```
 
 ####Create Order(s)
@@ -197,19 +142,7 @@ $orderBuilder->setPoNumber('12345')
 
 $order = $orderBuilder->getOrder();
 
-//Serialize Order
-$serializerService = $serviceBuilder->getSerializerService();
-$serializerService->setData($order);
-$xml = $serializerService->getXml();
-
-//Remove CDATA from raw XML
-$cleanXml = $orderService->cleanXml($xml);
-
-//Send POST data to  postOrder method
-$response = $orderService->post($cleanXml);
-
-//Guzzle Response Object
-var_dump($response);
+$response = $orderService->post($order);
 ```
 
 ###Transactions
@@ -220,13 +153,6 @@ var_dump($response);
 $transactionService = $serviceBuilder->getTransactionService();
 
 $response = $transactionService->getTransactions();
-
-//List of Transactions as XML, JSON, or Object
-$xml = $serializerService->getXml();
-$json = $serializerService->getJson();
-
-//Object
-var_dump($response);
 ```
 
 ####List Single Transaction by Order Id
@@ -236,17 +162,7 @@ use KoleImports\DropshipApi\Model\Request\Order;
 
 $transactionService = $serviceBuilder->getTransactionService();
 
-$order = new Order;
-$order->setOrderId('12345');
-
-$response = $transactionService->getTransaction($order->getOrderId());
-
-//Single Transaction by Order Id as XML, JSON, or Object
-$xml = $serializerService->getXml();
-$json = $serializerService->getJson();
-
-//Object
-var_dump($response);
+$response = $transactionService->getTransaction('12345');
 ```
 
 ###Shipments
@@ -257,13 +173,6 @@ var_dump($response);
 $orderService = $serviceBuilder->getShipmentService();
 
 $response = $orderService->getShipments();
-
-//List of Shipments as XML, JSON, or Object
-$xml = $serializerService->getXml();
-$json = $serializerService->getJson();
-
-//Object
-var_dump($response);
 ```
 
 ####List Single Shipment by Order Id
@@ -273,17 +182,7 @@ use KoleImports\DropshipApi\Model\Request\Order;
 
 $orderService = $serviceBuilder->getShipmentService();
 
-$order = new Order;
-$order->setOrderId('12345');
-
-$response = $orderService->getShipment($order->getOrderId());
-
-//Single Shipment by Order Idas XML, JSON, or Object
-$xml = $serializerService->getXml();
-$json = $serializerService->getJson();
-
-//Object
-var_dump($response);
+$response = $orderService->getShipment('12345');
 ```
 
 

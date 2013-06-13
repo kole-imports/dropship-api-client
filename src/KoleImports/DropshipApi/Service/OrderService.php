@@ -8,11 +8,8 @@ use KoleImports\DropshipApi\Model\Request\Address;
 use KoleImports\DropshipApi\Model\Request\ShipOptions;
 use KoleImports\DropshipApi\Model\Request\Item;
 use KoleImports\DropshipApi\Factory\ItemFactory;
+use KoleImports\DropshipApi\Model\Response\Parser;
 
-/**
- * @author Bill Hance <bill.hance@gmail.com>
- * @author Jesse Reese <jesse.c.reese@gmail.com>
- */
 class OrderService
 {
     /**
@@ -25,21 +22,11 @@ class OrderService
     */
     private $order;
 
-    /**
-    *@var offset int
-    */
-    private $offset;
 
-    /**
-    *@var limit int
-    */
-    private $limit;
-
-
-
-    public function __construct($client)
+    public function __construct($client, $serializer)
     {
         $this->client = $client;
+        $this->serializer = $serializer;
     }
 
     public function getOrderBuilder()
@@ -63,57 +50,36 @@ class OrderService
         }
     }
 
-    public function getBatch($offset = null, $limit = null)
+    public function getOrders()
     {
-        if(!isset($offset, $limit))
-        {
-            return $this->client->GetOrders();
-        }else
-        {
-            return $this->client->GetOrders(array('offset' => $this->offset, 'limit' => $this->limit));
-        }
+        return $this->client->GetOrders();
     }
 
-    public function post($cleanXml)
+    public function post($data)
     {
+        //Serialize Order Data
+        $this->serializer->setData($data);
+        $xml = $this->serializer->getXML();
+
+        //Strip CDATA from XML
+        preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $xml, $matches);
+        $cleanXml = str_replace($matches[0], $matches[1], $xml);
+
+        //Set Request (uri , headers, body)
         $request = $this->client->post(
             '/orders', array(
             'Accept'        => 'application/vnd.koleimports.ds.order+xml',
             'Content-Type'  => 'application/vnd.koleimports.ds.order+xml'
         ), $cleanXml);
 
+        //Post Order
         $response = $request->send();
 
-        return $response;
-    }
+        $xmlResponse = $response->xml();
 
-    public function cleanXML($xml)
-    {
-        preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $xml, $matches);
-        return str_replace($matches[0], $matches[1], $xml);
-    }
+        $parser = new Parser;
 
-    public function setOffset($offset)
-    {
-        $this->offset = (int) $offset;
+        return $parser->toArray($xmlResponse);
 
-        return $this;
-    }
-
-    public function setLimit($limit)
-    {
-        $this->limit = (int) $limit;
-
-        return $this;
-    }
-
-    public function getOffset()
-    {
-        return $this->offset;
-    }
-
-    public function getLimit()
-    {
-        return $this->limit;
     }
 }

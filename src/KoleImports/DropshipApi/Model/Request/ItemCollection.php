@@ -2,16 +2,9 @@
 
 namespace KoleImports\DropshipApi\Model\Request;
 
-use JMS\Serializer\Annotation\XmlRoot;
-use JMS\Serializer\Annotation\XmlMap;
 use JMS\Serializer\Annotation\XmlList;
 use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\SerializedName;
 
-/**
- * @author Jesse Reese <jesse.c.reese@gmail.com>
- * @author Bill Hance <bill.hance@gmail.com>
- */
 class ItemCollection
 {
     /**

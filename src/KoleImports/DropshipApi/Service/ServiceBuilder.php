@@ -9,10 +9,6 @@ use KoleImports\DropshipApi\Service\OrderService;
 use KoleImports\DropshipApi\Service\ProductService;
 use KoleImports\DropshipApi\Service\Serializer;
 
-/**
- * @author Bill Hance <bill.hance@gmail.com>
- * @author Jesse Reese <jesse.c.reese@gmail.com>
- */
 class ServiceBuilder
 {
     private $config;
@@ -61,7 +57,7 @@ class ServiceBuilder
      */
     public function getOrderService()
     {
-        return new OrderService($this->getApiClient());
+        return new OrderService($this->getApiClient(), $this->getSerializerService());
     }
 
     /**
@@ -103,7 +99,7 @@ class ServiceBuilder
      */
     public function getTransactionService()
     {
-        throw new NotImplementedException('Transaction Service has not been implemented.');
+        return new TransactionService($this->getApiClient());
     }
 
     /**
@@ -111,6 +107,6 @@ class ServiceBuilder
      */
     public function getShipmentService()
     {
-        throw new NotImplementedException('Shipment Service has not been implemented.');
+        return new ShipmentService($this->getApiClient());
     }
 }
