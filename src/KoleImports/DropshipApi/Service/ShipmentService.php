@@ -1,5 +1,6 @@
 <?php
 namespace KoleImports\DropshipApi\Service;
+use KoleImports\DropshipApi\Model\Request\Order;
 
 class ShipmentService
 {
@@ -12,7 +13,9 @@ class ShipmentService
 
     public function getShipment($id)
     {
-        return $this->client->GetShipment(array('order_id' => $id));
+        $order = new Order;
+        $order->setOrderId($id);
+        return $this->client->GetShipment(array('order_id' => $order->getOrderId()));
     }
 
     public function getShipments()

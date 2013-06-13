@@ -12,7 +12,10 @@ class TransactionService
 
     public function getTransaction($id)
     {
-        return $this->client->GetTransaction(array('order_id' => $id));
+        $order = new Order;
+        $order->setOrderId($id);
+
+        return $this->client->GetTransaction(array('order_id' => $order->getOrderId()));
     }
 
     public function getTransactions()

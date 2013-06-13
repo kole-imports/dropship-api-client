@@ -41,13 +41,9 @@ class OrderService
 
     public function getOrder($id)
     {
-        if(!isset($id))
-        {
-            echo 'Please set an Order Id';
-        }else
-        {
-            return $this->client->GetOrder(array('order_id' => $id));
-        }
+            $order->setOrderId($id);
+
+            return $this->client->GetOrder(array('order_id' => $order->getOrderId()));
     }
 
     public function getOrders()
