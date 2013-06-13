@@ -45,8 +45,7 @@ curl -s "http://getcomposer.org/installer" | php
     "autoload": {
         "psr-0": {
             "KoleImports\\DropshipApi": "src/",
-            "KoleImports\\DropshipApi\\Tests": "tests/",
-            "Commands": "examples/"
+            "KoleImports\\DropshipApi\\Tests": "tests/"
         }
     }
 }
