@@ -21,7 +21,7 @@ namespace KoleImports\DropshipApi\Model\Response;
 
 use KoleImports\DropshipApi\Service\Serializer;
 
-class OrderCollection
+class Parser
 {
 	/**
 	* @var response SimpleXMLObject

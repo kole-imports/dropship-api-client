@@ -7,7 +7,7 @@ ini_set('display_errors', 'On');
 
 use KoleImports\DropshipApi\Service\ServiceBuilder;
 
-$serviceBuilder = new ServiceBuilder('X16310', 'a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd');
+$serviceBuilder = new ServiceBuilder('X01003', 'ae25bfd04c13438a17914ce258ff1b1c25ee9e12');
 
 $orderService = $serviceBuilder->getOrderService();
 
@@ -15,7 +15,7 @@ $orderBuilder = $orderService->getOrderBuilder();
 
 $orderBuilder->setPoNumber('12345')
     ->setNotes('These are sample notes')
-    ->setCarrier('FEDEX')
+    ->setCarrier('UPS')
     ->setService("GROUND")
     ->setSignature(true)
     ->setInstructions('These are shipping instructions')
