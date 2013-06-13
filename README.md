@@ -158,8 +158,6 @@ $response = $transactionService->getTransactions();
 ####List Single Transaction by Order Id
 
 ```php
-use KoleImports\DropshipApi\Model\Request\Order;
-
 $transactionService = $serviceBuilder->getTransactionService();
 
 $response = $transactionService->getTransaction('12345');
@@ -178,8 +176,6 @@ $response = $orderService->getShipments();
 ####List Single Shipment by Order Id
 
 ```php
-use KoleImports\DropshipApi\Model\Request\Order;
-
 $orderService = $serviceBuilder->getShipmentService();
 
 $response = $orderService->getShipment('12345');
