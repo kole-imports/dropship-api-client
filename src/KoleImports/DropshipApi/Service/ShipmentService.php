@@ -17,31 +17,28 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace KoleImports\DropshipApi\Model\Request;
+namespace KoleImports\DropshipApi\Service;
 
-class OrderCollection
+use KoleImports\DropshipApi\Model\Request\Order;
+
+class ShipmentService
 {
-	/**
-	* order
-	* @var array<order>
-	*/
-	private $order = array();
+    private $client;
 
-	public function getOrders()
-	{
-		return $this->order;
-	}
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
 
-	public function setOrders(array $order)
-	{
-	           $this->addOrder($order);
+    public function getShipment($id)
+    {
+        $order = new Order;
+        $order->setOrderId($id);
+        return $this->client->GetShipment(array('order_id' => $order->getOrderId()));
+    }
 
-	           return $this;
-	}
-
-	public function addOrder(Order $order)
-	{
-		$this->order[] = $order;
-	}
-
+    public function getShipments()
+    {
+        return $this->client->GetShipments();
+    }
 }

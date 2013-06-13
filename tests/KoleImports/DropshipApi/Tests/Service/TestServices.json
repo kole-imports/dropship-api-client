@@ -1,0 +1,80 @@
+{
+	"name": "Kole Imports API Client",
+	"base_url": "https://api.koleimports.com",
+	"description": "Dropship API Product Service",
+	"operations": {
+		"GetProducts": {
+		           "httpMethod": "GET",
+		           "uri":"/products",
+	           	"summary": "Gets a list of Products"
+		},
+		"GetProduct": {
+	            "httpMethod": "GET",
+	            "uri": "/products/{sku}",
+	           	"summary": "Get specified product",
+			"parameters":{
+				"sku":{
+					"location":"uri",
+					"description":"Product to retrieve by sku",
+					"required":"true"
+					}
+				}
+	      	},
+		"GetAccounts": {
+	            "httpMethod": "GET",
+	            "uri": "/accounts",
+	           	"summary": "Gets a list of Accounts"
+	      	},
+		"GetOrders": {
+	            "httpMethod": "GET",
+	            "uri": "/orders",
+	           	"summary": "Gets a list of orders"
+	      	},
+		"GetOrder": {
+	            "httpMethod": "GET",
+	            "uri": "/orders/{order_id}",
+	           	"summary": "Get get specific order",
+			"parameters":{
+				"order_id":{
+					"location":"uri",
+					"description":"Order to retrieve by order_id",
+					"required":"true"
+					}
+				}
+			},
+		"GetShipments": {
+	            "httpMethod": "GET",
+	            "uri": "/shipments",
+	           	"summary": "Get get all shipments"
+			},
+		"GetShipment": {
+	            "httpMethod": "GET",
+	            "uri": "/shipments/{order_id}",
+	           	"summary": "Get get specific order",
+			"parameters":{
+				"order_id":{
+					"location":"uri",
+					"description":"Order to retrieve by order_id",
+					"required":"true"
+					}
+				}
+			},
+		"GetTransactions": {
+	            "httpMethod": "GET",
+	            "uri": "/transactions",
+	           	"summary": "Get get all transactions"
+			},
+		"GetTransaction": {
+	            "httpMethod": "GET",
+	            "uri": "/transactions/{order_id}",
+	           	"summary": "Get get specific order",
+			"parameters":{
+				"order_id":{
+					"location":"uri",
+					"description":"Order to retrieve by order_id",
+					"required":"true"
+				}
+			}
+		}
+	}
+}

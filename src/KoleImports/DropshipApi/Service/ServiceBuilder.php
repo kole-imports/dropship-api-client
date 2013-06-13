@@ -1,4 +1,21 @@
 <?php
+/*
+Kole Imports Dropship API Client
+Copyright (C) <2013>  <Jesse Reese>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
 
 namespace KoleImports\DropshipApi\Service;
 
@@ -6,16 +23,19 @@ use KoleImports\DropshipApi\Exception\NotImplementedException;
 use KoleImports\DropshipApi\Model\Request\Config;
 use KoleImports\DropshipApi\Service\ApiClient;
 use KoleImports\DropshipApi\Service\OrderService;
+use KoleImports\DropshipApi\Service\ProductService;
+use KoleImports\DropshipApi\Service\Serializer;
 
-/**
- * @author Bill Hance <bill.hance@gmail.com>
- * @author Jesse Reese <jesse.c.reese@gmail.com>
- */
 class ServiceBuilder
 {
     private $config;
 
     private $client;
+
+    /**
+    * @var serializer Object
+    */
+    private $serializer;
 
     /**
      * @link http://support.koleimports.com/kb/api-documentation/api-overview
@@ -33,7 +53,18 @@ class ServiceBuilder
      */
     public function getApiClient()
     {
-        return isset($this->client) ? $this->client : new ApiClient($this->config);
+        $client = new ApiClient;
+        return $client->connectApi($this->config);
+    }
+
+    /**
+     * Serializer Service
+     * Provides an interface for the serializer
+     */
+    public function getSerializer()
+    {
+        $serializer = new Serializer;
+        return $serializer->getSerializer();
     }
 
     /**
@@ -43,7 +74,17 @@ class ServiceBuilder
      */
     public function getOrderService()
     {
-        return new OrderService($this->getApiClient());
+        return new OrderService($this->getApiClient(), $this->getSerializerService());
+    }
+
+    /**
+     * Order Service
+     * Provides a simple interface to retrieve and create new orders.
+     * @return OrderService Order Service
+     */
+    public function getSerializerService()
+    {
+        return new SerializerService($this->getSerializer());
     }
 
     /**
@@ -67,7 +108,7 @@ class ServiceBuilder
      */
     public function getProductService()
     {
-        throw new NotImplementedException('Product Service has not been implemented.');
+        return new ProductService($this->getApiClient());
     }
 
     /**
@@ -75,7 +116,7 @@ class ServiceBuilder
      */
     public function getTransactionService()
     {
-        throw new NotImplementedException('Transaction Service has not been implemented.');
+        return new TransactionService($this->getApiClient());
     }
 
     /**
@@ -83,6 +124,6 @@ class ServiceBuilder
      */
     public function getShipmentService()
     {
-        throw new NotImplementedException('Shipment Service has not been implemented.');
+        return new ShipmentService($this->getApiClient());
     }
 }

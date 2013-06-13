@@ -19,29 +19,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 namespace KoleImports\DropshipApi\Model\Request;
 
-class OrderCollection
+class Parameters
 {
-	/**
-	* order
-	* @var array<order>
-	*/
-	private $order = array();
+    /**
+    *@var offset int
+    */
+    private $offset;
 
-	public function getOrders()
-	{
-		return $this->order;
-	}
+    /**
+    *@var limit int
+    */
+    private $limit;
 
-	public function setOrders(array $order)
-	{
-	           $this->addOrder($order);
+    public function setOffset($offset)
+    {
+        $this->offset = (int) $offset;
 
-	           return $this;
-	}
+        return $this;
+    }
 
-	public function addOrder(Order $order)
-	{
-		$this->order[] = $order;
-	}
+    public function setLimit($limit)
+    {
+        $this->limit = (int) $limit;
 
+        return $this;
+    }
+
+    public function getOffset()
+    {
+        return $this->offset;
+    }
+
+    public function getLimit()
+    {
+        return $this->limit;
+    }
 }
