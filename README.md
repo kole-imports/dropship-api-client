@@ -77,7 +77,7 @@ Commands -
 
 ###Products
 
-####List Products
+####List Products:
 
 ```php
 $productService = $serviceBuilder->getProductService();
@@ -85,7 +85,7 @@ $productService = $serviceBuilder->getProductService();
 $response = $productService->getProducts();
 ```
 
-####List Single Product by SKU
+####List Single Product by SKU:
 
 ```php
 $productService = $serviceBuilder->getProductService();
@@ -95,7 +95,7 @@ $response = $productService->getProduct('Product SKU');
 
 ###Orders
 
-####List Orders
+####List Orders:
 
 ```php
 $orderService = $serviceBuilder->getOrderService();
@@ -103,7 +103,7 @@ $orderService = $serviceBuilder->getOrderService();
 $response = $orderService->getOrders('Order ID');
 ```
 
-####List Single Order by Order Id
+####List Single Order by Order Id:
 
 ```php
 $orderService = $serviceBuilder->getOrderService();
@@ -111,7 +111,7 @@ $orderService = $serviceBuilder->getOrderService();
 $response = $orderService->getOrder('Order ID');
 ```
 
-####Create Order(s)
+####Create Order(s):
 
 ```php
 $orderService = $serviceBuilder->getOrderService();
@@ -145,7 +145,7 @@ $response = $orderService->post($order);
 
 ###Transactions
 
-####List Transactions
+####List Transactions:
 
 ```php
 $transactionService = $serviceBuilder->getTransactionService();
@@ -153,7 +153,7 @@ $transactionService = $serviceBuilder->getTransactionService();
 $response = $transactionService->getTransactions();
 ```
 
-####List Single Transaction by Order Id
+####List Single Transaction by Order Id:
 
 ```php
 $transactionService = $serviceBuilder->getTransactionService();
@@ -163,7 +163,7 @@ $response = $transactionService->getTransaction('Order ID');
 
 ###Shipments
 
-####List Shipments
+####List Shipments:
 
 ```php
 $orderService = $serviceBuilder->getShipmentService();
@@ -171,7 +171,7 @@ $orderService = $serviceBuilder->getShipmentService();
 $response = $orderService->getShipments();
 ```
 
-####List Single Shipment by Order Id
+####List Single Shipment by Order Id:
 
 ```php
 $orderService = $serviceBuilder->getShipmentService();
