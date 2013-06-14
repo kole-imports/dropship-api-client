@@ -21,7 +21,7 @@ API Requirements -
 * Payment Method: Credit Card / Terms
 
 
-Initial Setup -
+Setup -
 ------------------------
 
 ###Install Composer
@@ -31,8 +31,6 @@ Initial Setup -
 ```teminal
 curl -s "http://getcomposer.org/installer" | php
 ```
-
-###Guzzle / JMS Serializer Setup
 
 ####Create your composer.json file
 
@@ -92,7 +90,7 @@ $response = $productService->getProducts();
 ```php
 $productService = $serviceBuilder->getProductService();
 
-$response = $productService->getProduct('AA124');
+$response = $productService->getProduct('Product SKU');
 ```
 
 ###Orders
@@ -102,7 +100,7 @@ $response = $productService->getProduct('AA124');
 ```php
 $orderService = $serviceBuilder->getOrderService();
 
-$response = $orderService->getOrders();
+$response = $orderService->getOrders('Order ID');
 ```
 
 ####List Single Order by Order Id
@@ -110,7 +108,7 @@ $response = $orderService->getOrders();
 ```php
 $orderService = $serviceBuilder->getOrderService();
 
-$response = $orderService->getOrder('12345');
+$response = $orderService->getOrder('Order ID');
 ```
 
 ####Create Order(s)
@@ -120,6 +118,7 @@ $orderService = $serviceBuilder->getOrderService();
 
 $orderBuilder = $orderService->getOrderBuilder();
 
+//Example Order
 $orderBuilder->setPoNumber('12345')
     ->setNotes('These are sample notes')
     ->setCarrier('FEDEX')
@@ -159,7 +158,7 @@ $response = $transactionService->getTransactions();
 ```php
 $transactionService = $serviceBuilder->getTransactionService();
 
-$response = $transactionService->getTransaction('12345');
+$response = $transactionService->getTransaction('Order ID');
 ```
 
 ###Shipments
@@ -177,7 +176,7 @@ $response = $orderService->getShipments();
 ```php
 $orderService = $serviceBuilder->getShipmentService();
 
-$response = $orderService->getShipment('12345');
+$response = $orderService->getShipment('Order ID');
 ```
 
 
