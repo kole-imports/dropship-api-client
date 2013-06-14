@@ -13,9 +13,7 @@ $serviceBuilder = new ServiceBuilder('X16310', 'a0f0e69913896e20bdb07a9c31d9d7f1
 
 $transactionService = $serviceBuilder->getTransactionService();
 
-$order = new Order;
-$order->setOrderId('12345');
-
-$response = $transactionService->getTransaction($order->getOrderId());
+//getTransaction(' Order ID ')
+$response = $transactionService->getTransaction('12345');
 
 var_dump($response);

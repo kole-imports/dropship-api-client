@@ -34,6 +34,7 @@ class ShipmentService
     {
         $order = new Order;
         $order->setOrderId($id);
+
         return $this->client->GetShipment(array('order_id' => $order->getOrderId()));
     }
 

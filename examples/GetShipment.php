@@ -13,10 +13,8 @@ $serviceBuilder = new ServiceBuilder('X16310', 'a0f0e69913896e20bdb07a9c31d9d7f1
 
 $orderService = $serviceBuilder->getShipmentService();
 
-$order = new Order;
-$order->setOrderId('12345');
-
-$response = $orderService->getShipment($order->getOrderId());
+//getShipment(' Order ID ')
+$response = $orderService->getShipment('12345');
 
 //List Of Orders
 var_dump($reponse);
