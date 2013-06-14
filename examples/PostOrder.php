@@ -1,90 +1,49 @@
 <?php
-
 $vendorDir = dirname(dirname(__FILE__));
 require($vendorDir . '/vendor/autoload.php');
-
 
 //Error Handling
 ini_set('display_errors', 'On');
 
-use KoleImports\DropshipApi\Config\Config;
-use KoleImports\DropshipApi\KoleImportsFactory;
-use KoleImports\DropshipApi\KoleImportsClient;
-use KoleImports\DropshipApi\Model\Request\Address;
-use KoleImports\DropshipApi\Model\Request\Item;
-use KoleImports\DropshipApi\Model\Request\ItemCollection;
-use KoleImports\DropshipApi\Model\Request\Order;
-use KoleImports\DropshipApi\Model\Request\ShipOptions;
-use KoleImports\DropshipApi\Model\Request\OrderCollection;
+use KoleImports\DropshipApi\Service\ServiceBuilder;
 
-//Setup Client Configuration
-$config = new Config;
+$serviceBuilder = new ServiceBuilder('X01003', 'ae25bfd04c13438a17914ce258ff1b1c25ee9e12');
 
-$config->setAccountId('X16310');
-$config->setApiKey('a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd');
+$orderService = $serviceBuilder->getOrderService();
 
-$factory = new KoleImportsFactory($config);
-$client = new KoleImportsClient($factory);
+$orderBuilder = $orderService->getOrderBuilder();
 
-try {
+$orderBuilder->setPoNumber('12345')
+    ->setNotes('These are sample notes')
+    ->setCarrier('UPS')
+    ->setService("GROUND")
+    ->setSignature(true)
+    ->setInstructions('These are shipping instructions')
+    ->setFirstName('Jesse')
+    ->setLastName('Reese')
+    ->setCompany('JesseTestCompany')
+    ->setAddress1('24600 Main St.')
+    ->setAddress2('Suite 3')
+    ->setCity('Carson')
+    ->setState('CA')
+    ->setZipcode('90745')
+    ->setExtZipcode('5555')
+    ->setPhone('5555555555')
+    ->addItem('AA124','24')
+    ->addItem('AA125','48')
+    ->addItem('AA124', '24');
+try{
 
-    $address = new Address();
+$order = $orderBuilder->getOrder();
 
-    $address->setFirstName('Jesse')
-        ->setLastName('Reese')
-        ->setCompany('JesseTestCompany')
-        ->setAddress_1('24600 Main St.')
-        ->setAddress_2('Suite 3')
-        ->setCity('Carson')
-        ->setState('CA')
-        ->setZipcode('90745')
-        ->setExtZipcode('5555')
-        ->setPhone('5555555555');
+$response = $orderService->post($order);
 
-    $shipOptions = new ShipOptions();
+//Get Response Array
+print_r($response);
 
-    $shipOptions->setCarrier(ShipOptions::CARRIER_UPS)
-        ->setService(ShipOptions::SERVICE_GROUND)
-        ->setSignature(false)
-        ->setInstructions('These are shipping instructions');
-
-    $firstItem = new Item();
-
-    $firstItem->setSku('AA124')
-        ->setQuantity('24');
-
-    $secondItem = new Item();
-
-    $secondItem->setSku('AA125')
-        ->setQuantity('24');
-
-    $items = new ItemCollection();
-
-    $items->addItem($firstItem);
-    $items->addItem($secondItem);
-
-    $order = new Order;
-
-    $order->setPoNumber('12345')
-        ->setNotes('These are sample notes')
-        ->setShipOptions($shipOptions)
-        ->setShipToAddress($address)
-        ->setItems($items);
-
-    //$orders = new OrderCollection;
-    //$orders->addOrder($order);
-
-    //Create JMS Serializer
-    $serializer = JMS\Serializer\SerializerBuilder::create()->build();
-    $xml = $serializer->serialize($order, 'xml');
-
-    //Send POST data to  postOrder method
-    $postOrder = $client->postOrder($xml);
-
-    //Print POST response
-    print($postOrder);
-
-} catch (Guzzle\Http\Exception\BadResponseException $e) {
+}
+catch (Guzzle\Http\Exception\BadResponseException $e)
+{
     echo '<p> Uh oh! ' . $e->getMessage() . '</p>';
     echo '<p>HTTP request URL: ' . $e->getRequest()->getUrl() . '</p>';
     echo '<p>HTTP request: ' . $e->getRequest() . "\n";

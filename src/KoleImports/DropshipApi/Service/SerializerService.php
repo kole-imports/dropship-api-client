@@ -17,31 +17,45 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace KoleImports\DropshipApi\Model\Request;
+namespace KoleImports\DropshipApi\Service;
 
-class OrderCollection
+class SerializerService
 {
 	/**
-	* order
-	* @var array<order>
+	* Raw response data from API request
+	* @var $data
 	*/
-	private $order = array();
+	private $data;
 
-	public function getOrders()
+	/**
+	* @var $serializer JMS Serializer Object
+	*/
+	private $serializer;
+
+	public function __construct($serializer)
 	{
-		return $this->order;
+		$this->serializer = $serializer;
 	}
 
-	public function setOrders(array $order)
+	public function getXml()
 	{
-	           $this->addOrder($order);
-
-	           return $this;
+		return $this->serializer->serialize($this->data, 'xml');
 	}
 
-	public function addOrder(Order $order)
+	public function getJson()
 	{
-		$this->order[] = $order;
+		return $this->serializer->serialize($this->data, 'json');
 	}
 
+	public function setData($data)
+	{
+		$this->data = $data;
+
+		return $this;
+	}
+
+	public function getData()
+	{
+		return $this->data;
+	}
 }
