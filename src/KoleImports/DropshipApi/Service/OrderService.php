@@ -58,6 +58,7 @@ class OrderService
 
     public function getOrder($id)
     {
+            $order = new Order;
             $order->setOrderId($id);
 
             return $this->client->GetOrder(array('order_id' => $order->getOrderId()));
