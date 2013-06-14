@@ -17,31 +17,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace KoleImports\DropshipApi\Model\Request;
+namespace KoleImports\DropshipApi\Service;
 
-class OrderCollection
+use JMS\Serializer\SerializerBuilder;
+
+class Serializer
 {
-	/**
-	* order
-	* @var array<order>
-	*/
-	private $order = array();
-
-	public function getOrders()
+	public function getSerializer()
 	{
-		return $this->order;
+		$serializerBuilder = new SerializerBuilder;
+
+		return $serializerBuilder->create()->build();
 	}
-
-	public function setOrders(array $order)
-	{
-	           $this->addOrder($order);
-
-	           return $this;
-	}
-
-	public function addOrder(Order $order)
-	{
-		$this->order[] = $order;
-	}
-
 }

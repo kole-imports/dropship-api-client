@@ -17,31 +17,35 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-namespace KoleImports\DropshipApi\Model\Request;
+namespace KoleImports\DropshipApi\Model\Response;
 
-class OrderCollection
+use KoleImports\DropshipApi\Service\Serializer;
+
+class Parser
 {
 	/**
-	* order
-	* @var array<order>
+	* @var response SimpleXMLObject
 	*/
-	private $order = array();
+	private $response;
 
-	public function getOrders()
+
+	public function toArray($response, $array = array ())
 	{
-		return $this->order;
+		foreach ((array) $response as $index => $node)
+		{
+			$array[$index] = (is_object($node)) ? self::toArray($node): $node;
+		}
+
+		foreach($array as $item => $value)
+		{
+			foreach($value as $key)
+			{
+				$responseArray = json_decode(json_encode($key), true);
+
+				$data = array('response'=>$responseArray);
+
+				return $data;
+			}
+		}
 	}
-
-	public function setOrders(array $order)
-	{
-	           $this->addOrder($order);
-
-	           return $this;
-	}
-
-	public function addOrder(Order $order)
-	{
-		$this->order[] = $order;
-	}
-
 }

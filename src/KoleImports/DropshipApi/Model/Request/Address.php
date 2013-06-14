@@ -1,10 +1,27 @@
 <?php
+/*
+Kole Imports Dropship API Client
+Copyright (C) <2013>  <Jesse Reese>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
 
 namespace KoleImports\DropshipApi\Model\Request;
 
-/**
- * @author Bill Hance <bill.hance@gmail.com>
- */
+use Doctrine\Common\Annotations;
+use JMS\Serializer\Annotation\SerializedName;
+
 class Address
 {
     /**
@@ -28,14 +45,16 @@ class Address
     /**
      * Address 1
      * @var string
+     * @SerializedName("address_1")
      */
-    private $address_1;
+    private $address1;
 
     /**
      * Address 2
      * @var string
+     * @SerializedName("address_2")
      */
-    private $address_2;
+    private $address2;
 
     /**
      * City
@@ -53,13 +72,13 @@ class Address
      * Zipcode
      * @var string
      */
-    private $zipCode;
+    private $zipcode;
 
     /**
      * Extended Zipcode
      * @var string
      */
-    private $extZipCode;
+    private $extZipcode;
 
     /**
      * Country
@@ -109,26 +128,26 @@ class Address
         return $this;
     }
 
-    public function getaddress_1()
+    public function getaddress1()
     {
         return $this->address_1;
     }
 
-    public function setaddress_1($address_1)
+    public function setaddress1($address1)
     {
-        $this->address_1 = (string) $address_1;
+        $this->address1 = (string) $address1;
 
         return $this;
     }
 
-    public function getaddress_2()
+    public function getaddress2()
     {
-        return $this->address_2;
+        return $this->address2;
     }
 
-    public function setAddress_2($address_2)
+    public function setAddress2($address2)
     {
-        $this->address_2 = (string) $address_2;
+        $this->address2 = (string) $address2;
 
         return $this;
     }
@@ -157,14 +176,14 @@ class Address
         return $this;
     }
 
-    public function getZipCode()
+    public function getZipcode()
     {
-        return $this->zipCode;
+        return $this->zipcode;
     }
 
-    public function setZipCode($zipCode)
+    public function setZipCode($zipcode)
     {
-        $this->zipCode = (string) $zipCode;
+        $this->zipcode = (string) $zipcode;
 
         return $this;
     }
@@ -174,9 +193,9 @@ class Address
         return $this->extZipCode;
     }
 
-    public function setExtZipCode($extZipCode)
+    public function setExtZipCode($extZipcode)
     {
-        $this->extZipCode = (string) $extZipCode;
+        $this->extZipcode = (string) $extZipcode;
 
         return $this;
     }

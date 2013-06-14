@@ -9,7 +9,7 @@
     </php>
     <testsuites>
         <testsuite name="guzzle-service">
-            <directory>src/tests/Application/Tests</directory>
+            <directory suffix="ApiClientTest">./Tests</directory>
         </testsuite>
     </testsuites>
 </phpunit>
