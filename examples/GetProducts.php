@@ -9,7 +9,7 @@ ini_set('display_errors', 'On');
 use KoleImports\DropshipApi\Service\ServiceBuilder;
 
 //Configure the Service Builder with Credentials
-$serviceBuilder = new ServiceBuilder('X16310', 'a0f0e69913896e20bdb07a9c31d9d7f1d31e3acd');
+$serviceBuilder = new ServiceBuilder('ACCOUNT ID', 'API KEY');
 
 //Pass the Service Builder to the Product Service
 $productService = $serviceBuilder->getProductService();
