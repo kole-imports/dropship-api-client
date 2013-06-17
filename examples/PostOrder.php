@@ -7,7 +7,7 @@ ini_set('display_errors', 'On');
 
 use KoleImports\DropshipApi\Service\ServiceBuilder;
 
-$serviceBuilder = new ServiceBuilder('X01003', 'ae25bfd04c13438a17914ce258ff1b1c25ee9e12');
+$serviceBuilder = new ServiceBuilder('ACCOUNT ID', 'API KEY');
 
 $orderService = $serviceBuilder->getOrderService();
 
