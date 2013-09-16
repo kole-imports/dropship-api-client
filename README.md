@@ -36,12 +36,17 @@ curl -s "http://getcomposer.org/installer" | php
 
 ```json
 {
-    "require": {
+    "name": "koleimports/dropship-api-client",
+    "description": "A tool for customers in need of the Dropship API",
+    "require": 
+    {
         "guzzle/guzzle": "3.0.*",
         "jms/serializer": "0.*"
     },
-    "autoload": {
-        "psr-0": {
+    "autoload": 
+    {
+        "psr-0": 
+        {
             "KoleImports\\DropshipApi": "src/",
             "KoleImports\\DropshipApi\\Tests": "tests/"
         }
